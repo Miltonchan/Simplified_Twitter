@@ -15,7 +15,7 @@ db.once('open', () => {
     app.use(bodyParser.urlencoded({extended: true}));
     app.use(bodyParser.json());
 
-    const useraccountRouter = require('./routes/useraccounts');
+    const useraccountRouter = require('./routes/UserAccounts');
     const adminaccountRouter = require('./routes/adminaccounts');
     const userinfoRouter = require('./routes/userinfos');
     const commentRouter = require('./routes/comments');
@@ -41,6 +41,8 @@ db.once('open', () => {
     //     } 
     //     console.log(admin)
     // })
+
+    let UserAccount = require('./models/UserAccount.model')
 })
 
 app.listen(PORT, (error) =>{
