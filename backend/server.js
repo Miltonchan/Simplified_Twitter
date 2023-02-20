@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const app = express();
 const PORT = 8000;
 const bodyParser = require('body-parser');
-const Useraccount = require('./models/useraccount.model');
 
 mongoose.set("strictQuery", false);
 mongoose.connect('mongodb://localhost:27017/');
