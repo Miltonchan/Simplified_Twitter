@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const app = express();
 const PORT = 8000;
 const bodyParser = require('body-parser');
+const Useraccount = require('./models/useraccount.model');
 
 mongoose.set("strictQuery", false);
 mongoose.connect('mongodb://localhost:27017/');
@@ -15,34 +16,182 @@ db.once('open', () => {
     app.use(bodyParser.urlencoded({extended: true}));
     app.use(bodyParser.json());
 
-    const useraccountRouter = require('./routes/UserAccounts');
+    const useraccountRouter = require('./routes/useraccounts');
     const adminaccountRouter = require('./routes/adminaccounts');
     const userinfoRouter = require('./routes/userinfos');
     const commentRouter = require('./routes/comments');
     const postRouter = require('./routes/posts');
-    const pirvatechatRouter = require('./routes/pirvatechats');
+    const chatroomRouter = require('./routes/chatrooms');
+    const messageRouter = require('./routes/messages');
 
     app.use('/useraccounts', useraccountRouter);
     app.use('/adminaccounts', adminaccountRouter);
     app.use('/userinfos', userinfoRouter);
     app.use('/comments', commentRouter);
     app.use('/posts', postRouter);
-    app.use('/pirvatechats', pirvatechatRouter);
+    app.use('/chatroom', chatroomRouter);
+    app.use('/message', messageRouter);
 
+    let Useraccount = require('./models/useraccount.model');
     let Adminaccount = require('./models/adminaccount.model');
+    let Userinfo = require('./models/userinfo.model');
+    let Comment = require('./models/comment.model');
+    let Post = require('./models/post.model');
+    let Chatroom = require('./models/chatroom.model');
+    let Message = require('./models/message.model');
 
-    // Adminaccount.create({
-    //     adminId:'1',
-    //     username:'admin',
-    //     password:'admin'
-    // }, (err,admin)=>{
-    //     if(err){
-    //         return console.log(err)
-    //     } 
-    //     console.log(admin)
-    // })
+    //Init the schema data 
+    Adminaccount.create({
+        adminId:'1',
+        username:'admin',
+        password:'admin'
+    }, (err,admin)=>{
+        if(err){
+            return console.log(err)
+        } 
+        console.log(admin)
+    })
 
-    let UserAccount = require('./models/UserAccount.model')
+    Useraccount.create({
+        userId:'100',
+        username:'stu100',
+        password:'stu100'
+    }, (err,user)=>{
+        if(err){
+            return console.log(err)
+        } 
+        console.log(user)
+    })
+
+    Useraccount.create({
+        userId:'101',
+        username:'stu101',
+        password:'stu101'
+    }, (err,user)=>{
+        if(err){
+            return console.log(err)
+        } 
+        console.log(user)
+    })
+
+    Useraccount.create({
+        userId:'102',
+        username:'stu102',
+        password:'stu102'
+    }, (err,user)=>{
+        if(err){
+            return console.log(err)
+        } 
+        console.log(user)
+    })
+
+    Userinfo.create({
+        userId:'100',
+        username:'stu100',
+        nickname:'Mickey',
+        private: false,
+        follower: ['Minnie','Donald'],
+        following:['Minnie'],
+        visibleTo:['Minnie']
+    }, (err,user)=>{
+        if(err){
+            return console.log(err)
+        } 
+        console.log(user)
+    })
+
+    Userinfo.create({
+        userId:'101',
+        username:'stu101',
+        nickname:'Minnie',
+        private: false,
+        follower: ['Mickey','Donald'],
+        following:['Mickey'],
+        visibleTo:['Mickey']
+    }, (err,user)=>{
+        if(err){
+            return console.log(err)
+        } 
+        console.log(user)
+    })
+
+    Userinfo.create({
+        userId:'102',
+        username:'stu102',
+        nickname:'Donald',
+        private: false,
+        follower: ['Minnie'],
+        following:['Minnie','Mickey'],
+        visibleTo:['Mickey']
+    }, (err,user)=>{
+        if(err){
+            return console.log(err)
+        } 
+        console.log(user)
+    })
+
+    Post.create({
+        postId:'1',
+        username:'stu100',
+        content:'Today is my first day using Twitter :D',
+        like:['Mickey','Minnie'],
+        dislike:['Donald'],
+        retweetBy:['Minnie'],
+        retweet:false
+    }, (err,post)=>{
+        if(err){
+            return console.log(err)
+        } 
+        console.log(post)
+    })
+
+    Comment.create({
+        postId:'1',
+        username:'stu101',
+        content:'Enjoy!!!'
+    }, (err,comment)=>{
+        if(err){
+            return console.log(err)
+        } 
+        console.log(comment)
+    })
+
+    Comment.create({
+        postId:'1',
+        username:'stu100',
+        content:'You too!!'
+    }, (err,comment)=>{
+        if(err){
+            return console.log(err)
+        } 
+        console.log(comment)
+    })
+
+    Chatroom.create({
+        rmId:'1',
+        firstUserId:'100',
+        secUserId:'101'
+    }, (err,chatroom)=>{
+        if(err){
+            return console.log(err)
+        } 
+        console.log(chatroom)
+    })
+
+    Message.create({
+        messageId:'1',
+        rmId:'1',
+        userId:'101',
+        message:'Hello'
+    }, (err,message)=>{
+        if(err){
+            return console.log(err)
+        } 
+        console.log(message)
+    })
+
+
+
 })
 
 app.listen(PORT, (error) =>{
