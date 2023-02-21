@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-//Link, UseParams, 
 
 import Login from './components/Login_component';
 import Home from './components/Home_component';
@@ -19,3 +18,4 @@ function App() {
 }
 
 export default App;
+
