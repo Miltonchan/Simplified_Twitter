@@ -8,7 +8,7 @@ router.route('/').get((req, res) => {
 })
 
 router.route('/:userId').get((req, res) => {
-  Userinfo.findOne({userId: parseInt(req.params.userId)})
+  Userinfo.findOne({userId: req.params.userId})
     .then(userinfo => res.json(userinfo))
     .catch(err => res.status(400).json('Error' + err))
 })
