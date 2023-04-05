@@ -2,15 +2,21 @@ const router = require('express').Router();
 let Userinfo = require('../models/userinfo.model');
 
 router.route('/').get((req, res) => {
-  Userinfo.find()
+  const username = req.query.username;
+  const userId = req.query.userId;
+  if (username) {
+    Userinfo.find({ username: new RegExp(username, 'i') })
+    .then(userinfos => res.json(userinfos)) 
+    .catch(err => res.status(400).json('Error' + err));
+  }else if (userId) {
+    Userinfo.find({ userId: userId})
     .then(userinfos => res.json(userinfos))
-    .catch(err => res.status(400).json('Error' + err))
-})
-
-router.route('/:userId').get((req, res) => {
-  Userinfo.findOne({userId: req.params.userId})
-    .then(userinfo => res.json(userinfo))
-    .catch(err => res.status(400).json('Error' + err))
+    .catch(err => res.status(400).json('Error' + err));
+  }else {
+    Userinfo.find()
+    .then(userinfos => res.json(userinfos))
+    .catch(err => res.status(400).json('Error' + err));
+  }
 })
 
 module.exports = router;
