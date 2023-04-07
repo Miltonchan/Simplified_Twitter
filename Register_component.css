@@ -1,0 +1,48 @@
+.register-block {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  float: center;
+  position: relative;
+  top: 50px;
+  border-style: solid;
+  border-color: grey;
+  border-width: 1px;
+}
+
+.register-topicbar {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  float: center;
+  width: 300px;
+  background-color: #fbfbfb;
+  border-style: solid;
+  border-color: grey;
+  border-width: 1px;
+}
+
+.register-form-container {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  float: center;
+  height: 200px;
+  background-color: #d7d7d7;
+  border-style: solid;
+  border-color: grey;
+  border-width: 1px;
+}
+
+.register-form-block {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  float: center;
+  height: 150px;
+}
+
+.register-form {
+  padding-bottom: 2.5px;
+  padding-bottom: 2.5px;
+}
