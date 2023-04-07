@@ -20,6 +20,26 @@ router.route('/').get((req, res) => {
   }
 })
 
+router.route('/').post(async (req, res) => {
+  const data = req.body;
+  const lastUserId = await Useraccount.findOne().sort({ userId: -1 }).limit(1)
+    .then(useraccount => useraccount.userId);
+
+  const useraccount = new Useraccount({
+    userId: lastUserId + 1,
+    username: data.username,
+    password: data.password,
+  })
+
+  useraccount.save((err) => {
+    if (err) {
+      res.status(400).json('Status: faild');
+    }else {
+      res.status(200).json('Status: success');
+    }
+  })
+})
+
 module.exports = router;
 
 
