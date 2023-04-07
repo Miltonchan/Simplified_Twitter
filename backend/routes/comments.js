@@ -14,4 +14,21 @@ router.route('/').get((req, res) => {
   }
 })
 
+router.route('/').post((req, res) => {
+  const data = req.body;
+  const comment = new Comment({
+    postId: data.postId,
+    username: data.username,
+    content: data.content,
+  })
+
+  comment.save((err) => {
+    if (err) {
+      res.status(400).json('Status: faild');
+    }else {
+      res.status(200).json('Status: success');
+    }
+  })
+})
+
 module.exports = router;
