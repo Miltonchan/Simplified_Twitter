@@ -1,0 +1,48 @@
+.login-block {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  float: center;
+  position: relative;
+  top: 50px;
+  border-style: solid;
+  border-color: grey;
+  border-width: 1px;
+}
+
+.login-topicbar {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  float: center;
+  width: 250px;
+  background-color: #fbfbfb;
+  border-style: solid;
+  border-color: grey;
+  border-width: 1px;
+}
+
+.login-form-container {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  float: center;
+  height: 200px;
+  background-color: #d7d7d7;
+  border-style: solid;
+  border-color: grey;
+  border-width: 1px;
+}
+
+.login-form-block {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  float: center;
+  height: 150px;
+}
+
+.login-form {
+  padding-bottom: 2.5px;
+  padding-bottom: 2.5px;
+}

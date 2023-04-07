@@ -1,11 +1,12 @@
-
 import React from 'react'
-import Layout from './layout/layout';
+import './Home_component.css'
 
 export default function Home_component() {
   return (
     <div>
-      Layout will be add here.
+      <div>
+        search bar
+      </div>
     </div>
   )
 }
