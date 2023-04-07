@@ -28,7 +28,6 @@
   align-items: center;
   float: center;
   height: 200px;
-  width: 250px;
   background-color: #d7d7d7;
   border-style: solid;
   border-color: grey;
@@ -44,5 +43,6 @@
 }
 
 .login-form {
-
+  padding-bottom: 2.5px;
+  padding-bottom: 2.5px;
 }
