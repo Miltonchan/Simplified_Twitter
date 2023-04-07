@@ -5,7 +5,9 @@ const PORT = 8000;
 const bodyParser = require('body-parser');
 
 mongoose.set("strictQuery", false);
-mongoose.connect('mongodb://localhost:27017/');
+// Nodejs v16 use IPv16, so if you use Nodejs v16, replace localhost with 127.0.0.1
+mongoose.connect('mongodb://127.0.0.1:27017/');
+// mongoose.connect('mongodb://localhost:27017/');
 const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'Connection error:'))
