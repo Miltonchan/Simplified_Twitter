@@ -1,0 +1,9 @@
+@font-face {
+  font-family: "SAOUIRegular";
+  src: local("SAOUIRegular"),
+    url("./fonts/SAOUIRegular.otf") format("truetype");
+}
+
+body, html {
+  font-family: 'SAOUIRegular', medium;
+}
