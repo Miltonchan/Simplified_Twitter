@@ -30,8 +30,8 @@ db.once('open', () => {
     app.use('/userinfos', userinfoRouter);
     app.use('/comments', commentRouter);
     app.use('/posts', postRouter);
-    app.use('/chatroom', chatroomRouter);
-    app.use('/message', messageRouter);
+    app.use('/chatrooms', chatroomRouter);
+    app.use('/messages', messageRouter);
 
     let Useraccount = require('./models/useraccount.model');
     let Adminaccount = require('./models/adminaccount.model');
