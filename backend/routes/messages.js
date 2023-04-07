@@ -14,4 +14,27 @@ router.route('/').get((req, res) => {
   }
 })
 
+router.route('/').post(async (req, res) => {
+  const id = await Message.findOne().sort({ messageId: -1 }).limit(1)
+    .then(message => message['messageId']);
+
+  // res.json(id);
+
+  const data = req.body;
+  let message = new Message({
+    messageId: id + 1,
+    rmId: data.rmId,
+    userId: data.userId,
+    message: data.message,
+  })
+
+  message.save((err) => {
+    if (err) {
+      res.status(400).json('Status: faild');
+    }else {
+      res.status(200).json('Status: success');
+    }
+  })
+})
+
 module.exports = router;
