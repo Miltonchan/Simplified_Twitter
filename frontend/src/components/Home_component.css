@@ -1,0 +1,88 @@
+.home-topicbar {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  float: center;
+  width: 100%;
+  background-color: #fbfbfb;
+  border-style: solid;
+  border-color: grey;
+  border-width: 1px;
+}
+
+.home-main {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  float: center;
+  width: 100%;
+}
+
+.home-tabcontainer {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  float: center;
+}
+
+.home-tab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: center;
+}
+
+.home-tabbutton {
+  background-color: #d7d7d7;
+  width: 100%;
+}
+
+.home-tabcontentcontainer {
+  width: 100%;
+}
+
+.home-tabcontent {
+  width: 100%;
+}
+
+.home-avataricon {
+  display: inline-grid;
+  justify-content: left;
+  align-items: left;
+  float: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-style: solid;
+  border-color: red;
+  border-width: 1px;
+}
+
+.home-messageblock {
+  display: inline-flex;
+  border-style: solid;
+  border-color: red;
+  border-width: 1px;
+}
+
+.home-messagebottomblock {
+  display: grid;
+  border-style: solid;
+  border-color: red;
+  border-width: 1px;
+}
+
+.home-messagetoolblock {
+  display: inline-grid;
+  width: 80%;
+  border-style: solid;
+  border-color: red;
+  border-width: 1px;
+}
+
+.home-messagesendblock {
+  display: inline-grid;
+  width: 20%;
+  border-style: solid;
+  border-color: red;
+  border-width: 1px;
+}
