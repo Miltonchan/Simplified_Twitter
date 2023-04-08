@@ -20,6 +20,7 @@ router.route('/').get((req, res) => {
   }
 });
 
+// create new useraccount
 router.route('/').post(async (req, res) => {
   const data = req.body;
   const lastUserId = await Useraccount.findOne().sort({ userId: -1 }).limit(1)
@@ -40,6 +41,7 @@ router.route('/').post(async (req, res) => {
   })
 });
 
+// change password
 router.route('/changePassword').post(async (req, res) => {
   const data = req.body;
   const filter = { 
