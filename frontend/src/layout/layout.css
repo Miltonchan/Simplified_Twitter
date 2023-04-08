@@ -1,0 +1,17 @@
+.layout-content-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+}
+
+.layout-leftsidebar {
+  flex: 1;
+}
+
+.layout-content {
+  flex: 3;
+}
+
+.layout-right-sidebar {
+  flex: 1;
+}
