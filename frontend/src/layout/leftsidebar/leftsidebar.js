@@ -9,8 +9,10 @@ class LeftSideBar extends React.Component {
       <leftsidebar>
         <Router>
           <Routes>
+          <Route index element={<MenuList />} />
           <Route path="/" element={MenuList}/>
           <Route path="/main" element={MenuList}/>
+          <Route path="/home" element={MenuList}/>
           </Routes>
         </Router>
       </leftsidebar>
