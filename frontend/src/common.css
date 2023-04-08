@@ -4,3 +4,21 @@
   align-items: center;
   float: center;
 }
+
+.grid-div {
+  display: grid;
+}
+
+.block-div {
+  display: block;
+}
+
+.inline-grid-div {
+  display: inline-grid;
+}
+
+.test-block {
+  border-style: solid;
+  border-color: red;
+  border-width: 1px;
+}
