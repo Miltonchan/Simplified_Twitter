@@ -8,15 +8,15 @@ router.route('/').get((req, res) => {
   if (username) {
     Useraccount.find({ username: new RegExp(username, 'i') })
     .then(useraccounts => res.json(useraccounts)) 
-    .catch(err => res.status(400).json('Error' + err));
+    .catch(err => res.status(400).json('Error: ' + err));
   }else if (userId) {
     Useraccount.find({ userId: userId})
     .then(useraccounts => res.json(useraccounts))
-    .catch(err => res.status(400).json('Error' + err));
+    .catch(err => res.status(400).json('Error: ' + err));
   }else {
     Useraccount.find()
     .then(useraccounts => res.json(useraccounts))
-    .catch(err => res.status(400).json('Error' + err));
+    .catch(err => res.status(400).json('Error: ' + err));
   }
 });
 
@@ -34,7 +34,7 @@ router.route('/').post(async (req, res) => {
 
   useraccount.save((err) => {
     if (err) {
-      res.status(400).json('Status: faild');
+      res.status(400).json('Error: ' + err);
     }else {
       res.status(200).json('Status: success');
     }
