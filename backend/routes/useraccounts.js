@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const Useraccount = require('../models/useraccount.model')
+const Useraccount = require('../models/useraccount.model');
 
 router.route('/').get((req, res) => {
   const username = req.query.username;
@@ -18,7 +18,7 @@ router.route('/').get((req, res) => {
     .then(useraccounts => res.json(useraccounts))
     .catch(err => res.status(400).json('Error' + err));
   }
-})
+});
 
 router.route('/').post(async (req, res) => {
   const data = req.body;
@@ -38,7 +38,32 @@ router.route('/').post(async (req, res) => {
       res.status(200).json('Status: success');
     }
   })
-})
+});
+
+router.route('/changePassword').post(async (req, res) => {
+  const data = req.body;
+  const filter = { 
+    username: data.username,
+    password: data.oldPassword,
+  };
+
+  const oldUseraccount = await Useraccount.findOne(filter);
+  if (oldUseraccount) {
+    if (data.oldPassword == data.newPassword || !data.newPassword) {
+      res.status(400).json('Invalid input');
+    }else {
+      Useraccount.updateOne(filter, {password: data.newPassword}, (err) => {
+        if (err) {
+          res.status(400).json('Something wrong');
+        }else {
+          res.json('Status: success');
+        }
+      })
+    }
+  }else {
+    res.status(400).json('Old password incorrect');
+  }
+});
 
 module.exports = router;
 
