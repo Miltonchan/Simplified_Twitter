@@ -62,6 +62,33 @@ router.route('/like').post(async (req, res) => {
       res.json('Status: success');
     }
   })
-})
+});
+
+// dislike a post
+router.route('/dislike').post(async (req, res) => {
+  const data = req.body;
+  const filter = {
+    postId: data.postId,
+  }
+
+  let dislike =  await Post.findOne(filter)
+    .then(post => post.dislike);
+  
+  // do nothing if user already disliked the post
+  if (dislike.includes(data.username)) {
+    res.json('Status: success');
+    return;
+  }
+
+  Post.updateOne(filter, { dislike: [...dislike, data.username] }, (err) => {
+    if (err) {
+      res.status(400).json('Error: ' + err);
+    }else {
+      res.json('Status: success');
+    }
+  })
+});
+
+
 
 module.exports = router;
