@@ -34,15 +34,15 @@ const menulist_component = [
     icon: <img src={ProfileIcon} height={h} width={w}/>,
     link: "/userinfo",
   },{
-    title:"More",
+    title:"Setting",
     icon: <img src={MoreIcon} height={h} width={w}/>,
-    link: "/more",
+    link: "/setting",
   },
 ]
 
 export default function Menulist_component() {
     return(
-      <div className="leftsidebar">
+      <div className="menulist-container">
         <ul className="sidebarlist">
         <li className="headicon">
               {" "}
