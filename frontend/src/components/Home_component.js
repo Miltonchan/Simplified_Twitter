@@ -10,41 +10,70 @@ const Tab = () => {
 
   return (
     <div class="home-main">
-      <div class="home-tabcontainer">
+      <div class="home-tabblock">
         <div className="home-tab">
-          <button
-            class="home-tabbutton"
+          <div
             className={activeTab === 'For You' ? 'active' : ''}
             onClick={() => handleClick('For You')}
           >
             For You
-          </button>
-          <button
-            class="home-tabbutton"
+          </div>
+        </div>
+        <div className="home-tab">
+          <div
             className={activeTab === 'Following' ? 'active' : ''}
             onClick={() => handleClick('Following')}
           >
             Following
-          </button>
+          </div>
         </div>
       </div>
-      <div className="home-tabcontainer">
+      <div className="home-tabcontentcontainer">
         {activeTab === 'For You' && (
           <div class="home-tabcontent">
-            <div class="test-block">
+            <div class="home-messagecontainer">
               <div class="home-avataricon">
-              Hi
+              Avatar
               </div>
               <div class="home-messageblock">
-                <input type="text" name="username" id="username" required/>
+                <input type="text"/>
               </div>
               <div class="home-messagebottomblock">
                 <div class="block-div">
                   <div class="home-messagetoolblock">
-                    hi
+                    <div class="home-messageiconblock">
+                      Image
+                    </div>
+                    <div class="home-messageiconblock">
+                      Gif
+                    </div>
+                    <div class="home-messageiconblock">
+                      Hi
+                    </div>
+                    <div class="home-messageiconblock">
+                      Hi
+                    </div>
+                    <div class="home-messageiconblock">
+                      Hi
+                    </div>
                   </div>
                   <div class="home-messagesendblock">
-                    hi
+                    Send
+                  </div>
+                </div>
+              </div>
+              <div class="home-foryoucontainer">
+                <div class="home-foryoublock">
+                  <div class="home-foryoutopic">
+                    Welcome to Beitter!
+                  </div>
+                  <div class="home-foryoudescript">
+                    This is the best place for SAO fans to share their daily life.
+                  </div>
+                  <div class="home-foryoufindfanscontainer">
+                    <button class="home-foryoufindfansbutton">
+                      Find SAO fans
+                    </button>
                   </div>
                 </div>
               </div>
@@ -52,7 +81,55 @@ const Tab = () => {
           </div>
         )}
         {activeTab === 'Following' && (
-          <p>Content for Following tab goes here.</p>
+          <div class="home-tabcontent">
+            <div class="home-messagecontainer">
+              <div class="home-avataricon">
+              Avatar
+              </div>
+              <div class="home-messageblock">
+                <input type="text"/>
+              </div>
+              <div class="home-messagebottomblock">
+                <div class="block-div">
+                  <div class="home-messagetoolblock">
+                    <div class="home-messageiconblock">
+                      Image
+                    </div>
+                    <div class="home-messageiconblock">
+                      Gif
+                    </div>
+                    <div class="home-messageiconblock">
+                      Hi
+                    </div>
+                    <div class="home-messageiconblock">
+                      Hi
+                    </div>
+                    <div class="home-messageiconblock">
+                      Hi
+                    </div>
+                  </div>
+                  <div class="home-messagesendblock">
+                    Send
+                  </div>
+                </div>
+              </div>
+              <div class="home-foryoucontainer">
+                <div class="home-foryoublock">
+                  <div class="home-foryoutopic">
+                    ASSSAA
+                  </div>
+                  <div class="home-foryoudescript">
+                    This is the best place for SAO fans to share their daily life.
+                  </div>
+                  <div class="home-foryoufindfanscontainer">
+                    <button class="home-foryoufindfansbutton">
+                      Find SAO fans
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </div>
@@ -61,9 +138,9 @@ const Tab = () => {
 
 export default function Home_component() {
   return (
-    <div>
+    <div class="home-page">
       <div class="home-topicbar">
-        Welcome to Beitter!
+        Home
       </div>
       <Tab>
       </Tab>
