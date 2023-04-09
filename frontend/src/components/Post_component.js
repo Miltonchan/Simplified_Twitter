@@ -1,5 +1,5 @@
-import React from 'react'
-import './Post_component.css'
+import React from 'react';
+import './Post_component.css';
 
 export default function Post_component() {
   return (

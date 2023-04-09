@@ -5,6 +5,10 @@
   float: center;
 }
 
+.flex-div {
+  display: flex;
+}
+
 .grid-div {
   display: grid;
 }
@@ -13,8 +17,16 @@
   display: block;
 }
 
+.inline-flex-div {
+  display: inline-flex;
+}
+
 .inline-grid-div {
   display: inline-grid;
+}
+
+.inline-block-div {
+  display: inline-block;
 }
 
 .test-block {
