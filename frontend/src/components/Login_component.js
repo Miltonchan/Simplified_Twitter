@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Login_component.css';
+import '../icons/LoginButton.png'
 
 export default function Login_component() {
   return (
-    <div className="center-container">
+    <div className="login-container">
       <div className="login-block">
         <div className="login-topicbar">
           <h1> User Login </h1>
@@ -21,7 +22,7 @@ export default function Login_component() {
                 <input type="text" name="password" id="password" required/>
               </div>
            </form>
-           <Link to ='/register'> Not yet register? Sign Up now! </Link>
+           <Link className="register" to ='/register'> Not yet register? Sign Up now! </Link>
           </div>
         </div>
       </div>
