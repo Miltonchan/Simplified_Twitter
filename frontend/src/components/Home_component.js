@@ -1,8 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Home_component.css';
 
 const Tab = () => {
   const [activeTab, setActiveTab] = useState('For You');
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const postData = await fetch('http://localhost:8000/posts', 
+        {
+          method: 'GET',
+          mode: 'cors'
+        })
+        .then(data => data.json());
+      
+      setPosts(postData);
+      console.log(postData);
+    }
+    fetchPosts();
+  }, []);
 
   const handleClick = (tabName) => {
     setActiveTab(tabName);
@@ -10,6 +26,15 @@ const Tab = () => {
 
   return (
     <div class="home-main">
+      {posts.map((val, key) => {
+          return (
+            <li
+              key={key}
+            >
+              {val.content}
+            </li>
+          )
+      })}
       <div class="home-tabblock">
         <div className="home-tab">
           <div
