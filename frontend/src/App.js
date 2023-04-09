@@ -20,7 +20,7 @@ function App() {
     <Layout>
       <BrowserRouter>
         <Routes>
-          <Route index element={<Notification />} />
+          <Route index element={<Home />} />
           <Route path="/login/*" element = {<Login/>} />
           <Route path="/register/*" element = {<Register/>} />
           <Route path="/home/*" element = {<Home/>} />
