@@ -48,12 +48,60 @@
 }
 
 .sidebarlist-button {
-    background-color: #4CAF50; /* Green */
+    background-color: #eba601;
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 15px 110px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    border-radius: 8px;
   }
+
+.twitter-form{
+    max-width:600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.twitter-form label {
+    text-align: left;
+    display: block;
+    font-size: large;
+
+}
+
+.twitter-form textarea {
+    width: 100%;
+    padding: 10px 20px;
+    margin: 5px 0;
+    border: 1px solid #DDD;
+    border-radius: 10px;
+    box-sizing: border-box;
+    display: block;
+    min-height: 50px;
+    max-height: 200px;
+}
+
+.twitter-form select {
+    width: 100%;
+    padding: 5px 20px;
+    margin: 5px 0;
+    border: 1px solid #DDD;
+    border-radius: 10px;
+    box-sizing: border-box;
+    display: block;
+}
+
+.send-button {
+    position: relative;
+    right: 30px;
+    cursor: pointer;
+}
+
+.close-button {
+    position: relative;
+    left: 30px;
+    cursor: pointer;
+}
