@@ -14,6 +14,7 @@ router.route('/').get((req, res) => {
   }
 })
 
+// create new message
 router.route('/').post(async (req, res) => {
   const id = await Message.findOne().sort({ messageId: -1 }).limit(1)
     .then(message => message.messageId);

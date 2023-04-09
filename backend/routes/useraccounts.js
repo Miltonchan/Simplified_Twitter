@@ -30,7 +30,7 @@ router.route('/').post(async (req, res) => {
     userId: lastUserId + 1,
     username: data.username,
     password: data.password,
-  })
+  });
 
   useraccount.save((err) => {
     if (err) {

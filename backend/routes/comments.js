@@ -14,6 +14,7 @@ router.route('/').get((req, res) => {
   }
 })
 
+// create new comment
 router.route('/').post((req, res) => {
   const data = req.body;
   const comment = new Comment({
