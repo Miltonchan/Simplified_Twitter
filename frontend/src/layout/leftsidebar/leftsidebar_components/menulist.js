@@ -6,10 +6,12 @@ import MessagesIcon from "./icons/messagesIcon.png";
 import ProfileIcon from "./icons/profileIcon.png";
 import MoreIcon from "./icons/moreIcon.png";
 
+import './menulist.css';
+
 const h = 23;
 const w = 23;
 
-export const menulist_component = [
+const menulist_component = [
   {
     title:"Home",
     icon:<img src={HomeIcon} height={h} width={w}/>,
@@ -22,15 +24,15 @@ export const menulist_component = [
   },{
     title:"Notifications",
     icon: <img src={NotificationIcon} height={h} width={w}/> ,
-    link: "/notifications",
+    link: "/notification",
   },{
     title:"Messages",
     icon: <img src={MessagesIcon} height={h} width={w}/>,
-    link: "/messages",
+    link: "/chatroom",
   },{
     title:"Profile",
     icon: <img src={ProfileIcon} height={h} width={w}/>,
-    link: "/profile",
+    link: "/userinfo",
   },{
     title:"More",
     icon: <img src={MoreIcon} height={h} width={w}/>,
@@ -38,4 +40,32 @@ export const menulist_component = [
   },
 ]
 
+export default function Menulist_component() {
+    return(
+      <div className="leftsidebar">
+        <ul className="sidebarlist">
+        <li className="headicon">
+              {" "}
+              <div>icon here</div>
+              {" "}
+            </li>
+        {menulist_component.map((val, key) =>{
+          return (
+            <li
+              key={key}
+              className="row"
+              id={window.location.pathname == val.link ? "active" : " "}
+              onClick={() => {window.location.pathname = val.link}}>
+              {" "}
+              <div id="icon">{val.icon}</div>{" "}<div id="title">{val.title}</div>
+            </li>
+          )
+        })}
+        </ul>
+        <button className="sidebarlist-button">
+        Tweet
+        </button>
+      </div>
 
+    ); //head icons and button to be added
+}
