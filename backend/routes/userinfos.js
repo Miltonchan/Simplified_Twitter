@@ -105,4 +105,24 @@ router.route('/unfollow').post(async (req, res) => {
 
 });
 
+// update userinfo
+router.route('/update').post((req, res) => {
+  const data = req.body;
+  const filter = {
+    userId: data.userId,
+  }
+  const value = {
+    nickname: data.nickname,
+    private: data.private,
+  }
+
+  Userinfo.updateOne(filter, value, (err) => {
+    if (err) {
+      res.status(400).json('Error: ' + err);
+    }else {
+      res.json('Status: success');
+    }
+  });
+});
+
 module.exports = router;
