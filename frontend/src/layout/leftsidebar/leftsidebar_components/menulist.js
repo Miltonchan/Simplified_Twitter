@@ -9,6 +9,8 @@ import MoreIcon from "./icons/moreIcon.png";
 import Popup from "./popup";
 import './menulist.css';
 import './popup.css';
+// import closeIcon from "..\components\icons\DeclineButton.png"; idk how import to here
+
 
 const h = 23;
 const w = 23;
@@ -102,7 +104,8 @@ export default function Menulist_component() {
               </select>
               <br />
               <button className = "send-button">Send Twitter</button>
-              <button className = "close-button" onClick={ () =>setButtonPopup(false)}>close</button>
+              <button className = "close-button" onClick={ () =>setButtonPopup(false)}>
+                close</button>
             </form>
           </div>
         </Popup>
