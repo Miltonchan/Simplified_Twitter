@@ -1,8 +1,8 @@
-import React from "react"
-import Header from "./header/header"
-import Footer from "./footer/footer"
-import LeftSideBar from "./leftsidebar/leftsidebar"
-import RightSideBar from "./rightsidebar/rightsidebar"
+import React from "react";
+import Header from "./header/header";
+import Footer from "./footer/footer";
+import LeftSideBar from "./leftsidebar/leftsidebar";
+import RightSideBar from "./rightsidebar/rightsidebar";
 import './layout.css';
 
 class Layout extends React.Component {
