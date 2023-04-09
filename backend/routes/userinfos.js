@@ -71,4 +71,38 @@ router.route('/follow').post(async (req, res) => {
 
 });
 
+// unfollow a user
+router.route('/unfollow').post(async (req, res) => {
+  const data = req.body;
+  const followerUsername = data.followerUsername;
+  const beFollowUsername = data.beFollowUsername;
+  const followerNickname = data.followerNickname;
+  const beFollowNickname = data.beFollowNickname;
+
+  let followerArr = await Userinfo.findOne({ username: beFollowUsername })
+    .then(userinfo => userinfo.follower);
+  let follower_index = followerArr.indexOf(followerNickname);
+  if (follower_index != -1) {
+    followerArr.splice(follower_index, 1);
+  }
+
+  let followingArr = await Userinfo.findOne({ username: followerUsername })
+    .then(userinfo => userinfo.following);
+  let beFollow_index = followingArr.indexOf(beFollowNickname);
+  if (beFollow_index != -1) {
+    followingArr.splice(beFollow_index, 1);
+  }
+
+  let res1 = await Userinfo.updateOne({ username: followerUsername }, { following: followingArr });
+
+  let res2 = await Userinfo.updateOne({ username: beFollowUsername }, { follower: followerArr });
+
+  if (res1.acknowledged && res2.acknowledged) {
+    res.json('Status: success');
+  }else {
+    res.status(400).json('Error: someting wrong');
+  }
+
+});
+
 module.exports = router;
