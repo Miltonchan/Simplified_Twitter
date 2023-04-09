@@ -44,4 +44,31 @@ router.route('/').post(async (req, res) => {
   })
 });
 
+// follow a user
+router.route('/follow').post(async (req, res) => {
+  const data = req.body;
+  const followerUsername = data.followerUsername;
+  const beFollowUsername = data.beFollowUsername;
+  const followerNickname = data.followerNickname;
+  const beFollowNickname = data.beFollowNickname;
+
+  let followerArr = await Userinfo.findOne({ username: beFollowUsername })
+    .then(userinfo => userinfo.follower);
+
+  let followingArr = await Userinfo.findOne({ username: followerUsername })
+    .then(userinfo => userinfo.following);
+
+
+  let res1 = await Userinfo.updateOne({ username: followerUsername }, { following: [...followingArr, beFollowNickname] });
+
+  let res2 = await Userinfo.updateOne({ username: beFollowUsername }, { follower: [...followerArr, followerNickname] });
+
+  if (res1.acknowledged && res2.acknowledged) {
+    res.json('Status: success');
+  }else {
+    res.status(400).json('Error: someting wrong');
+  }
+
+});
+
 module.exports = router;
