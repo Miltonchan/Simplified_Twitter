@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const app = express();
 const PORT = 8000;
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 mongoose.set("strictQuery", false);
 // Nodejs v16 use IPv16, so if you use Nodejs v16, replace localhost with 127.0.0.1
@@ -16,6 +17,9 @@ db.once('open', () => {
 
     app.use(bodyParser.urlencoded({extended: true}));
     app.use(bodyParser.json());
+    app.use(cors({
+        origin: '*'
+    }));
 
     const useraccountRouter = require('./routes/useraccounts');
     const adminaccountRouter = require('./routes/adminaccounts');
