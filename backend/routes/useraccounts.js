@@ -20,6 +20,19 @@ router.route('/').get((req, res) => {
   }
 });
 
+// user login
+router.route('/login').post((req, res) => {
+  const data = req.body;
+  const filter = {
+    username: data.username,
+    password: data.password,
+  }
+
+  Useraccount.findOne(filter)
+    .then(useraccount => useraccount? res.json(useraccount) : res.json('Error: wrong username or passoword'))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
 // create new useraccount
 router.route('/').post(async (req, res) => {
   const data = req.body;
