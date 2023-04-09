@@ -28,8 +28,18 @@ export default function Userinfo_component() {
           </div>
         </div>
         <div className="uesrinfo-actions">
-          <button className="userinfo-follow-btn">Follow</button>
-          <button className="userinfo-message-btn">Message</button>
+          <button
+            className="userinfo-follow-btn"
+            onClick={() => {}}
+          >
+            Follow
+          </button>
+          <button
+            className="userinfo-message-btn"
+            onClick={() => {}}
+          >
+          Message
+          </button>
         </div>
       </div>
     </div>

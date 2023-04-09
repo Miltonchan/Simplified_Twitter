@@ -1,7 +1,18 @@
-.settings {
+.settings-page {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
+}
+
+.settings-topicbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #fbfbfb;
+  border-style: solid;
+  border-color: grey;
+  border-width: 1px;
 }
 
 .settings-section {
@@ -13,8 +24,8 @@
 }
 
 .delete-account-button {
-  background-color: #dc3545;
-  color: white;
+  background-color: #d7d7d7;
+  color: #000;
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
@@ -23,10 +34,11 @@
 }
 
 .delete-account-button:hover {
-  background-color: #c82333;
+  background-color: #eba601;
+  color: white;
 }
 
-.delete-dialog {
+.delete-dialog-background {
   position: fixed;
   top: 0;
   left: 0;
@@ -38,41 +50,55 @@
   align-items: center;
 }
 
+.delete-dialog {
+  display: grid;
+  justify-content: center;
+  background-color: #d7d7d7;
+  width: 500px;
+}
+
 .delete-dialog p {
   font-size: 20px;
   margin-bottom: 20px;
 }
 
+.delete-dialog-topic {
+  display: flex;
+  justify-content: center;
+  background-color: #fbfbfb;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 30px;
+  width: 500px;
+}
+
+.delete-dialog-description {
+  height: 250px;
+}
+
 .delete-dialog-actions {
   display: flex;
   justify-content: center;
+  background-color: #fbfbfb;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 500px;
 }
 
 .delete-confirm-button {
-  background-color: #dc3545;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-right: 10px;
+  width: 60px;
+  height: 60px;
 }
 
 .delete-confirm-button:hover {
-  background-color: #c82333;
+
 }
 
 .delete-cancel-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
+  width: 60px;
+  height: 60px;
 }
 
 .delete-cancel-button:hover {
-  background-color: #0069d9;
+
 }

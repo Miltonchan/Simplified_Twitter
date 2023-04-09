@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './Setting_component.css';
+import AcceptButton from '../icons/AcceptButton.png';
+import DeclineButton from '../icons/DeclineButton.png';
 
 export default function Setting_component() {
   const [isPublic, setIsPublic] = useState(false);
@@ -40,11 +42,13 @@ export default function Setting_component() {
   };
 
   return (
-    <div className="settings">
-      <h1>Settings</h1>
-
+    <div className="settings-page">
+      <div className="settings-topicbar">
+        <h1>Settings</h1>
+      </div>
       <div className="settings-section">
         <h2>Privacy</h2>
+        <div className="description-text">This allows you to change your account into private.</div>
         <label>
           <input type="checkbox" checked={isPublic} onChange={handlePublicChange} />
           Public account
@@ -85,11 +89,18 @@ export default function Setting_component() {
       </div>
 
       {isDeleteDialogOpen && (
-        <div className="delete-dialog">
-          <p>Are you sure you want to delete your account?</p>
-          <div className="delete-dialog-actions">
-            <button className="delete-confirm-button" onClick={handleDeleteConfirm}>Delete</button>
-            <button className="delete-cancel-button" onClick={handleDeleteCancel}>Cancel</button>
+        <div className="delete-dialog-background">
+          <div className="delete-dialog">
+            <div className="delete-dialog-topic">
+              Alert
+            </div>
+            <div className="delete-dialog-description">
+              <p>Are you sure you want to delete your account?</p>
+            </div>
+            <div className="delete-dialog-actions">
+              <img src={AcceptButton} className="delete-confirm-button" onClick={handleDeleteConfirm} />
+              <img src={DeclineButton} className="delete-cancel-button" onClick={handleDeleteCancel} />
+            </div>
           </div>
         </div>
       )}
