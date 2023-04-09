@@ -46,22 +46,28 @@ router.route('/like').post(async (req, res) => {
     postId: data.postId,
   }
 
-  let like =  await Post.findOne(filter)
-    .then(post => post.like);
+  let post =  await Post.findOne(filter)
+    .then(post => post.toObject());
   
-  // do nothing if user already liked the post
-  if (like.includes(data.username)) {
-    res.json('Status: success');
-    return;
+  let like = post.like;
+  if (!post.like.includes(data.username)) {
+    like = [...like, data.username];
   }
 
-  Post.updateOne(filter, { like: [...like, data.username] }, (err) => {
+  let dislike = post.dislike;
+  const index = post.dislike.indexOf(data.username);
+  if (index != -1) {
+    dislike.splice(index, 1);
+  }
+
+  Post.updateOne(filter, { like: like, dislike: dislike }, (err) => {
     if (err) {
       res.status(400).json('Error: ' + err);
     }else {
       res.json('Status: success');
     }
-  })
+  });
+
 });
 
 // dislike a post
