@@ -51,7 +51,7 @@ export default function Notification_component() {
           >
             <p className="notification-text">{notification.text}</p>
             {!notification.read && (
-              <span className="notification-badge">New</span>
+              <span className="notification-badge"></span>
             )}
           </div>
         ))}
