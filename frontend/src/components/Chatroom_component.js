@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Chatroom_component.css'
+import './Chatroom_component.css';
 
 export default function Chatroom_component() {
   const [messages, setMessages] = useState([]);

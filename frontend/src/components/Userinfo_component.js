@@ -1,5 +1,5 @@
-import React from 'react'
-import './Userinfo_component.css'
+import React from 'react';
+import './Userinfo_component.css';
 
 export default function Userinfo_component() {
   return (

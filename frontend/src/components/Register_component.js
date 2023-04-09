@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import './Register_component.css';
 
 export default function Register_component() {

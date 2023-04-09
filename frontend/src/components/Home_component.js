@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Home_component.css'
+import './Home_component.css';
 
 const Tab = () => {
   const [activeTab, setActiveTab] = useState('For You');

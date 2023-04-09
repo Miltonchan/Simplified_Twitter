@@ -1,7 +1,7 @@
 import React from 'react';
-import './Post_component.css';
+import './Nortification_component.css';
 
-export default function Post_component() {
+export default function Nortification_component() {
   return (
     <div class="center-container">
       <div>
