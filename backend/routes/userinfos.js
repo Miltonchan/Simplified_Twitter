@@ -19,4 +19,29 @@ router.route('/').get((req, res) => {
   }
 })
 
+// create new userinfo
+router.route('/').post(async (req, res) => {
+  const data = req.body;
+  const lastUserId = await Userinfo.findOne().sort({ userId: -1 }).limit(1)
+    .then(userinfo => userinfo.userId);
+
+  const userinfo = new Userinfo({
+    userId: lastUserId + 1,
+    username: data.username,
+    nickname: data.nickname,
+    private: false,
+    follower: [],
+    following: [],
+    visibleTo: [],
+  });
+
+  userinfo.save((err) => {
+    if (err) {
+      res.status(400).json('Error: ' + err);
+    }else {
+      res.status(200).json('Status: success');
+    }
+  })
+});
+
 module.exports = router;
