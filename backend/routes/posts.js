@@ -39,6 +39,25 @@ router.route('/').post(async (req, res) => {
   });
 });
 
+// update a post
+router.route('/update').post((req, res) => {
+  const data = req.body;
+  const filter = {
+    postId: data.postId,
+  }
+  const value = {
+    content: data.content,
+  }
+
+  Post.findOneAndUpdate(filter, value, { new: true }, (err, post) => {
+    if(err){
+      res.status(400).json('Error: ' + err);
+    }else{
+      res.json(post);
+    }
+  });
+});
+
 // like a post
 router.route('/like').post(async (req, res) => {
   const data = req.body;
