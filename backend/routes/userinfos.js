@@ -125,4 +125,20 @@ router.route('/update').post((req, res) => {
   });
 });
 
+// delete userinfo
+router.route('/delete').post((req, res) => {
+  const data = req.body;
+  const filter = {
+    userId: data.userId,
+  }
+
+  Userinfo.deleteOne(filter, (err) => {
+    if (err) {
+      res.status(400).json('Error: ' + err);
+    }else {
+      res.json('Status: success');
+    }
+  });
+});
+
 module.exports = router;
