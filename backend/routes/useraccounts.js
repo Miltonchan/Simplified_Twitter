@@ -80,6 +80,22 @@ router.route('/changePassword').post(async (req, res) => {
   }
 });
 
+// delete useraccount
+router.route('/delete').post((req, res) => {
+  const data = req.body;
+  const filter = {
+    userId: data.userId,
+  }
+
+  Useraccount.deleteOne(filter, (err) => {
+    if (err) {
+      res.status(400).json('Error: ' + err);
+    }else {
+      res.json('Status: success');
+    }
+  });
+});
+
 module.exports = router;
 
 
