@@ -19,6 +19,36 @@
   /* background-image: url("../icons/LoginButton.png"); */
 }
 
+.login-completed {
+  animation: rotate-scale 1s 2 alternate;
+}
+
+@keyframes rotate-scale {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  100% {
+    transform: scale(0) rotate(360deg);
+  }
+}
+
+.wellcome-message {
+  width: 250px;
+  height: 84px;
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.hidden {
+  display: none;
+}
+
 .login-topicbar {
   display: grid;
   justify-content: center;

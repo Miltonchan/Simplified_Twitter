@@ -17,6 +17,11 @@ const w = 23;
 
 const menulist_component = [
   {
+    title:"Login",
+    icon:<img src={HomeIcon} height={h} width={w}/>,
+    link: "/login",
+  },
+  {
     title:"Home",
     icon:<img src={HomeIcon} height={h} width={w}/>,
     link: "/home",
