@@ -100,6 +100,34 @@ router.route('/dislike').post(async (req, res) => {
   });
 });
 
+// retweet a post
+router.route('/retweet').post((req,res) => {
+  try{
+    //retweeter stores a the retweeter's username
+    Post.findOneAndUpdate({postId: req.body['postId']},{$push: {'retweetBy': req.body['retweeter']}}, {new:true},  (err, retweet) => {
+      if(err){
+        res.status(400).json('Error: ' + err);
+      }else{
+        res.json(retweet);
+      }
+    })
 
+    Post.find().sort({ "postId": -1 }).limit(1).exec(function(err,item){
+      const retweetPost = new Post({
+        postId: item[0].postId+1,   
+        username: req.body['username'],
+        content: req.body['content'],
+        like: [],
+        dislike: [],
+        retweetBy: [], 
+        retweet: true,
+        retweeter: req.body['retweeter']
+      })
+      retweetPost.save();
+    })
+  }catch (err){
+    console.log(err)
+  }
+})
 
 module.exports = router;
