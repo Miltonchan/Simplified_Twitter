@@ -1,14 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Chatroom_component.css';
 
 export default function Chatroom_component() {
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState("");
 
+  useEffect(() => {
+    const fetchMessages = async () => {
+      const messageData = await fetch('http://localhost:8000/messages',
+        {
+          method: 'GET',
+          mode: 'cors'
+        })
+        .then(data => data.json());
+      setMessages(messageData)
+      console.log(messageData);
+    }
+    fetchMessages();
+  }, []);
+
+  const saveMessage = async (inputValue) => {
+    try {
+      const response = await fetch('http://localhost:8000/messages', {
+        method: 'POST',
+        mode: 'cors',
+        rmId: 1,
+        userId: 101,
+        message: inputValue,
+      })
+      .then(data => data.json());
+      const data = await response.json();
+      console.log(data); // log the response data for testing purposes
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   function handleSubmit(event) {
     event.preventDefault();
     if (inputValue.trim() !== "") {
-      setMessages([...messages, { text: inputValue, sender: "me" }]);
+      saveMessage(inputValue);
+      setMessages([...messages, { message: inputValue, sender: "me" }]);
       setInputValue("");
     }
   }
@@ -32,7 +64,7 @@ export default function Chatroom_component() {
             key={index}
             className={`chatroom-message ${message.sender === "me" ? "me" : "other"}`}
           >
-            <p>{message.text}</p>
+            <p>{message.message}</p>
           </div>
         ))}
       </div>
