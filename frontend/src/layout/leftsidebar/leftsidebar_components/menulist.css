@@ -1,6 +1,5 @@
 .menulist-container {
-  border-style: solid;
-  border-color: grey;
+  border-style: none;
   border-width: 1px;
 }
 
@@ -9,6 +8,10 @@
     height:100%;
     background-color: #fbfbfb;
     padding:0%;
+}
+
+.mainicon{
+    width: 100%;
 }
 
 .row {
@@ -30,6 +33,7 @@
     place-items:center;
     height: 20px;
     width: 20px;
+    bottom: 5px;
 }
 
 .row #title {
@@ -66,54 +70,20 @@
     color: white;
   }
 
-.twitter-form{
-    max-width:600px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.twitter-form label {
-    text-align: left;
-    display: block;
-    font-size: large;
+  .twitterContent {
     position: relative;
-}
-
-.twitter-form textarea {
-    width: 100%;
-    height: 250px;
+    top: 10px;
+    right: 140px;
+    width: 241%;
+    height: 135px;
     padding: 10px 20px;
     margin: 5px 0;
     border: 1px solid #DDD;
     border-radius: 10px;
     box-sizing: border-box;
-    display: block;
+    display: flex;
+    border: none;
+    box-shadow: 0px 0px 0px 3px #ddd;
+    resize: none; 
 }
 
-
-.twitter-form select {
-    position: relative;
-    justify-content:left;
-    width: auto;
-    padding: 5px;
-    margin: 5px 0;
-    border: 1px solid #DDD;
-    border-radius: 10px;
-    box-sizing: border-box;
-    display: block;
-}
-
-
-.send-button {
-    position: relative;
-    bottom: 60px;
-    left: 130px;
-    cursor: pointer;
-}
-
-.close-button {
-    position: relative;
-    bottom: 60px;
-    left: 200px;
-    cursor: pointer;
-}
