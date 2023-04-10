@@ -19,7 +19,6 @@ import LogoutIconHover from "../../../icons/LogoutButtonHover.png";
 
 import AlertDialog from "../../../dialogs/AlertDialog";
 import './menulist.css';
-import './popup.css';
 
 
 const h = 23;
