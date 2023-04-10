@@ -142,7 +142,8 @@ db.once('open', () => {
         like:['Mickey','Minnie'],
         dislike:['Donald'],
         retweetBy:['Minnie'],
-        retweet:false
+        retweet:false,
+        retweeter:''
     }, (err,post)=>{
         if(err){
             return console.log(err)
