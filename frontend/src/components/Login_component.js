@@ -30,7 +30,7 @@ export default function Login_component() {
             <h1> User Login </h1>
           </div>
           <div className={(animateComplete ? "wellcome-message" : "hidden")}>
-            <Link to='/home'><h1> Wellcome </h1></Link>
+            <Link to='/home' onClick={() => window.location.pathname = '/home'}><h1> Wellcome </h1></Link>
           </div>
           <div className={"login-form-container " + (animateComplete ? "invisible" : "")}>
             <div className="login-form-block">
