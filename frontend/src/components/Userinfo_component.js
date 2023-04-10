@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Userinfo_component.css';
 
 export default function Userinfo_component() {

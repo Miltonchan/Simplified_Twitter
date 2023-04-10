@@ -7,13 +7,13 @@ const Tab = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const postData = await fetch('http://localhost:8000/posts', 
+      const postData = await fetch('http://localhost:8000/posts',
         {
           method: 'GET',
           mode: 'cors'
         })
         .then(data => data.json());
-      
+
       setPosts(postData);
       console.log(postData);
     }

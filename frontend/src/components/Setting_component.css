@@ -1,10 +1,10 @@
-.settings-page {
+.setting-page {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
 }
 
-.settings-topicbar {
+.setting-topicbar {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,15 +15,15 @@
   border-width: 1px;
 }
 
-.settings-section {
+.setting-section {
   margin-bottom: 20px;
 }
 
-.settings-section h2 {
+.setting-section h2 {
   margin-bottom: 10px;
 }
 
-.delete-account-button {
+.setting-delete-account-button {
   background-color: #d7d7d7;
   color: #000;
   border: none;
@@ -33,12 +33,12 @@
   cursor: pointer;
 }
 
-.delete-account-button:hover {
+.setting-delete-account-button:hover {
   background-color: #eba601;
   color: white;
 }
 
-.delete-dialog-background {
+.setting-delete-dialog-background {
   position: fixed;
   top: 0;
   left: 0;
@@ -50,19 +50,19 @@
   align-items: center;
 }
 
-.delete-dialog {
+.setting-delete-dialog {
   display: grid;
   justify-content: center;
   background-color: #d7d7d7;
   width: 500px;
 }
 
-.delete-dialog p {
+.setting-delete-dialog p {
   font-size: 20px;
   margin-bottom: 20px;
 }
 
-.delete-dialog-topic {
+.setting-delete-dialog-topic {
   display: flex;
   justify-content: center;
   background-color: #fbfbfb;
@@ -72,14 +72,14 @@
   width: 500px;
 }
 
-.delete-dialog-description {
+.setting-delete-dialog-description {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 250px;
 }
 
-.delete-dialog-actions {
+.setting-delete-dialog-actions {
   display: flex;
   justify-content: center;
   background-color: #fbfbfb;
@@ -88,25 +88,25 @@
   width: 500px;
 }
 
-.delete-dialog-button-container {
+.setting-delete-dialog-button-container {
   padding-left: 80px;
   padding-right: 80px;
 }
 
-.delete-confirm-button {
+.setting-delete-confirm-button {
   width: 60px;
   height: 60px;
 }
 
-.delete-confirm-button:hover {
+.setting-delete-confirm-button:hover {
 
 }
 
-.delete-cancel-button {
+.setting-delete-cancel-button {
   width: 60px;
   height: 60px;
 }
 
-.delete-cancel-button:hover {
+.setting-delete-cancel-button:hover {
 
 }
