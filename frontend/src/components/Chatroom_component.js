@@ -24,13 +24,15 @@ export default function Chatroom_component() {
       const response = await fetch('http://localhost:8000/messages', {
         method: 'POST',
         mode: 'cors',
-        rmId: 1,
-        userId: 101,
-        message: inputValue,
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({
+          "rmId": 1,
+          "userId": 101,
+          "message": inputValue,
+        })
       })
       .then(data => data.json());
-      const data = await response.json();
-      console.log(data); // log the response data for testing purposes
+      console.log(response); // log the response data for testing purposes
     } catch (error) {
       console.error(error);
     }
