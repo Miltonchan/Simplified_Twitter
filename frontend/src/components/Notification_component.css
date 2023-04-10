@@ -1,10 +1,14 @@
-.notification-container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
+.notification-page {
+
 }
 
-.notification-heading {
+.notification-topic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: center;
+  padding: 10px;
+  background-color: #f5f5f5;
   font-size: 32px;
   margin-bottom: 20px;
 }
