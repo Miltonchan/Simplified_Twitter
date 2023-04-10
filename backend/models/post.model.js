@@ -7,7 +7,8 @@ const postSchema = new mongoose.Schema({
     like:[{type:String}],
     dislike:[{type:String}],
     retweetBy:[{type:String}],
-    retweet:{type:Boolean, required:true}
+    retweet:{type:Boolean, required:true},
+    retweeter:{type:String}
 },{
     timestamps: true 
 })
