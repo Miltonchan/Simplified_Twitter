@@ -36,8 +36,10 @@ export default function Notification_component() {
   };
 
   return (
-    <div className="notification-container">
-      <h1 className="notification-heading">Notifications</h1>
+    <div className="notification-page">
+      <div className="notification-topic">
+        <h2>Notifications</h2>
+      </div>
       <div className="notification-list">
         {notifications.map((notification) => (
           <div
