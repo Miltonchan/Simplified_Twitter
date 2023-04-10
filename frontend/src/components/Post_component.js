@@ -3,7 +3,7 @@ import './Post_component.css';
 
 export default function Post_component() {
   return (
-    <div class="center-container">
+    <div className="center-container">
       <div>
         <p>Welcome to Beitter!</p>
 

@@ -25,7 +25,7 @@ const Tab = () => {
   };
 
   return (
-    <div class="home-main">
+    <div className="home-main">
       {posts.map((val, key) => {
           return (
             <li
@@ -35,7 +35,7 @@ const Tab = () => {
             </li>
           )
       })}
-      <div class="home-tabblock">
+      <div className="home-tabblock">
         <div className="home-tab">
           <div
             className={activeTab === 'For You' ? 'active' : ''}
@@ -55,48 +55,48 @@ const Tab = () => {
       </div>
       <div className="home-tabcontentcontainer">
         {activeTab === 'For You' && (
-          <div class="home-tabcontent">
-            <div class="home-messagecontainer">
-              <div class="home-avataricon">
+          <div className="home-tabcontent">
+            <div className="home-messagecontainer">
+              <div className="home-avataricon">
               Avatar
               </div>
-              <div class="home-messageblock">
+              <div className="home-messageblock">
                 <input type="text"/>
               </div>
-              <div class="home-messagebottomblock">
-                <div class="block-div">
-                  <div class="home-messagetoolblock">
-                    <div class="home-messageiconblock">
+              <div className="home-messagebottomblock">
+                <div className="block-div">
+                  <div className="home-messagetoolblock">
+                    <div className="home-messageiconblock">
                       Image
                     </div>
-                    <div class="home-messageiconblock">
+                    <div className="home-messageiconblock">
                       Gif
                     </div>
-                    <div class="home-messageiconblock">
+                    <div className="home-messageiconblock">
                       Hi
                     </div>
-                    <div class="home-messageiconblock">
+                    <div className="home-messageiconblock">
                       Hi
                     </div>
-                    <div class="home-messageiconblock">
+                    <div className="home-messageiconblock">
                       Hi
                     </div>
                   </div>
-                  <div class="home-messagesendblock">
+                  <div className="home-messagesendblock">
                     Send
                   </div>
                 </div>
               </div>
-              <div class="home-foryoucontainer">
-                <div class="home-foryoublock">
-                  <div class="home-foryoutopic">
+              <div className="home-foryoucontainer">
+                <div className="home-foryoublock">
+                  <div className="home-foryoutopic">
                     Welcome to Beitter!
                   </div>
-                  <div class="home-foryoudescript">
+                  <div className="home-foryoudescript">
                     This is the best place for SAO fans to share their daily life.
                   </div>
-                  <div class="home-foryoufindfanscontainer">
-                    <button class="home-foryoufindfansbutton">
+                  <div className="home-foryoufindfanscontainer">
+                    <button className="home-foryoufindfansbutton">
                       Find SAO fans
                     </button>
                   </div>
@@ -106,48 +106,48 @@ const Tab = () => {
           </div>
         )}
         {activeTab === 'Following' && (
-          <div class="home-tabcontent">
-            <div class="home-messagecontainer">
-              <div class="home-avataricon">
+          <div className="home-tabcontent">
+            <div className="home-messagecontainer">
+              <div className="home-avataricon">
               Avatar
               </div>
-              <div class="home-messageblock">
+              <div className="home-messageblock">
                 <input type="text"/>
               </div>
-              <div class="home-messagebottomblock">
-                <div class="block-div">
-                  <div class="home-messagetoolblock">
-                    <div class="home-messageiconblock">
+              <div className="home-messagebottomblock">
+                <div className="block-div">
+                  <div className="home-messagetoolblock">
+                    <div className="home-messageiconblock">
                       Image
                     </div>
-                    <div class="home-messageiconblock">
+                    <div className="home-messageiconblock">
                       Gif
                     </div>
-                    <div class="home-messageiconblock">
+                    <div className="home-messageiconblock">
                       Hi
                     </div>
-                    <div class="home-messageiconblock">
+                    <div className="home-messageiconblock">
                       Hi
                     </div>
-                    <div class="home-messageiconblock">
+                    <div className="home-messageiconblock">
                       Hi
                     </div>
                   </div>
-                  <div class="home-messagesendblock">
+                  <div className="home-messagesendblock">
                     Send
                   </div>
                 </div>
               </div>
-              <div class="home-foryoucontainer">
-                <div class="home-foryoublock">
-                  <div class="home-foryoutopic">
+              <div className="home-foryoucontainer">
+                <div className="home-foryoublock">
+                  <div className="home-foryoutopic">
                     ASSSAA
                   </div>
-                  <div class="home-foryoudescript">
+                  <div className="home-foryoudescript">
                     This is the best place for SAO fans to share their daily life.
                   </div>
-                  <div class="home-foryoufindfanscontainer">
-                    <button class="home-foryoufindfansbutton">
+                  <div className="home-foryoufindfanscontainer">
+                    <button className="home-foryoufindfansbutton">
                       Find SAO fans
                     </button>
                   </div>
@@ -163,8 +163,8 @@ const Tab = () => {
 
 export default function Home_component() {
   return (
-    <div class="home-page">
-      <div class="home-topicbar">
+    <div className="home-page">
+      <div className="home-topicbar">
         Home
       </div>
       <Tab>

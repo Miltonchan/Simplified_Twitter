@@ -3,7 +3,7 @@ import './Userinfo_component.css';
 
 export default function Userinfo_component() {
   return (
-    <div class="center-container">
+    <div className="center-container">
       <div className="userinfo-page">
         <div className="userinfo-header">
           <img src="https://picsum.photos/200" alt="User avatar" className="userinfo-avatar" />
