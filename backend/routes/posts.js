@@ -58,6 +58,24 @@ router.route('/update').post((req, res) => {
   });
 });
 
+// delete a post
+let Comment = require('../models/comment.model');
+router.route('/delete').post((req, res) => {
+  const data = req.body;
+  const filter = {
+    postId: data.postId,
+  }
+  
+  try {
+    Post.deleteOne(filter).exec();
+    Comment.deleteMany(filter).exec();
+
+    res.json('Status: success');
+  }catch (err) {
+    res.json('Error: ' + err);
+  }
+});
+
 // like a post
 router.route('/like').post(async (req, res) => {
   const data = req.body;
