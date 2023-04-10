@@ -66,13 +66,16 @@
   display: flex;
   justify-content: center;
   background-color: #fbfbfb;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   font-size: 30px;
   width: 500px;
 }
 
 .delete-dialog-description {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 250px;
 }
 
@@ -80,9 +83,14 @@
   display: flex;
   justify-content: center;
   background-color: #fbfbfb;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   width: 500px;
+}
+
+.delete-dialog-button-container {
+  padding-left: 80px;
+  padding-right: 80px;
 }
 
 .delete-confirm-button {

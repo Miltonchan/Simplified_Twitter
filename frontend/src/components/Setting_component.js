@@ -5,7 +5,7 @@ import DeclineButton from '../icons/DeclineButton.png';
 
 export default function Setting_component() {
   const [isPublic, setIsPublic] = useState(false);
-  const [username, setUsername] = useState('JohnDoe');
+  const [username, setUsername] = useState('Kirito');
   const [password, setPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [followers, setFollowers] = useState(['JaneDoe', 'MarkSmith']);
@@ -57,11 +57,13 @@ export default function Setting_component() {
 
       <div className="settings-section">
         <h2>Username</h2>
+        <div className="description-text">This allows you to rename your username. Note that the name shown in your profile will also be changed.</div>
         <input type="text" value={username} onChange={handleUsernameChange} />
       </div>
 
       <div className="settings-section">
         <h2>Password</h2>
+        <div className="description-text">This allows you to rename your password.</div>
         <input type="password" placeholder="Current password" value={password} onChange={handlePasswordChange} />
         <input type="password" placeholder="New password" value={newPassword} onChange={handleNewPasswordChange} />
       </div>
@@ -89,7 +91,7 @@ export default function Setting_component() {
       </div>
 
       {isDeleteDialogOpen && (
-        <div className="delete-dialog-background">
+        <div className="faded-screen-background">
           <div className="delete-dialog">
             <div className="delete-dialog-topic">
               Alert
@@ -98,8 +100,12 @@ export default function Setting_component() {
               <p>Are you sure you want to delete your account?</p>
             </div>
             <div className="delete-dialog-actions">
-              <img src={AcceptButton} className="delete-confirm-button" onClick={handleDeleteConfirm} />
-              <img src={DeclineButton} className="delete-cancel-button" onClick={handleDeleteCancel} />
+              <div className="delete-dialog-button-container">
+                <img src={AcceptButton} className="delete-confirm-button" onClick={handleDeleteConfirm} />
+              </div>
+              <div className="delete-dialog-button-container">
+                <img src={DeclineButton} className="delete-cancel-button" onClick={handleDeleteCancel} />
+              </div>
             </div>
           </div>
         </div>
