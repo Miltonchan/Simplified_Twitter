@@ -1,0 +1,60 @@
+.alert-dialog {
+  display: grid;
+  justify-content: center;
+  background-color: #d7d7d7;
+  width: 500px;
+}
+
+.alert-dialog p {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.alert-dialog-topic {
+  display: flex;
+  justify-content: center;
+  background-color: #fbfbfb;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 30px;
+  width: 500px;
+}
+
+.alert-dialog-description {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+}
+
+.alert-dialog-actions {
+  display: flex;
+  justify-content: center;
+  background-color: #fbfbfb;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 500px;
+}
+
+.alert-dialog-button-container {
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
+.alert-dialog-accept-button {
+  width: 60px;
+  height: 60px;
+}
+
+.alert-dialog-accept-button:hover {
+
+}
+
+.alert-dialog-decline-button {
+  width: 60px;
+  height: 60px;
+}
+
+.alert-dialog-decline-button:hover {
+
+}
