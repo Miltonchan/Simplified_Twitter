@@ -1,0 +1,36 @@
+.userlist-page {
+  height: 400px;
+  width: 500px;
+}
+
+.userlist-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: center;
+  padding-top: 2.5px;
+  padding-bottom: 2.5px;
+}
+
+.userlist-username {
+  display: grid;
+  width: 85%;
+  padding-left: 2.5px;
+  padding-right: 2.5px;
+}
+
+.userlist-btn-container {
+  display: grid;
+  width: 15%;
+}
+
+.userlist-btn {
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #eba601;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
