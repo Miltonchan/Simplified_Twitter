@@ -1,0 +1,60 @@
+.comment-dialog {
+  display: grid;
+  justify-content: center;
+  background-color: #d7d7d7;
+  width: 500px;
+}
+
+.comment-dialog p {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.comment-dialog-topic {
+  display: flex;
+  justify-content: center;
+  background-color: #fbfbfb;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 30px;
+  width: 500px;
+}
+
+.comment-dialog-description {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+}
+
+.comment-dialog-actions {
+  display: flex;
+  justify-content: center;
+  background-color: #fbfbfb;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 500px;
+}
+
+.comment-dialog-button-container {
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
+.comment-dialog-accept-button {
+  width: 60px;
+  height: 60px;
+}
+
+.comment-dialog-accept-button:hover {
+
+}
+
+.comment-dialog-decline-button {
+  width: 60px;
+  height: 60px;
+}
+
+.comment-dialog-decline-button:hover {
+
+}
