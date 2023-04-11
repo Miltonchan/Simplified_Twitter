@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Login_component.css';
-import '../icons/LoginButton.png'
+import '../icons/LoginBackground.png'
 
 export default function Login_component() {
 
@@ -15,18 +15,18 @@ export default function Login_component() {
     setLoginComplete(true);
     setAnimateComplete(false);
 
-    setTimeout(() => { 
+    setTimeout(() => {
       setLoginComplete(false);
     }, 1400);
 
-    setTimeout(() => { 
+    setTimeout(() => {
       setAnimateComplete(true);
     }, 700);
   }
 
   const routeToHome = () => {
     setRouteHome(true);
-    setTimeout(() => { 
+    setTimeout(() => {
       navigate('/home');
       window.location.pathname = '/home';
     }, 1000);
@@ -39,8 +39,8 @@ export default function Login_component() {
           <div className={"login-topicbar " + (animateComplete ? "invisible" : "")}>
             <h1> User Login </h1>
           </div>
-          <div className={(animateComplete ? "wellcome-message" : "hidden")}>
-            <h1 onClick={routeToHome}> Wellcome </h1>
+          <div className={(animateComplete ? "welcome-message" : "hidden")}>
+            <h1 onClick={routeToHome}> Welcome to Sword Art Online </h1>
           </div>
           <div className={"login-form-container " + (animateComplete ? "invisible" : "")}>
             <div className="login-form-block">

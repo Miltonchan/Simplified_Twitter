@@ -1,0 +1,73 @@
+.tweet-page {
+  border: 1px solid #000;
+}
+
+.tweet-topicbar {
+  display: grid;
+  padding-left: 10px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #000;
+}
+
+.tweet-section {
+
+}
+
+.tweet-block-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.tweet-block {
+  display: grid;
+  background-color: #f5f5f5;
+  width: 95%;
+}
+
+.tweet-block-user-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: center;
+}
+
+.tweet-block-user-name-block {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  float: center;
+  width: 10%;
+  padding-left: 2.5px;
+  padding-right: 2.5px;
+}
+
+.tweet-block-user-bar-block {
+  display: grid;
+  padding-left: 10px;
+  width: 90%;
+}
+
+.tweet-block-content-section {
+  width: 400px;
+  padding: 5px 5px 5px 5px;
+}
+
+.tweet-block-content {
+
+}
+
+.tweet-block-action-bar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  float: flex-end;
+  border-top: 1px solid #000;
+}
+
+.tweet-block-action-block {
+  padding: 2.5px 2.5px 2.5px 2.5px;
+}

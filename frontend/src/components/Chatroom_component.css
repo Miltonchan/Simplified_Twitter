@@ -29,9 +29,17 @@
   padding: 10px;
 }
 
+.chatroom-message-container.me {
+
+}
+
+.chatroom-message-container.other {
+
+}
+
 .chatroom-message {
   margin-bottom: 10px;
-  max-width: 80%;
+  width: 80%;
   padding: 10px;
   border-radius: 5px;
 }
@@ -42,9 +50,11 @@
 }
 
 .chatroom-message.me {
+  display: flex;
   background-color: #eba601;
   color: #fff;
   align-self: flex-end;
+  float: right;
 }
 
 .chatroom-message.other {

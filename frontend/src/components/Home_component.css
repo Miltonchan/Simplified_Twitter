@@ -1,147 +1,43 @@
 .home-page {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  float: center;
+
 }
 
 .home-topicbar {
-  display: grid;
+  display: flex;
   justify-content: center;
   align-items: center;
   float: center;
-  width: 100%;
-  background-color: #fbfbfb;
-  border-style: solid;
-  border-color: grey;
-  border-width: 1px;
+  padding: 10px;
+  background-color: #f5f5f5;
 }
 
 .home-main {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  float: center;
-  width: 300px;
+
 }
 
-.home-tabblock {
-  display: block;
-  justify-content: center;
-  align-items: center;
-  float: center;
-  width: 100%;
-  border-style: solid;
-  border-color: grey;
-  border-width: 1px;
+.home-section {
+
 }
 
 .home-tab {
-  display: inline-grid;
+
+}
+
+.home-tab-bar {
+  display: flex;
   justify-content: center;
   align-items: center;
   float: center;
-  width: 50%;
-  border-style: solid;
-  border-color: grey;
-  border-width: 1px;
+  background-color: #f5f5f5;
 }
 
-.home-tabbutton {
-  background-color: #d7d7d7;
-  width: 100%;
-}
-
-.home-tabcontentcontainer {
-  width: 100%;
-  border-style: solid;
-  border-color: grey;
-  border-width: 1px;
-}
-
-.home-tabcontent {
-  width: 100%;
-}
-
-.home-avataricon {
-  display: inline-grid;
-  justify-content: left;
-  align-items: left;
-  float: center;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.home-messagecontainer {
-
-}
-
-.home-messageblock {
-  display: inline-flex;
-}
-
-.home-messagebottomblock {
-  display: grid;
-}
-
-.home-messagetoolblock {
-  display: inline-block;
-  width: 80%;
-}
-
-.home-messageiconblock {
-  display: inline-grid;
-  justify-content: center;
-  align-items: center;
-  float: center;
-  padding-left: 2.5px;
-  padding-right: 2.5px;
-}
-
-.home-messagesendblock {
-  display: inline-grid;
-  justify-content: center;
-  align-items: center;
-  float: center;
-  width: 20%;
-}
-
-.home-foryoucontainer {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  float: center;
-  width: 100%;
-}
-
-.home-foryoublock {
+.home-tab-label {
   display: grid;
   justify-content: center;
   align-items: center;
   float: center;
+  padding: 2.5px 10px 2.5px 10px;
+  background-color: yellow;
   width: 100%;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.home-foryoutopic {
-  font-size: large;
-  font-weight: bold;
-}
-
-.home-foryoudescript {
-
-}
-
-.home-foryoufindfanscontainer {
-  display: grid;
-  justify-content: left;
-  align-items: left;
-  float: left;
-}
-
-.home-foryoufindfansbutton {
-  background-color: #eba601;
+  border: 1px solid #000;
 }

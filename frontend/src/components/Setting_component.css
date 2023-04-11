@@ -1,21 +1,20 @@
 .setting-page {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
+
 }
 
 .setting-topicbar {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  background-color: #fbfbfb;
-  border-style: solid;
-  border-color: grey;
-  border-width: 1px;
+  float: center;
+  padding: 10px;
+  background-color: #f5f5f5;
 }
 
 .setting-section {
+  padding-top: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
   margin-bottom: 20px;
 }
 

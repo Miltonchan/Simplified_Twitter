@@ -3,6 +3,7 @@ import './Chatroom_component.css';
 
 export default function Chatroom_component() {
   const [messages, setMessages] = useState([]);
+  const [chatroom, setChatroom] = useState([]);
   const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
@@ -17,6 +18,20 @@ export default function Chatroom_component() {
       console.log(messageData);
     }
     fetchMessages();
+  }, []);
+
+  useEffect(() => {
+    const fetchChatroom = async () => {
+      const chatroomData = await fetch('http://localhost:8000/chatrooms',
+        {
+          method: 'GET',
+          mode: 'cors'
+        })
+        .then(data => data.json());
+      setChatroom(chatroomData)
+      console.log(chatroomData);
+    }
+    fetchChatroom();
   }, []);
 
   const saveMessage = async (inputValue) => {
@@ -62,11 +77,13 @@ export default function Chatroom_component() {
       </div>
       <div className="chatroom-messages">
         {messages.map((message, index) => (
-          <div
-            key={index}
-            className={`chatroom-message ${message.sender === "me" ? "me" : "other"}`}
-          >
-            <p>{message.message}</p>
+          <div className={`chatroom-message-container ${message.sender === "me" ? "me" : "other"}`}>
+            <div
+              key={index}
+              className={`chatroom-message ${message.sender === "me" ? "me" : "other"}`}
+            >
+              <p>{message.message}</p>
+            </div>
           </div>
         ))}
       </div>

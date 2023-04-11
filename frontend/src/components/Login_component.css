@@ -12,7 +12,7 @@
   top: 50px;
   padding: 25%;
   margin: auto;
-  background-image: url("../icons/LoginButton.png");
+  background-image: url("../icons/LoginBackground.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -51,7 +51,7 @@
   }
 }
 
-.wellcome-message {
+.welcome-message {
   width: 250px;
   height: 84px;
   display: flex;
@@ -59,6 +59,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  text-align: center;
   text-decoration: underline;
   color: blue;
 }
