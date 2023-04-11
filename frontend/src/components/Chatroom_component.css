@@ -26,20 +26,18 @@
 .chatroom-messages {
   flex: 1;
   overflow-y: auto;
-  padding: 10px;
+  padding: 10px 20px;
 }
 
-.chatroom-message-container.me {
-
-}
-
-.chatroom-message-container.other {
-
+.chatroom-messages .chatroom-message-container {
+  width: 100%;
 }
 
 .chatroom-message {
   margin-bottom: 10px;
-  width: 80%;
+  width: 50%;
+  max-width: max-content;
+  height: 44px;
   padding: 10px;
   border-radius: 5px;
 }
@@ -49,18 +47,28 @@
   font-size: 16px;
 }
 
-.chatroom-message.me {
-  display: flex;
-  background-color: #eba601;
-  color: #fff;
-  align-self: flex-end;
+.chatroom-messages .chatroom-message-container.self {
   float: right;
+  clear: both;
 }
 
-.chatroom-message.other {
-  background-color: #f0f0f0;
+.chatroom-messages .chatroom-message-container.other {
+  float: left;
+  clear: both;
+}
+
+.chatroom-messages .chatroom-message-container.self .chatroom-message {
+  background-color: #eba601;
+  color: #fff;
+  float: right;
+  clear: both;
+}
+
+.chatroom-messages .chatroom-message-container.other .chatroom-message {
+  background-color: rgb(165, 165, 240);
   color: #000;
-  align-self: flex-start;
+  float: left;
+  clear: both;
 }
 
 .chatroom-input {

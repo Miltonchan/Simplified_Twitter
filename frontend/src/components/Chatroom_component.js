@@ -1,23 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import './Chatroom_component.css';
+import { useLocation } from 'react-router-dom';
 
 export default function Chatroom_component() {
   const [messages, setMessages] = useState([]);
   const [chatroom, setChatroom] = useState([]);
   const [inputValue, setInputValue] = useState("");
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  const search = useLocation().search;
+  const rmId = new URLSearchParams(search).get('rmId');
 
   useEffect(() => {
     const fetchMessages = async () => {
-      const messageData = await fetch('http://localhost:8000/messages',
+      let messageData = await fetch(`http://localhost:8000/messages?rmId=${rmId}`,
         {
           method: 'GET',
           mode: 'cors'
         })
         .then(data => data.json());
-      setMessages(messageData)
-      console.log(messageData);
+      messageData = processMessages(messageData);
+      setMessages(messageData);
+      // console.log(messageData);
     }
     fetchMessages();
+    // console.log(rmId);
   }, []);
 
   useEffect(() => {
@@ -29,7 +36,7 @@ export default function Chatroom_component() {
         })
         .then(data => data.json());
       setChatroom(chatroomData)
-      console.log(chatroomData);
+      // console.log(chatroomData);
     }
     fetchChatroom();
   }, []);
@@ -42,22 +49,32 @@ export default function Chatroom_component() {
         headers: {'Content-Type':'application/json'},
         body: JSON.stringify({
           "rmId": 1,
-          "userId": 101,
+          "userId": user.useraccount.userId,
           "message": inputValue,
         })
       })
       .then(data => data.json());
-      console.log(response); // log the response data for testing purposes
+      // console.log(response); // log the response data for testing purposes
     } catch (error) {
       console.error(error);
     }
   };
 
+  const processMessages = (messageData) => {
+    console.log(messageData)
+    for (let i=0; i < messageData.length; i++) {
+      messageData[i].self = messageData[i].userId === user.useraccount.userId ? true : false;
+      console.log(messageData[i].userId === user.useraccount.userId);
+      // console.log(user.useraccount.userId)
+    }
+    return messageData;
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
     if (inputValue.trim() !== "") {
       saveMessage(inputValue);
-      setMessages([...messages, { message: inputValue, sender: "me" }]);
+      setMessages([...messages, { message: inputValue, self: true }]);
       setInputValue("");
     }
   }
@@ -76,11 +93,10 @@ export default function Chatroom_component() {
         <h2>{receiverName}</h2>
       </div>
       <div className="chatroom-messages">
-        {messages.map((message, index) => (
-          <div className={`chatroom-message-container ${message.sender === "me" ? "me" : "other"}`}>
+        {messages.map((message, index) => ( 
+          <div key={index} className={`chatroom-message-container ${message.self ? "self" : "other"}`}>
             <div
-              key={index}
-              className={`chatroom-message ${message.sender === "me" ? "me" : "other"}`}
+              className={`chatroom-message`}
             >
               <p>{message.message}</p>
             </div>
