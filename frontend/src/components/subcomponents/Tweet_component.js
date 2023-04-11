@@ -3,6 +3,7 @@ import './Tweet_component.css';
 
 const Tweet = () => {
   const [posts, setPosts] = useState([]);
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const fetchPosts = async () => {
     const postData = await fetch('http://localhost:8000/posts',
@@ -17,7 +18,6 @@ const Tweet = () => {
   }
 
   const likePosts = async (postId) => {
-    const user = JSON.parse(localStorage.getItem('user'));
     const res = await fetch('http://localhost:8000/posts/like',
       {
         method: 'POST',
