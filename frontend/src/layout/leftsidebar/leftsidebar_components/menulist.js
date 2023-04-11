@@ -105,7 +105,7 @@ export default function Menulist_component() {
                 className="row"
                 id={window.location.pathname == val.link ? "active" : " "}
                 onClick={() => { window.location.pathname = val.link; } }
-                onmouseover={() => {sethoverdetect(true);}}
+                onMouseEnter={() => {sethoverdetect(true);}}
                 onMouseLeave={() => {sethoverdetect(false);}}
                 >
                 {" "}
@@ -117,7 +117,7 @@ export default function Menulist_component() {
                 className="row"
                 onClick={() => {setisLogoutDialogOpen(true)} }>
                   {" "}
-                  <div id="icon"><img src={LogoutIcon} onmouseover={LogoutIconHover} height={h} width={w}>
+                  <div id="icon"><img src={LogoutIcon} onMouseEnter={LogoutIconHover} height={h} width={w}>
                     </img></div>{" "}<div id="title">Logout</div>
                 </li>
         </ul>

@@ -27,8 +27,8 @@ const ChatroomList_component = () => {
         <h2>Message</h2>
       </div>
       <div className="chatroomlist-list">
-        {chats.map((chat) => (
-          <div className="chatroomlist-chat" key={chat.id} onClick={() => handleClick(chat.id)}>
+        {chats.map((chat, index) => (
+          <div className="chatroomlist-chat" key={index} onClick={() => handleClick(chat.id)}>
             <img src={chat.avatar} alt={chat.name} className="chatroomlist-avatar" />
             <div className="chatroomlist-chat-details">
               <div className="chatroomlist-chat-header">

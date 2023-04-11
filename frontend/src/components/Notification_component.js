@@ -41,9 +41,9 @@ export default function Notification_component() {
         <h2>Notifications</h2>
       </div>
       <div className="notification-list">
-        {notifications.map((notification) => (
+        {notifications.map((notification, index) => (
           <div
-            key={notification.id}
+            key={index}
             className={
               notification.read
                 ? "notification-item read"
