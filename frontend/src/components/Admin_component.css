@@ -1,0 +1,37 @@
+.admin-page {
+
+}
+
+.admin-topicbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: center;
+  padding: 10px;
+  background-color: #f5f5f5;
+}
+
+.admin-main {
+  padding: 10px 20px 10px 20px;
+}
+
+.admin-section {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.admin-btn-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.admin-btn {
+  background-color: #eba601;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
