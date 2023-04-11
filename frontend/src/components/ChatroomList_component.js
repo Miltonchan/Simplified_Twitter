@@ -1,7 +1,10 @@
 import React from 'react';
 import './ChatroomList_component.css';
+import { useNavigate } from 'react-router-dom';
 
 const ChatroomList_component = () => {
+  const navigate = useNavigate();
+
   const chats = [
     {
       id: 1,
@@ -14,6 +17,7 @@ const ChatroomList_component = () => {
 
   const handleClick = (chatId) => {
     console.log(`Clicked chat with id ${chatId}`);
+    navigate(`/chatroom/chat?rmId=${chatId}`);
     // navigate to chatroom with corresponding chatId
   };
 
