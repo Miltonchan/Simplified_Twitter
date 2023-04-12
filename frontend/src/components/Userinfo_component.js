@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import './Userinfo_component.css';
 
-import CommentDialog from '../dialogs/CommentDialog';
+import AlertDialog from '../dialogs/AlertDialog';
 
 export default function Userinfo_component() {
-  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const [isFollowDialogOpen, setIsFollowDialogOpen] = useState(false);
 
-  const handleDeleteClick = () => {
-    setIsDeleteDialogOpen(true);
+  const handleFollowDialogClick = () => {
+    setIsFollowDialogOpen(true);
   };
 
-  const handleDeleteCancel = () => {
-    setIsDeleteDialogOpen(false);
+  const handleFollowDialogConfirm = () => {
+    setIsFollowDialogOpen(false);
+  };
+
+  const handleFollowDialogCancel = () => {
+    setIsFollowDialogOpen(false);
   };
 
   return (
@@ -47,13 +51,13 @@ export default function Userinfo_component() {
             <div className="userinfo-actions">
               <button
                 className="userinfo-follow-btn"
-                onClick={() => {}}
+                onClick={handleFollowDialogClick}
               >
                 Follow
               </button>
               <button
                 className="userinfo-message-btn"
-                onClick={handleDeleteClick}
+                onClick={handleFollowDialogClick}
               >
                 Message
               </button>
@@ -62,12 +66,12 @@ export default function Userinfo_component() {
         </div>
       </div>
 
-      {isDeleteDialogOpen && (
-        <CommentDialog
-         title="Alert"
-         description="Are you sure you want to delete your account?"
-         useravatar="Test"
-         username="Hi"
+      {isFollowDialogOpen && (
+        <AlertDialog
+         title="Follow"
+         description="Are you sure you want to follow this user?"
+         onYes={handleFollowDialogConfirm}
+         onNo={handleFollowDialogCancel}
         />
       )}
 
