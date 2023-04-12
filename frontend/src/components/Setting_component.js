@@ -10,7 +10,6 @@ export default function Setting_component() {
   const user = JSON.parse(localStorage.getItem('user'));
 
   const [isPublic, setIsPublic] = useState(!user.userinfo.private);
-  const [username, setUsername] = useState(user.userinfo.username);
   const [password, setPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [followers, setFollowers] = useState(['JaneDoe', 'MarkSmith']);
@@ -21,10 +20,6 @@ export default function Setting_component() {
 
   const handlePublicChange = (event) => {
     setIsPublic(event.target.checked);
-  };
-
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
   };
 
   const handlePasswordChange = (event) => {
@@ -98,7 +93,6 @@ export default function Setting_component() {
       mode: 'cors',
       body: JSON.stringify({
         'userId': user.useraccount.userId,
-        'username': username,
         'private': isPublic,
       })
     })
@@ -129,8 +123,7 @@ export default function Setting_component() {
 
       <div className="setting-section">
         <h2>Username</h2>
-        <div className="description-text">This allows you to rename your username. Note that the name shown in your profile will also be changed.</div>
-        <input type="text" value={username} onChange={handleUsernameChange} />
+        <h4>{user.useraccount.username}</h4>
       </div>
 
       <div className="setting-section">
