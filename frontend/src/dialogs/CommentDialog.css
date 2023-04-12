@@ -28,33 +28,39 @@
 }
 
 .comment-dialog-actions {
-  display: flex;
+  display: grid;
   justify-content: center;
   background-color: #fbfbfb;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   width: 500px;
 }
 
-.comment-dialog-button-container {
-  padding-left: 80px;
-  padding-right: 80px;
+.comment-dialog-userbar {
+  display: flex;
+  padding-bottom: 10px;
 }
 
-.comment-dialog-accept-button {
-  width: 60px;
-  height: 60px;
+.comment-dialog-useravatar {
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
-.comment-dialog-accept-button:hover {
-
+.comment-dialog-username {
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
-.comment-dialog-decline-button {
-  width: 60px;
-  height: 60px;
-}
-
-.comment-dialog-decline-button:hover {
-
+.comment-dialog-textarea {
+  position: relative;
+  width: 480px;
+  height: 135px;
+  padding: 10px 20px;
+  border: 1px solid #DDD;
+  border-radius: 10px;
+  box-sizing: border-box;
+  display: flex;
+  border: none;
+  box-shadow: 0px 0px 0px 3px #ddd;
+  resize: none;
 }
