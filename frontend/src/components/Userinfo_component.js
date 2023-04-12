@@ -19,6 +19,54 @@ export default function Userinfo_component() {
     // console.log(postData);
   }
 
+  const unfollowUser = async (beFollowUsername) => {
+    const res = await fetch('http://localhost:8000/userinfos/unfollow', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        'followerUsername': user.useraccount.username,
+        'beFollowUsername': beFollowUsername,
+      })
+    })
+    .then(res => res.json());
+
+    await renewUser(res);
+  }
+
+  const getUseraccount = async () => {
+    const useraccount = await fetch(`http://localhost:8000/useraccounts?userId=${user.useraccount.userId}`,
+    {
+      method: 'GET',
+      mode: 'cors',
+    })
+    .then(data => data.json())
+    
+    return useraccount;
+  }
+
+  const getUserinfo = async () => {
+    const userinfo = await fetch(`http://localhost:8000/userinfos?userId=${user.useraccount.userId}`,
+    {
+      method: 'GET',
+      mode: 'cors',
+    })
+    .then(data => data.json());
+    return userinfo;
+  }
+
+  const renewUser = async (val) => {
+    const useraccount = await getUseraccount();
+    const userinfo = await getUserinfo();
+    localStorage.removeItem('user');
+    localStorage.setItem('user', JSON.stringify({
+      'userinfo': userinfo,
+      'useraccount': useraccount,
+    }));
+    window.location.reload();
+    console.log('renew')
+  }
+
   useEffect(() => {
     fetchSelfPosts();
   }, []);
@@ -75,14 +123,14 @@ export default function Userinfo_component() {
           <div className="userinfo-section">
             <h2>Following</h2>
             <ul>
-              {user.userinfo.follower.map((val, index) => (
+              {user.userinfo.following.map((val, index) => (
                 <div key={index} className="userinfo-follow-row">
                   <div className="userinfo-follow-name">
                     <li>{val}</li>
                   </div>
                   <div className="userinfo-follow-action">
                     <div className="userinfo-follow-row-block">
-                      <button className="userinfo-unfollow-btn">Unfollow</button>
+                      <button className="userinfo-unfollow-btn" onClick={() => unfollowUser(val)}>Unfollow</button>
                     </div>
                     <div className="userinfo-follow-row-block">
                       <button className="userinfo-message-btn">Message</button>
