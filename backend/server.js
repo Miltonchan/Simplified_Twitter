@@ -95,9 +95,9 @@ db.once('open', () => {
         username:'stu100',
         nickname:'Mickey',
         private: false,
-        follower: ['Minnie','Donald'],
-        following:['Minnie'],
-        visibleTo:['Minnie']
+        follower: ['stu100','stu102'],
+        following:['stu100'],
+        visibleTo:['stu100']
     }, (err,user)=>{
         if(err){
             return console.log(err)
@@ -110,9 +110,9 @@ db.once('open', () => {
         username:'stu101',
         nickname:'Minnie',
         private: false,
-        follower: ['Mickey','Donald'],
-        following:['Mickey'],
-        visibleTo:['Mickey']
+        follower: ['stu100','stu102'],
+        following:['stu100'],
+        visibleTo:['stu100']
     }, (err,user)=>{
         if(err){
             return console.log(err)
@@ -125,9 +125,9 @@ db.once('open', () => {
         username:'stu102',
         nickname:'Donald',
         private: false,
-        follower: ['Minnie'],
-        following:['Minnie','Mickey'],
-        visibleTo:['Mickey']
+        follower: ['stu101'],
+        following:['stu101','stu100'],
+        visibleTo:['stu100']
     }, (err,user)=>{
         if(err){
             return console.log(err)
