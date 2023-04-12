@@ -10,7 +10,7 @@ export default function Setting_component() {
   const user = JSON.parse(localStorage.getItem('user'));
 
   const [isPublic, setIsPublic] = useState(!user.userinfo.private);
-  const [nickname, setNickname] = useState(user.userinfo.nickname);
+  const [username, setUsername] = useState(user.userinfo.username);
   const [password, setPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [followers, setFollowers] = useState(['JaneDoe', 'MarkSmith']);
@@ -23,8 +23,8 @@ export default function Setting_component() {
     setIsPublic(event.target.checked);
   };
 
-  const handleNicknameChange = (event) => {
-    setNickname(event.target.value);
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
   };
 
   const handlePasswordChange = (event) => {
@@ -98,7 +98,7 @@ export default function Setting_component() {
       mode: 'cors',
       body: JSON.stringify({
         'userId': user.useraccount.userId,
-        'nickname': nickname,
+        'username': username,
         'private': isPublic,
       })
     })
@@ -119,11 +119,6 @@ export default function Setting_component() {
       </div>
 
       <div className="setting-section">
-        <h2>Username</h2>
-        <h3>{user.useraccount.username}</h3>
-      </div>
-
-      <div className="setting-section">
         <h2>Privacy</h2>
         <div className="description-text">This allows you to change your account into private.</div>
         <label>
@@ -133,9 +128,9 @@ export default function Setting_component() {
       </div>
 
       <div className="setting-section">
-        <h2>Nickname</h2>
-        <div className="description-text">This allows you to rename your nickname. Note that the name shown in your profile will also be changed.</div>
-        <input type="text" value={nickname} onChange={handleNicknameChange} />
+        <h2>Username</h2>
+        <div className="description-text">This allows you to rename your username. Note that the name shown in your profile will also be changed.</div>
+        <input type="text" value={username} onChange={handleUsernameChange} />
       </div>
 
       <div className="setting-section">
