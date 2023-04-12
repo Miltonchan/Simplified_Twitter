@@ -4,6 +4,8 @@ import './Post_component.css';
 
 const Tweet = () => {
   const [posts, setPosts] = useState([]);
+  const [input, setInput] = useState("");
+
   const user = JSON.parse(localStorage.getItem('user'));
 
   const fetchPosts = async () => {
@@ -80,8 +82,24 @@ const Tweet = () => {
       // alert(res);
   }
 
-  const createPost = () => {
-
+  const createPost = async () => {
+    if (!input) {
+      return;
+    }
+    await fetch('http://localhost:8000/posts',
+      {
+        method: 'POST',
+        mode: 'cors',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({
+          "username": user.userinfo.username,
+          "content": input,
+        })
+      })
+      .then(data => data.json())
+      .finally(fetchPosts);
+    
+    setInput("");
   }
 
   useEffect(() => {
@@ -140,6 +158,8 @@ const Tweet = () => {
               required
               placeholder="Enter twitter here..."
               className="post-textarea"
+              value={input}
+              onChange={(event) => setInput(event.target.value)}
             />
           </div>
           <div className="post-toolbar">
