@@ -1,6 +1,7 @@
 const router = require('express').Router();
 
 const Useraccount = require('../models/useraccount.model');
+let Userinfo = require('../models/userinfo.model');
 
 router.route('/').get((req, res) => {
   const username = req.query.username;
@@ -56,7 +57,23 @@ router.route('/').post(async (req, res) => {
     if (err) {
       res.status(400).json('Error: ' + err);
     }else {
-      res.status(200).json('Status: success');
+      const userinfo = new Userinfo({
+        userId: lastUserId + 1,
+        username: data.username,
+        nickname: data.nickname,
+        private: false,
+        follower: [],
+        following: [],
+        visibleTo: [],
+      });
+    
+      userinfo.save((err) => {
+        if (err) {
+          res.status(400).json('Error: ' + err);
+        }else {
+          res.status(200).json('Status: success');
+        }
+      })
     }
   })
 });

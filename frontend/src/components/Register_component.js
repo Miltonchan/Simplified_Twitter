@@ -13,33 +13,22 @@ export default function Register_component() {
       return false;
     }
 
-    const res1 = await fetch('http://localhost:8000/useraccounts', {
+    const res = await fetch('http://localhost:8000/useraccounts', {
       method: 'POST',
       mode: 'cors',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify({
         "username": username,
         "password": password,
+        "nickname": username,
       })
     })
     .then(res => res.json());
     // console.log(res1);
-    if (res1 != 'Status: success') {
+    if (res !== 'Status: success') {
       alert('Invalid input');
       return false;
     }
-
-    const res2 = await fetch('http://localhost:8000/userinfos', {
-      method: 'POST',
-      mode: 'cors',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({
-        'username': username,
-        'nickname': username,
-      })
-    })
-    .then(res => res.json());
-    // console.log(res2);
 
     return false;
   }
