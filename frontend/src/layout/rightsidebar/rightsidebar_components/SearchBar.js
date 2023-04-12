@@ -14,14 +14,29 @@ export const SearchBar = ({ setResults }) => {
     fetch(`http://localhost:8000/useraccounts?username=${value}`)
       .then((response) => response.json())
       .then((json) => {
-        setResults(json);
+        if (json.length == 0){
+          setResults(
+            [
+              {username:"NULL",}
+            ], // null results username 
+          );
+          // console.log("set null username for null returns");
+        } else {
+          setResults(json);
         // console.log(json);
+        }
       });
   };
 
   const handleChange = (value) => {
     setInput(value);
-    fetchData(value);
+    if(value=="") {
+      setResults([]);
+      // console.log("No input no result");
+    } else {
+      fetchData(value);
+      // console.log("Have input fetch result");
+    }
   };
 
   const handleHover = () => {
@@ -39,6 +54,7 @@ export const SearchBar = ({ setResults }) => {
     document.getElementById("input-wrapper").style.width = '70px';
     document.getElementById("search-bar-container").style.margin = '-30px -50px -30px -50px';
     sethoverdetect(false);
+    setResults([]);
     }
   };
 
