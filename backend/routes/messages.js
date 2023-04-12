@@ -36,4 +36,13 @@ router.route('/').post(async (req, res) => {
   })
 })
 
+// get lastest message of chatroom
+router.route('/latest').get((req, res) => {
+  const rmId = req.query.rmId;
+  Message.findOne({ rmId: rmId }).sort({ createdAt: -1 }).limit(1)
+  .then(messages => res.json(messages))
+  .catch(err => res.status(400).json('Error: ' + err));
+})
+
+
 module.exports = router;

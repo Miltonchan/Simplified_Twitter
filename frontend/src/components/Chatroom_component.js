@@ -61,7 +61,7 @@ export default function Chatroom_component() {
   };
 
   const processMessages = (messageData) => {
-    console.log(messageData)
+    // console.log(messageData)
     for (let i=0; i < messageData.length; i++) {
       messageData[i].self = messageData[i].userId === user.useraccount.userId ? true : false;
       console.log(messageData[i].userId === user.useraccount.userId);
