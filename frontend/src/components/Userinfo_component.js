@@ -23,7 +23,6 @@ export default function Userinfo_component() {
     fetchSelfPosts();
   }, []);
 
-
   return (
     <div className="userinfo-page">
       <div className="userinfo-topic">
@@ -35,7 +34,7 @@ export default function Userinfo_component() {
             <div className="userinfo-profile-header">
               <img src="https://picsum.photos/200" alt="User avatar" className="userinfo-avatar" />
               <div className="userinfo-userdetails">
-                <h1 className="uesrinfo-name">{user.userinfo.username}</h1>
+                <h1 className="userinfo-name">{user.userinfo.username}</h1>
                 <p className="userinfo-userid">@{user.useraccount.userId}</p>
               </div>
             </div>
@@ -54,6 +53,18 @@ export default function Userinfo_component() {
               </div>
             </div>
           </div>
+        </div>
+        <div className="userinfo-section">
+          <h2>Followers</h2>
+          <ul>
+              <li>{user.userinfo.follower}</li>
+          </ul>
+        </div>
+        <div className="userinfo-section">
+          <h2>Following</h2>
+          <ul>
+              <li>{user.userinfo.following}</li>
+          </ul>
         </div>
       </div>
     </div>

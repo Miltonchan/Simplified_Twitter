@@ -62,7 +62,7 @@ export default function Setting_component() {
     }
 
     alert(res);
-    
+
     setIsDeleteDialogOpen(false);
   };
 
@@ -132,25 +132,7 @@ export default function Setting_component() {
         <input type="password" placeholder="Current password" value={password} onChange={handlePasswordChange} />
         <input type="password" placeholder="New password" value={newPassword} onChange={handleNewPasswordChange} />
       </div>
-
-      <div className="setting-section">
-        <h2>Followers</h2>
-        <ul>
-          {followers.map((follower) => (
-            <li key={follower}>{follower}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="setting-section">
-        <h2>Following</h2>
-        <ul>
-          {following.map((followed) => (
-            <li key={followed}>{followed}</li>
-          ))}
-        </ul>
-      </div>
-
+      
       <div className="setting-section">
         <button className="setting-delete-account-button" onClick={handleDeleteClick}>Delete account</button>
       </div>
