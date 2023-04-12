@@ -114,7 +114,7 @@ export default function Setting_component() {
 
       <div className="setting-section">
         <h2>Privacy</h2>
-        <div className="description-text">This allows you to change your account into private.</div>
+        <div className="description-text">This allows you to change your account into public.</div>
         <label>
           <input type="checkbox" checked={isPublic} onChange={handlePublicChange} />
           {isPublic ? 'Public account' : 'Private account'}
