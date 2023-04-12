@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import './Tweet_component.css';
 import './Post_component.css';
 
@@ -116,11 +116,36 @@ const Tweet = () => {
       .finally(fetchFollowingPosts);
     
     setInput("");
+    setSelectedImage();
   }
+  // to be added image to create post function 
 
   useEffect(() => {
     fetchFollowingPosts();
   }, []);
+
+  // Tweet Image
+  const wrapperRef = useRef(null);
+
+    const [selectedImage, setSelectedImage] = useState();
+    const [hasImage,setHasImage] = useState("false");
+
+    const onDragEnter = () => wrapperRef.current.classList.add('dragover');
+    const onDragLeave = () => wrapperRef.current.classList.remove('dragover');
+    const onDrop = () => wrapperRef.current.classList.remove('dragover');
+
+    const imageChange = (e) => {
+      if (e.target.files && e.target.files.length > 0) {
+        setSelectedImage(e.target.files[0]); // to change the selected image
+        setHasImage(true);
+      }
+    };
+
+    const removeSelectedImage = () => {
+      setSelectedImage();
+    };
+
+    //End of Tweet image 
 
   return (
     <div className="tweetandpost-page">
@@ -179,13 +204,52 @@ const Tweet = () => {
             />
           </div>
           <div className="post-toolbar">
-            <div className="post-toolbar-block">
-              Tool
-            </div>
-            <div className="post-toolbar-block">
-              <button className="post-toolbar-btn" onClick={createPost}>Send</button>
-            </div>
+            <ul className='uploadbar'> 
+              <li>
+                {selectedImage && (
+                <div>
+                  <img
+                  className="image_preview"
+                    src={URL.createObjectURL(selectedImage)}
+                  />
+                </div>
+                )}
+              </li>
+            {
+              !selectedImage ?
+                (<li
+                    ref={wrapperRef}
+                    className="drop-file-input"
+                    onDragEnter={onDragEnter}
+                    onDragLeave={onDragLeave}
+                    onDrop={onDrop}>
+                    <div 
+                    className="drop-file-input__label"
+                    >
+                        <p>Drag/ Drop your image here</p>
+                    </div>
+                    <input type="file" value="" onChange={imageChange}/>
+                </li>)
+                : (<li
+                ref={wrapperRef}
+                className="drop-file-input">
+                <button className="delete-button" onClick={removeSelectedImage}>
+                  Remove This Image
+                </button>
+              </li>)
+            }
+              
+            </ul>
+            <ul className="functionbar">
+              <li className="post-toolbar-block">
+                Tool
+              </li>
+              <li className="post-toolbar-block">
+                <button className="post-toolbar-btn" onClick={createPost}>Send</button>
+              </li>
+            </ul>
           </div>
+          
         </div>
       </div>
     </div>
