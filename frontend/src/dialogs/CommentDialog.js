@@ -10,30 +10,46 @@ function CommentDialog(props) {
 
   function handleCancel() {
     setIsOpen(false);
-    if (typeof props.onNo === 'function') {
-      props.onNo();
+    if (typeof props.onCancel === 'function') {
+      props.onCancel();
     }
   }
 
   return (
     <div className="faded-screen-background">
       <div className="comment-dialog">
-        <div className="comment-dialog-topic">
+        <div className="comment-dialog-topic" onDoubleClick={handleCancel}>
           {props.title}
         </div>
         <div className="comment-dialog-description">
-          <p>{props.description}</p>
+          {props.description}
         </div>
         <div className="comment-dialog-actions">
-          <div className="comment-dialog-button-container">
-            <img src={AcceptButton} className="comment-dialog-decline-button" onClick={handleCancel} />
-            {props.noLabel}
+          <div className="comment-dialog-userbar">
+            <div className="comment-dialog-useravatar">
+              {props.useravatar}
+            </div>
+            <div className="comment-dialog-username">
+              {props.username}
+            </div>
           </div>
+          <textarea
+            required
+            placeholder="Enter twitter here..."
+            className="comment-dialog-textarea"
+          />
         </div>
       </div>
     </div>
   );
 }
 
+CommentDialog.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  useravatar: PropTypes.string,
+  username: PropTypes.string,
+  onCancel: PropTypes.func,
+};
 
 export default CommentDialog
