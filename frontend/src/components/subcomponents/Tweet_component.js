@@ -15,7 +15,7 @@ const Tweet = () => {
      
     postData = await fetchComments(postData);
     setPosts(postData);
-    console.log(postData);
+    // console.log(postData);
   }
 
   const fetchComments = async (postData) => {
@@ -40,7 +40,7 @@ const Tweet = () => {
       .then(data => data.json())
       .finally(fetchPosts)
 
-      alert(res);
+      // alert(res);
   }
 
   const dislikePosts = async (postId) => {
@@ -51,31 +51,33 @@ const Tweet = () => {
         headers: {'Content-Type':'application/json'},
         body: JSON.stringify({
           "postId": postId,
-          "username": user.userinfo.username
+          "username": user.useraccount.username
         })
       })
       .then(data => data.json())
       .finally(fetchPosts)
 
-      alert(res);
+      // alert(res);
   }
 
-  // const retweetPosts = async (postId) => {
-  //   const res = await fetch('http://localhost:8000/posts/retweet',
-  //     {
-  //       method: 'POST',
-  //       mode: 'cors',
-  //       headers: {'Content-Type':'application/json'},
-  //       body: JSON.stringify({
-  //         "postId": postId,
-  //         "username": user.userinfo.username
-  //       })
-  //     })
-  //     .then(data => data.json())
-  //     .finally(fetchPosts)
+  const retweetPosts = async (post) => {
+    const res = await fetch('http://localhost:8000/posts/retweet',
+      {
+        method: 'POST',
+        mode: 'cors',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({
+          "postId": post.postId,
+          "username": user.userinfo.username,
+          "content": post.content,
+          "retweeter": user.userinfo.username,
+        })
+      })
+      .then(data => data.json())
+      .finally(fetchPosts)
 
-  //     alert(res);
-  // }
+      // alert(res);
+  }
 
   useEffect(() => {
     fetchPosts();
@@ -114,7 +116,7 @@ const Tweet = () => {
                   <div onClick={() => dislikePosts(val.postId)} className="tweet-block-action-block">
                     dislike {val.dislike.length}
                   </div>
-                  <div className="tweet-block-action-block">
+                  <div onClick={() => retweetPosts(val)}  className="tweet-block-action-block">
                     retweet {val.retweetBy.length}
                   </div>
                   <div className="tweet-block-action-block">
