@@ -15,7 +15,7 @@ export const SearchBar = ({ setResults }) => {
       .then((response) => response.json())
       .then((json) => {
         setResults(json);
-        console.log(json);
+        // console.log(json);
       });
   };
 
