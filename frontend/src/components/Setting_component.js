@@ -7,23 +7,24 @@ import { useNavigate } from 'react-router-dom';
 import AlertDialog from "../dialogs/AlertDialog";
 
 export default function Setting_component() {
-  const [isPublic, setIsPublic] = useState(false);
-  const [username, setUsername] = useState('Kirito');
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  const [isPublic, setIsPublic] = useState(!user.userinfo.private);
+  const [nickname, setNickname] = useState(user.userinfo.nickname);
   const [password, setPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [followers, setFollowers] = useState(['JaneDoe', 'MarkSmith']);
   const [following, setFollowing] = useState(['JaneDoe']);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
-  const user = JSON.parse(localStorage.getItem('user'));
   const navigate = useNavigate();
 
   const handlePublicChange = (event) => {
     setIsPublic(event.target.checked);
   };
 
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
+  const handleNicknameChange = (event) => {
+    setNickname(event.target.value);
   };
 
   const handlePasswordChange = (event) => {
@@ -97,7 +98,7 @@ export default function Setting_component() {
       mode: 'cors',
       body: JSON.stringify({
         'userId': user.useraccount.userId,
-        'nickname': user.userinfo.nickname,
+        'nickname': nickname,
         'private': isPublic,
       })
     })
@@ -116,19 +117,25 @@ export default function Setting_component() {
       <div className="setting-topicbar">
         <h1>Settings</h1>
       </div>
+
+      <div className="setting-section">
+        <h2>Username</h2>
+        <h3>{user.useraccount.username}</h3>
+      </div>
+
       <div className="setting-section">
         <h2>Privacy</h2>
         <div className="description-text">This allows you to change your account into private.</div>
         <label>
           <input type="checkbox" checked={isPublic} onChange={handlePublicChange} />
-          Public account
+          {isPublic ? 'Public account' : 'Private account'}
         </label>
       </div>
 
       <div className="setting-section">
-        <h2>Username</h2>
-        <div className="description-text">This allows you to rename your username. Note that the name shown in your profile will also be changed.</div>
-        <input type="text" value={username} onChange={handleUsernameChange} />
+        <h2>Nickname</h2>
+        <div className="description-text">This allows you to rename your nickname. Note that the name shown in your profile will also be changed.</div>
+        <input type="text" value={nickname} onChange={handleNicknameChange} />
       </div>
 
       <div className="setting-section">
