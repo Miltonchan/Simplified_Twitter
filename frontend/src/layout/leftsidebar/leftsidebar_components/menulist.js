@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom"
 
 import mainIcon from "../../../icons/HeadIcon.jpeg";
@@ -21,8 +21,10 @@ import LogoutIconHover from "../../../icons/LogoutButtonHover.png";
 import AlertDialog from "../../../dialogs/AlertDialog";
 import './menulist.css';
 
+
 const h = 23;
 const w = 23;
+
 
 const menulist_component = [
   {
@@ -38,31 +40,55 @@ const menulist_component = [
     link: "/home",
   },{
     title:"Notifications",
+    style:{'display':'none'},
     icon: <img src={NotificationIcon} height={h} width={w}/> ,
     iconhover:<img src={NotificationIconHover} height={h} width={w}/>,
     link: "/notification",
   },{
     title:"Messages",
+    style:{'display':'none'},
     icon: <img src={MessagesIcon} height={h} width={w}/>,
     iconhover:<img src={MessagesIconHover} height={h} width={w}/>,
     link: "/chatroom",
   },{
     title:"Profile",
+    style:{'display':'none'},
     icon: <img src={ProfileIcon} height={h} width={w}/>,
     iconhover:<img src={ProfileIconHover} height={h} width={w}/>,
     link: "/userinfo",
   },{
     title:"Setting",
+    style:{'display':'none'},
     icon: <img src={SettingIcon} height={h} width={w}/>,
     iconhover:<img src={SettingIconHover} height={h} width={w}/>,
     link: "/setting",
   },
 ]
 
+
 export default function Menulist_component() {
-  const [isTwitter, setisTwitter] = useState(false);
+  const [isTweet, setIsTweet] = useState(false);
   const [twitter_content,setTwitter_content] = useState("");
   const [hoverdetect, sethoverdetect]= useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState();
+
+  const [menulistComponentHover, setMenulistComponentHover] = useState([false, false, false, false, false, false]);
+  const handleMouseEnter = (index) => {
+    console.log({index});
+    const updatedHover = [...menulistComponentHover];
+    for (let i=0; i<updatedHover.length; i++) {
+      if(i===index) {
+        console.log("The index now is "+index);
+      updatedHover[index] = true;
+      } else {updatedHover[i] =false;}
+    setMenulistComponentHover(updatedHover);
+  };}
+
+  const handleMouseLeave = (index) => {
+    const updatedHover = [...menulistComponentHover];
+    updatedHover[index] = false;
+    setMenulistComponentHover(updatedHover);
+  };
 
   const navigate = useNavigate();
 
@@ -80,23 +106,32 @@ export default function Menulist_component() {
     setisLogoutDialogOpen(false);
     };
 
-  const handleTwitterConfirm = () => {
+  const handleTweetConfirm = () => {
       const twitter =[twitter_content] //to be added account information ????
       console.log(twitter) // send to backend 
     
     };
 
-  const handleTwitterCancel = () => {
-    setisTwitter(false);
-  };
+    const handleTweetCancel = () => {
+      setIsTweet(false);
+    };
 
-  const handleNavigate = (link) => {
-    navigate(link);
-    window.location.pathname = link;
-  }
-   
+    useEffect(() => {
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (user !== null) {
+        setIsLoggedIn(true);
+        document.getElementById("Login").style.display = 'none';
+        document.getElementById("Logout").style.display = 'flex';
+        document.getElementById("Notifications").style.display = 'flex';
+        document.getElementById("Messages").style.display = 'flex';
+        document.getElementById("Profile").style.display = 'flex';
+        document.getElementById("Setting").style.display = 'flex';
+      } else {
+        setIsLoggedIn(false);
+      }
+    }, []);
   
-
+    
     return(
       <div className="menulist-container">
         <ul className="sidebarlist">
@@ -104,36 +139,49 @@ export default function Menulist_component() {
             {" "}
             <div><img className="mainicon" src={mainIcon}/></div>
           </li>
-          {menulist_component.map((val, key) => {
+          {
+          menulist_component.map((val, index) => {
             return (
               <li
-                key={key}
-                className="row"
-                id={window.location.pathname == val.link ? "active" : " "}
-                onClick={() => { handleNavigate(val.link); } }
-                onMouseEnter={() => {sethoverdetect(true);}}
-                onMouseLeave={() => {sethoverdetect(false);}}
+                index={index}
+                className={window.location.pathname == val.link ? "row active" : "row"}
+                id={val.title}
+                style={val.style}
+                onClick={() => { window.location.pathname = val.link; } }
+                onMouseEnter={() => handleMouseEnter(index)}
+                onMouseLeave={() => handleMouseLeave(index)}
                 >
                 {" "}
-                <div  id="icon">{window.location.pathname == val.link || hoverdetect == true ? (val.iconhover) : (val.icon)}</div>{" "}<div id="title">{val.title}</div>
+                <div  id="icon">{window.location.pathname == val.link || menulistComponentHover[index] ? 
+                (val.iconhover) : (val.icon)}</div>{" "}
+                <div id="title">{val.title}
+                </div>
               </li>
             );
           })}
           <li
-            className="row"
-            onClick={() => {setisLogoutDialogOpen(true)} }>
-              {" "}
-              <div id="icon"><img src={LogoutIcon} onMouseEnter={LogoutIconHover} height={h} width={w}>
-                </img></div>{" "}<div id="title">Logout</div>
-            </li>
+                className="row"
+                id="Logout"
+                style={{'display':'none'}}
+                onClick={() => {setisLogoutDialogOpen(true)} }
+                onMouseEnter={() => {sethoverdetect(true);}}
+                onMouseLeave={() => {sethoverdetect(false);}}>
+                  {" "}
+                  <div  id="icon">{hoverdetect ? 
+                <img src={LogoutIconHover} height={h} width={w} /> : 
+                <img src={LogoutIcon} height={h} width={w} />
+                }</div>{" "}
+                <div id="title">Logout
+                </div>
+                </li>
         </ul>
         <button
           className="sidebarlist-button"
-          onClick={() => setisTwitter(true)}>
+          onClick={() => setIsTweet(true)}>
           Tweet
         </button>
         <main>
-        {isTwitter && (
+        {isTweet && (
         <AlertDialog
          title="Twitter content"
          description={
@@ -144,8 +192,8 @@ export default function Menulist_component() {
                   className="twitterContent"
                   onChange={(e) => setTwitter_content(e.target.value)}
                 />}
-         onYes={handleTwitterConfirm}
-         onNo={handleTwitterCancel}
+         onYes={handleTweetConfirm}
+         onNo={handleTweetCancel}
          
         />
         )}  

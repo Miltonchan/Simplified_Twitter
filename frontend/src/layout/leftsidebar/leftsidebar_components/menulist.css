@@ -46,7 +46,7 @@
     color: white;
 }
 
-.sidebarlist #active {
+.sidebarlist .active {
     background-color: #eba601;
     color: #fff;
 }
