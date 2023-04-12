@@ -8,8 +8,11 @@ const Tweet = () => {
 
   const user = JSON.parse(localStorage.getItem('user'));
 
-  const fetchPosts = async () => {
-    let postData = await fetch('http://localhost:8000/posts',
+
+  const fetchFollowingPosts = async () => {
+    let followingPosts = [];
+    for (let i=0; i<user.userinfo.following.length; i++) {
+      let postData = await fetch(`http://localhost:8000/posts?username=${user.userinfo.following[i]}`,
       {
         method: 'GET',
         mode: 'cors'
@@ -17,7 +20,10 @@ const Tweet = () => {
       .then(data => data.json());
 
     postData = await fetchComments(postData);
-    setPosts(postData);
+    followingPosts = [...followingPosts, ...postData];
+    }
+
+    setPosts(followingPosts);
     // console.log(postData);
   }
 
@@ -41,7 +47,7 @@ const Tweet = () => {
         })
       })
       .then(data => data.json())
-      .finally(fetchPosts)
+      .finally(fetchFollowingPosts)
 
       // alert(res);
   }
@@ -58,7 +64,7 @@ const Tweet = () => {
         })
       })
       .then(data => data.json())
-      .finally(fetchPosts)
+      .finally(fetchFollowingPosts)
 
       // alert(res);
   }
@@ -77,7 +83,7 @@ const Tweet = () => {
         })
       })
       .then(data => data.json())
-      .finally(fetchPosts)
+      .finally(fetchFollowingPosts)
 
       // alert(res);
   }
@@ -97,13 +103,13 @@ const Tweet = () => {
         })
       })
       .then(data => data.json())
-      .finally(fetchPosts);
+      .finally(fetchFollowingPosts);
     
     setInput("");
   }
 
   useEffect(() => {
-    fetchPosts();
+    fetchFollowingPosts();
   }, []);
 
   return (

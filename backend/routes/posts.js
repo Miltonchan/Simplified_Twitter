@@ -3,10 +3,15 @@ let Post = require('../models/post.model');
 
 router.route('/').get((req, res) => {
   const postId = req.query.postId;
+  const username = req.query.username;
   if (postId) {
     Post.find({ postId: postId })
       .then(posts => res.json(posts))
       .catch(err => res.status(400).json('Error: ' + err));
+  }else if (username) {
+    Post.find({ username: username })
+    .then(posts => res.json(posts))
+    .catch(err => res.status(400).json('Error: ' + err));
   }else {
     Post.find()
       .then(posts => res.json(posts))
