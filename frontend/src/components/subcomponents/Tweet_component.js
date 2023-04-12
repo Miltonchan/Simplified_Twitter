@@ -23,6 +23,16 @@ const Tweet = () => {
     followingPosts = [...followingPosts, ...postData];
     }
 
+    let postData = await fetch(`http://localhost:8000/posts?username=${user.userinfo.username}`,
+    {
+      method: 'GET',
+      mode: 'cors'
+    })
+    .then(data => data.json());
+
+    postData = await fetchComments(postData);
+    followingPosts = [...followingPosts, ...postData];
+
     setPosts(followingPosts);
     // console.log(postData);
   }
