@@ -1,5 +1,6 @@
 const router = require('express').Router();
 let Userinfo = require('../models/userinfo.model');
+let Useraccount = require('../models/useraccount.model');
 
 router.route('/').get((req, res) => {
   const username = req.query.username;
@@ -112,15 +113,21 @@ router.route('/update').post((req, res) => {
     userId: data.userId,
   }
   const value = {
-    nickname: data.nickname,
+    username: data.username,
     private: data.private,
   }
 
-  Userinfo.updateOne(filter, value, (err) => {
+  Useraccount.updateOne(filter, { username: data.username }).exec((err, item) => {
     if (err) {
       res.status(400).json('Error: ' + err);
     }else {
-      res.json('Status: success');
+      Userinfo.updateOne(filter, value, (err) => {
+        if (err) {
+          res.status(400).json('Error: ' + err);
+        }else {
+          res.json('Status: success');
+        }
+      });
     }
   });
 });
