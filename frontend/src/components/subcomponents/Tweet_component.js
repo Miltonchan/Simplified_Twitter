@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Tweet_component.css';
+import './Post_component.css';
 
 const Tweet = () => {
   const [posts, setPosts] = useState([]);
@@ -12,7 +13,7 @@ const Tweet = () => {
         mode: 'cors'
       })
       .then(data => data.json());
-     
+
     postData = await fetchComments(postData);
     setPosts(postData);
     // console.log(postData);
@@ -79,12 +80,16 @@ const Tweet = () => {
       // alert(res);
   }
 
+  const createPost = () => {
+
+  }
+
   useEffect(() => {
     fetchPosts();
   }, []);
 
   return (
-    <div className="tweet-page">
+    <div className="tweetandpost-page">
       <div className="tweet-topicbar">
         <h6>Tweet</h6>
         <div className="description-text">
@@ -127,6 +132,25 @@ const Tweet = () => {
             </div>
           )
         })}
+      </div>
+      <div className="post-section">
+        <div className="post-block">
+          <div className="post-textarea-container">
+            <textarea
+              required
+              placeholder="Enter twitter here..."
+              className="post-textarea"
+            />
+          </div>
+          <div className="post-toolbar">
+            <div className="post-toolbar-block">
+              Tool
+            </div>
+            <div className="post-toolbar-block">
+              <button className="post-toolbar-btn" onClick={createPost}>Send</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
