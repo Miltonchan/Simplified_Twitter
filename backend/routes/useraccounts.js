@@ -30,8 +30,12 @@ router.route('/login').post((req, res) => {
 
   Useraccount.findOne(filter)
     .then(useraccount => {
-      const object = useraccount.toObject();
-      object.userId? res.json(useraccount) : res.json('Error: wrong username or passoword');
+      try {
+        const object = useraccount.toObject();
+        object.userId? res.json(useraccount) : res.json('Error: wrong username or passoword');
+      }catch {
+        res.json('Error: wrong username or passoword');
+      }
     })
     .catch(err => res.status(400).json('Error: ' + err));
 });

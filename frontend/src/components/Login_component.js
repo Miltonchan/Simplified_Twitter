@@ -27,7 +27,9 @@ export default function Login_component() {
         "password": password,
       })
     })
-    .then(data => data.json());
+    .then(data => data.json())
+    .catch(err => err.json())
+    
     return useraccount;
   }
 
@@ -51,8 +53,8 @@ export default function Login_component() {
     }, 1400);
 
     const useraccount = await getUseraccount(username, password);
-    if (useraccount.Error) {
-      alert(useraccount.Error);
+    if (typeof useraccount === 'string') {
+      alert(useraccount);
       return;
     }
     const userinfo = await getUserinfo(useraccount.userId);
