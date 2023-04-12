@@ -15,6 +15,7 @@ import Setting from './components/Setting_component';
 import Notification from './components/Notification_component';
 import ChatroomList from './components/ChatroomList_component';
 import Chatroom from './components/Chatroom_component';
+import Admin from './components/Admin_component';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/notification/*" element = {<Notification/>} />
           <Route path="/chatroom/*" element = {<ChatroomList/>} />
           <Route path="/chatroom/chat/*" element = {<Chatroom/>} />
+          <Route path="/admin/*" element = {<Admin/>} />
         </Routes>
       </BrowserRouter>
     </Layout>
