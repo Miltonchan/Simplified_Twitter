@@ -11,7 +11,7 @@ export const SearchResult = ({ result }) => {
   const handleFollowConfirm = (followerUsername, beFollowUsername) => {
     setisFollowDialogOpen(false);
     // to be sent to backend to handle follow
-    fetch('http://localhost:8000/userinfos/follow', {
+    return fetch('http://localhost:8000/userinfos/follow', {
       method: 'POST',
       mode: 'cors',
       headers: {'Content-Type':'application/json'},
@@ -32,7 +32,7 @@ export const SearchResult = ({ result }) => {
       className="search-result"
       onClick={
         () => {
-          if(result !="NULL") 
+          if(result !== "NULL") 
           {setisFollowDialogOpen(true);}
         }
       }
@@ -48,6 +48,7 @@ export const SearchResult = ({ result }) => {
          onNo={handleFollowCancel}
          followerUsername={user.useraccount.username}
          beFollowUsername={result}
+         follow={true}
         />
       )}</div>
       </main>

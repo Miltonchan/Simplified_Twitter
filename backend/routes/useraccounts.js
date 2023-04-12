@@ -6,12 +6,17 @@ let Userinfo = require('../models/userinfo.model');
 router.route('/').get((req, res) => {
   const username = req.query.username;
   const userId = req.query.userId;
-  if (username) {
+  const search = req.query.search;
+  if (search && username) {
     Useraccount.find({ username: new RegExp(username, 'i') })
     .then(useraccounts => res.json(useraccounts)) 
     .catch(err => res.status(400).json('Error: ' + err));
+  }else if (username) {
+    Useraccount.findOne({ username: new RegExp(username, 'i') })
+    .then(useraccounts => res.json(useraccounts)) 
+    .catch(err => res.status(400).json('Error: ' + err));
   }else if (userId) {
-    Useraccount.find({ userId: userId})
+    Useraccount.findOne({ userId: userId})
     .then(useraccounts => res.json(useraccounts))
     .catch(err => res.status(400).json('Error: ' + err));
   }else {

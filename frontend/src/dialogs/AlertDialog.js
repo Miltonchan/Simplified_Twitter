@@ -7,11 +7,47 @@ import DeclineButton from '../icons/DeclineButton.png';
 
 function AlertDialog(props) {
   const [isOpen, setIsOpen] = useState(false);
+  const user = JSON.parse(localStorage.getItem('user'));
 
-  function handleYes() {
+  const getUseraccount = async () => {
+    const useraccount = await fetch(`http://localhost:8000/useraccounts?userId=${user.useraccount.userId}`,
+    {
+      method: 'GET',
+      mode: 'cors',
+    })
+    .then(data => data.json())
+    
+    return useraccount;
+  }
+
+  const getUserinfo = async () => {
+    const userinfo = await fetch(`http://localhost:8000/userinfos?userId=${user.useraccount.userId}`,
+    {
+      method: 'GET',
+      mode: 'cors',
+    })
+    .then(data => data.json());
+    return userinfo;
+  }
+
+  const renewUser = async (val) => {
+    const useraccount = await getUseraccount();
+    const userinfo = await getUserinfo();
+    localStorage.removeItem('user');
+    localStorage.setItem('user', JSON.stringify({
+      'userinfo': userinfo,
+      'useraccount': useraccount,
+    }));
+    window.location.reload();
+  }
+
+  async function handleYes() {
     setIsOpen(false);
     if (typeof props.onYes === 'function') {
-      props.onYes(props.followerUsername, props.beFollowUsername);
+      const res = await props.onYes(props.followerUsername, props.beFollowUsername)
+      .then(res => res.json());
+
+      await renewUser(res);
     }
   }
 

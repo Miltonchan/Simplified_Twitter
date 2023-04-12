@@ -11,7 +11,7 @@ export const SearchBar = ({ setResults }) => {
 
 
   const fetchData = (value) => {
-    fetch(`http://localhost:8000/useraccounts?username=${value}`)
+    fetch(`http://localhost:8000/useraccounts?username=${value}&search=true`)
       .then((response) => response.json())
       .then((json) => {
         if (json.length == 0){
