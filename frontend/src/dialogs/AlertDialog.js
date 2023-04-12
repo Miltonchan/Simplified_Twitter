@@ -11,7 +11,7 @@ function AlertDialog(props) {
   function handleYes() {
     setIsOpen(false);
     if (typeof props.onYes === 'function') {
-      props.onYes();
+      props.onYes(props.followerUsername, props.beFollowUsername);
     }
   }
 
@@ -51,6 +51,8 @@ AlertDialog.propTypes = {
   description: PropTypes.string.isRequired,
   onYes: PropTypes.func,
   onNo: PropTypes.func,
+  followerUsername: PropTypes.string,
+  beFollowUsername: PropTypes.string,
 };
 
 export default AlertDialog
