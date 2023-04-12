@@ -11,20 +11,13 @@ export const SearchBar = ({ setResults }) => {
 
 
   const fetchData = (value) => {
-    fetch("https://jsonplaceholder.typicode.com/users")
+    fetch(`http://localhost:8000/useraccounts?username=${value}`)
       .then((response) => response.json())
       .then((json) => {
-        const results = json.filter((user) => {
-          return (
-            value &&
-            user &&
-            user.name &&
-            user.name.toLowerCase().includes(value)
-          );
-        });
-        setResults(results);
+        setResults(json);
+        console.log(json);
       });
-  }; //to be modified to actual results
+  };
 
   const handleChange = (value) => {
     setInput(value);
@@ -38,7 +31,7 @@ export const SearchBar = ({ setResults }) => {
         placeholder="Type to search..."
         value={input}
         onChange={(e) => handleChange(e.target.value)}
-        onMouseOver={() => {sethoverdetect(true);}}
+        onMouseEnter={() => {sethoverdetect(true);}}
         onMouseLeave={() => {sethoverdetect(false);}}
         onFocus={() => {setfocusdetect(true);}}
         onBlur={() => {setfocusdetect(false);}}
