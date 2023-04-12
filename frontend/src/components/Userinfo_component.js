@@ -57,13 +57,17 @@ export default function Userinfo_component() {
         <div className="userinfo-section">
           <h2>Followers</h2>
           <ul>
-              <li>{user.userinfo.follower}</li>
+            {user.userinfo.follower.map((val, index) => (
+              <li key={index}>{val}</li>
+            ))}
           </ul>
         </div>
         <div className="userinfo-section">
           <h2>Following</h2>
           <ul>
-              <li>{user.userinfo.following}</li>
+            {user.userinfo.follower.map((val, index) => (
+              <li key={index}>{val}</li>
+            ))}
           </ul>
         </div>
       </div>
