@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useNavigate, userNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 import mainIcon from "../../../icons/HeadIcon.jpeg";
 import LoginIcon from "../../../icons/LoginButton.png";
