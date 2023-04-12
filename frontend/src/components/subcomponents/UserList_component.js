@@ -1,10 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './UserList_component.css';
 import '../../dialogs/MessageDialog.css';
 
 const UserList = (props) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const userData = await fetch('http://localhost:8000/userinfos', {
+        method: 'GET',
+        mode: 'cors'
+      })
+      .then(res => res.json());
+      
+      console.log(userData)
+      setUsers(userData);
+    };
+
+    fetchUserData();
+  }, []);
+
+  const deleteUser = async (userId) => {
+    await fetch('http://localhost:8000/userinfos/delete', {
+      method: 'POST',
+      mode: 'cors',
+      body: JSON.stringify({
+        'userId': userId
+      })
+    });
+
+    await fetch('http://localhost:8000/useraccounts/delete', {
+      method: 'POST',
+      mode: 'cors',
+      body: JSON.stringify({
+        'userId': userId
+      })
+    });
+  }
 
   function handleCancel() {
     setIsOpen(false);
@@ -21,30 +55,18 @@ const UserList = (props) => {
         </div>
         <div className="message-dialog-description">
           <div className="userlist-page">
-            <div className="userlist-row">
-              <div className="userlist-username">
-                Kirito
+            {users.map((user, index) => {
+              return (
+              <div className="userlist-row">
+                <div className="userlist-username">
+                  {user.username}
+                </div>
+                <div className="userlist-btn-container">
+                  <button className="userlist-btn" onClick={() => deleteUser(user.userId)}>Delete</button>
+                </div>
               </div>
-              <div className="userlist-btn-container">
-                <button className="userlist-btn">Action</button>
-              </div>
-            </div>
-            <div className="userlist-row">
-              <div className="userlist-username">
-                Beater
-              </div>
-              <div className="userlist-btn-container">
-                <button className="userlist-btn">Action</button>
-              </div>
-            </div>
-            <div className="userlist-row">
-              <div className="userlist-username">
-                Asuna
-              </div>
-              <div className="userlist-btn-container">
-                <button className="userlist-btn">Action</button>
-              </div>
-            </div>
+              )
+            })}
           </div>
         </div>
         <div className="message-dialog-bottom-bar"/>
