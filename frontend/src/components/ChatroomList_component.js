@@ -39,6 +39,7 @@ const ChatroomList_component = () => {
       chatrooms[i].lastestMessage = await fetch(`http://localhost:8000/messages/latest?rmId=${chatrooms[i].rmId}`)
         .then(data => data.json());
     }
+    // console.log(chatrooms);
     return chatrooms;
   }
 
@@ -70,7 +71,7 @@ const ChatroomList_component = () => {
             <div className="chatroomlist-chat-details">
               <div className="chatroomlist-chat-header">
                 <span className="chatroomlist-name">{chatroom.otherUser.username}</span>
-                <span className="chatroomlist-timestamp">{chatroom.timestamp}</span>
+                <span className="chatroomlist-timestamp">{new Date(chatroom.lastestMessage.createdAt).toDateString()}</span>
               </div>
               <div className="chatroomlist-last-message">{chatroom.lastestMessage.message}</div>
             </div>
