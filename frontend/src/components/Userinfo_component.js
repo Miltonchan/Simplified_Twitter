@@ -7,20 +7,6 @@ export default function Userinfo_component() {
   const user = JSON.parse(localStorage.getItem('user'));
   const [posts, setPosts] = useState([]);
 
-  const [isFollowDialogOpen, setIsFollowDialogOpen] = useState(false);
-
-  const handleFollowDialogClick = () => {
-    setIsFollowDialogOpen(true);
-  };
-
-  const handleFollowDialogConfirm = () => {
-    setIsFollowDialogOpen(false);
-  };
-
-  const handleFollowDialogCancel = () => {
-    setIsFollowDialogOpen(false);
-  };
-
   const fetchSelfPosts = async () => {
     let postData = await fetch(`http://localhost:8000/posts?username=${user.userinfo.username}`,
     {
@@ -67,33 +53,9 @@ export default function Userinfo_component() {
                 <p className="userinfo-label">Tweets</p>
               </div>
             </div>
-            <div className="userinfo-actions">
-              <button
-                className="userinfo-follow-btn"
-                onClick={handleFollowDialogClick}
-              >
-                Follow
-              </button>
-              <button
-                className="userinfo-message-btn"
-                onClick={handleFollowDialogClick}
-              >
-                Message
-              </button>
-            </div>
           </div>
         </div>
       </div>
-
-      {isFollowDialogOpen && (
-        <AlertDialog
-         title="Follow"
-         description="Are you sure you want to follow this user?"
-         onYes={handleFollowDialogConfirm}
-         onNo={handleFollowDialogCancel}
-        />
-      )}
-
     </div>
   )
 }
