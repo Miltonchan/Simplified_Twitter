@@ -9,7 +9,20 @@ const Post = () => {
       </div>
       <div className="post-section">
         <div className="post-block">
-          <div className="post-">
+          <div className="post-textarea-container">
+            <textarea
+              required
+              placeholder="Enter twitter here..."
+              className="post-textarea"
+            />
+          </div>
+          <div className="post-toolbar">
+            <div className="post-toolbar-block">
+              Tool
+            </div>
+            <div className="post-toolbar-block">
+              <button className="post-toolbar-btn">Send</button>
+            </div>
           </div>
         </div>
       </div>
