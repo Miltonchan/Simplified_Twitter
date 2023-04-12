@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Admin_component.css';
+import './subcomponents/UserList_component.css';
 
 import AlertDialog from "../dialogs/AlertDialog";
 import MessageDialog from "../dialogs/MessageDialog";
