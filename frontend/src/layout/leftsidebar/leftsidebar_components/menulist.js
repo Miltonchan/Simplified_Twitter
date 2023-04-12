@@ -21,10 +21,8 @@ import LogoutIconHover from "../../../icons/LogoutButtonHover.png";
 import AlertDialog from "../../../dialogs/AlertDialog";
 import './menulist.css';
 
-
 const h = 23;
 const w = 23;
-
 
 const menulist_component = [
   {
@@ -61,8 +59,6 @@ const menulist_component = [
   },
 ]
 
-
-
 export default function Menulist_component() {
   const [isTwitter, setisTwitter] = useState(false);
   const [twitter_content,setTwitter_content] = useState("");
@@ -90,9 +86,15 @@ export default function Menulist_component() {
     
     };
 
-    const handleTwitterCancel = () => {
-      setisTwitter(false);
-    };
+  const handleTwitterCancel = () => {
+    setisTwitter(false);
+  };
+
+  const handleNavigate = (link) => {
+    navigate(link);
+    window.location.pathname = link;
+  }
+   
   
 
     return(
@@ -108,7 +110,7 @@ export default function Menulist_component() {
                 key={key}
                 className="row"
                 id={window.location.pathname == val.link ? "active" : " "}
-                onClick={() => { window.location.pathname = val.link; } }
+                onClick={() => { handleNavigate(val.link); } }
                 onMouseEnter={() => {sethoverdetect(true);}}
                 onMouseLeave={() => {sethoverdetect(false);}}
                 >
