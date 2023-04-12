@@ -37,7 +37,7 @@
   margin-bottom: 10px;
   width: 50%;
   max-width: max-content;
-  height: 44px;
+  height: 54px;
   padding: 10px;
   border-radius: 5px;
 }
@@ -55,6 +55,16 @@
 .chatroom-messages .chatroom-message-container.other {
   float: left;
   clear: both;
+}
+
+.chatroom-messages .chatroom-message-container.self .chatroom-message .chatroom-message-date {
+  float: right;
+  font-size: 4px;
+}
+
+.chatroom-messages .chatroom-message-container.other .chatroom-message .chatroom-message-date {
+  float: right;
+  font-size: 4px;
 }
 
 .chatroom-messages .chatroom-message-container.self .chatroom-message {
