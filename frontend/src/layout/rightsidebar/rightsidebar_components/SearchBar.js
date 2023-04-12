@@ -24,19 +24,40 @@ export const SearchBar = ({ setResults }) => {
     fetchData(value);
   };
 
+  const handleHover = () => {
+    // Do something
+    document.getElementById("searchinput").style.display = 'flex';
+    document.getElementById("input-wrapper").style.width = '270px';
+    document.getElementById("search-bar-container").style.margin = '-30px 60px';
+    sethoverdetect(true);
+  };
+
+  const afterHover = () => {
+    // Do something
+    if (!focusdetect) {
+    document.getElementById("searchinput").style.display = 'none';
+    document.getElementById("input-wrapper").style.width = '70px';
+    document.getElementById("search-bar-container").style.margin = '-30px -50px -30px -50px';
+    sethoverdetect(false);
+    }
+  };
+
+
   return (
     <div 
-      className="input-wrapper">
+      id="input-wrapper"
+      onMouseOver={handleHover}
+      onMouseLeave={afterHover}>
       <input
         placeholder="Type to search..."
         value={input}
+        id="searchinput"
+        style={{'display': 'none'}}
         onChange={(e) => handleChange(e.target.value)}
-        onMouseEnter={() => {sethoverdetect(true);}}
-        onMouseLeave={() => {sethoverdetect(false);}}
         onFocus={() => {setfocusdetect(true);}}
         onBlur={() => {setfocusdetect(false);}}
       />
-      <div>{hoverdetect == true || focusdetect == true ? 
+      <div onClick={afterHover}>{hoverdetect == true || focusdetect == true ? 
       <img src={SearchiconHover} className="searchIcon"/> : 
       <img src={Searchicon} className="searchIcon"/>
       }</div>
