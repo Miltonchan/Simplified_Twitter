@@ -1,10 +1,32 @@
 .userinfo-page {
+
+}
+
+.userinfo-topic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: center;
+  padding: 10px;
+  background-color: #f5f5f5;
+  font-size: 32px;
+}
+
+.userinfo-main {
+
+}
+
+.userinfo-section {
+
+}
+
+.userinfo-profile {
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 20px;
 }
 
-.userinfo-header {
+.userinfo-profile-header {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
@@ -18,25 +40,7 @@
 }
 
 .userinfo-userdetails {
-  flex: 1;
-}
 
-.userinfo-name {
-  margin: 0;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.userinfo-userid {
-  margin: 0;
-  font-size: 18px;
-  color: #666;
-}
-
-.userinfo-bio {
-  margin: 10px 0 0 0;
-  font-size: 16px;
-  color: #666;
 }
 
 .userinfo-stats {
@@ -64,6 +68,7 @@
 .userinfo-actions {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .userinfo-follow-btn {
@@ -73,14 +78,15 @@
   border: none;
   font-size: 16px;
   cursor: pointer;
-  margin-right: 10px;
+  margin-right: 30%;
 }
 
 .userinfo-message-btn {
   padding: 10px 20px;
   background-color: #eba601;
-  color: #000;
+  color: #fff;
   border: 1px solid #fff;
   font-size: 16px;
   cursor: pointer;
+  margin-left: 30%;
 }
