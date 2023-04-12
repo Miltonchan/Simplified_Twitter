@@ -31,20 +31,6 @@ export default function Admin_component() {
             <button className="admin-btn" onClick={handleListDialogClick}>Inspect</button>
           </div>
         </div>
-        <div className="admin-section">
-          <h2>Delete user</h2>
-          <div className="description-text">This allows you to delete a particular user.</div>
-          <div className="admin-btn-container">
-            <button className="admin-btn">Inspect</button>
-          </div>
-        </div>
-        <div className="admin-section">
-          <h2>Statistic</h2>
-          <div className="description-text">This allows you to inspect the statistic of tweet culminatied in Beitter.</div>
-          <div className="admin-btn-container">
-            <button className="admin-btn">Inspect</button>
-          </div>
-        </div>
       </div>
 
       {isListDialogOpen && (
