@@ -74,11 +74,11 @@ export default function Menulist_component() {
 
   const [menulistComponentHover, setMenulistComponentHover] = useState([false, false, false, false, false, false]);
   const handleMouseEnter = (index) => {
-    console.log({index});
+    // console.log({index});
     const updatedHover = [...menulistComponentHover];
     for (let i=0; i<updatedHover.length; i++) {
       if(i===index) {
-        console.log("The index now is "+index);
+        // console.log("The index now is "+index);
       updatedHover[index] = true;
       } else {updatedHover[i] =false;}
     setMenulistComponentHover(updatedHover);
