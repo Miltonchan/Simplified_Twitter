@@ -10,7 +10,11 @@ class RightSideBar extends React.Component {
         <Router>
           <Routes>
           <Route index element={<Search />} />
-          <Route path="/*" element = {<Search/>} />
+          <Route path="/" element = {<Search/>} />
+          <Route path="/home" element = {<Search/>} />
+          <Route path="/userinfo" element = {<Search/>} />
+          <Route path="/home" element = {<Search/>} />
+
           </Routes>
         </Router>
       </rightsidebar>
