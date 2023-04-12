@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Setting_component.css';
 import AcceptButton from '../icons/AcceptButton.png';
 import DeclineButton from '../icons/DeclineButton.png';
+import { useNavigate } from 'react-router-dom';
 
 import AlertDialog from "../dialogs/AlertDialog";
 
@@ -15,6 +16,7 @@ export default function Setting_component() {
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
   const user = JSON.parse(localStorage.getItem('user'));
+  const navigate = useNavigate();
 
   const handlePublicChange = (event) => {
     setIsPublic(event.target.checked);
@@ -67,6 +69,47 @@ export default function Setting_component() {
     
     setIsDeleteDialogOpen(false);
   };
+
+  const changePassword = async () => {
+    const res = await fetch('http://localhost:8000/useraccounts/changePassword', {
+      method: 'POST',
+      mode: 'cors',
+      body: JSON.stringify({
+        'username': user.useraccount.username,
+        'oldPassword': password,
+        'newPassword': newPassword,
+      })
+    })
+    .then(res => res.json());
+
+    if (res === 'Status: success') {
+      localStorage.removeItem('user');
+      navigate('/login');
+      window.location.pathname = '/login';
+    }else {
+      alert(res);
+    }
+  }
+
+  const changeInfo = async () => {
+    const res = await fetch('http://localhost:8000/userinfos/update', {
+      method: 'POST',
+      mode: 'cors',
+      body: JSON.stringify({
+        'userId': user.useraccount.userId,
+        'nickname': user.userinfo.nickname,
+        'private': isPublic,
+      })
+    })
+    .then(res => res.json());
+  }
+
+  const confirmChange = async () => {
+    await changeInfo();
+    if (password && newPassword) {
+      await changePassword();
+    }
+  }
 
   return (
     <div className="setting-page">
