@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate, userNavigate } from "react-router-dom"
 
 import mainIcon from "../../../icons/HeadIcon.jpeg";
 import LoginIcon from "../../../icons/LoginButton.png";
@@ -67,12 +68,16 @@ export default function Menulist_component() {
   const [twitter_content,setTwitter_content] = useState("");
   const [hoverdetect, sethoverdetect]= useState(false);
 
+  const navigate = useNavigate();
 
   const [isLogoutDialogOpen, setisLogoutDialogOpen] = useState(false);
   const [isLogout, setIsLogout] = useState();
   const handleLogoutConfirm = () => {
   // Do something with the logout action, such as sending a request to the backend
+    localStorage.removeItem('user');
     setisLogoutDialogOpen(false);
+    navigate('/login');
+    window.location.pathname = '/login';
   };
   const handleLogoutCancel = () => {
     // Do something with the logout action, such as sending a request to the backend
@@ -81,7 +86,6 @@ export default function Menulist_component() {
 
   const handleTwitterConfirm = () => {
       const twitter =[twitter_content] //to be added account information ????
-
       console.log(twitter) // send to backend 
     
     };
@@ -114,12 +118,12 @@ export default function Menulist_component() {
             );
           })}
           <li
-                className="row"
-                onClick={() => {setisLogoutDialogOpen(true)} }>
-                  {" "}
-                  <div id="icon"><img src={LogoutIcon} onMouseEnter={LogoutIconHover} height={h} width={w}>
-                    </img></div>{" "}<div id="title">Logout</div>
-                </li>
+            className="row"
+            onClick={() => {setisLogoutDialogOpen(true)} }>
+              {" "}
+              <div id="icon"><img src={LogoutIcon} onMouseEnter={LogoutIconHover} height={h} width={w}>
+                </img></div>{" "}<div id="title">Logout</div>
+            </li>
         </ul>
         <button
           className="sidebarlist-button"
