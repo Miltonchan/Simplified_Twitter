@@ -96,7 +96,7 @@ db.once('open', () => {
         nickname:'Mickey',
         private: false,
         follower: ['stu100','stu102'],
-        following:['stu100'],
+        following:[],
         visibleTo:['stu100']
     }, (err,user)=>{
         if(err){
