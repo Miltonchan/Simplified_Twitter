@@ -14,6 +14,8 @@ export default function Setting_component() {
   const [following, setFollowing] = useState(['JaneDoe']);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
+  const user = JSON.parse(localStorage.getItem('user'));
+
   const handlePublicChange = (event) => {
     setIsPublic(event.target.checked);
   };
@@ -38,8 +40,31 @@ export default function Setting_component() {
     setIsDeleteDialogOpen(false);
   };
 
-  const handleDeleteConfirm = () => {
-    // Do something with the delete action, such as sending a request to the backend
+  const handleDeleteConfirm = async () => {
+    const res = await fetch('http://localhost:8000/useraccounts/delete', {
+      method: 'POST',
+      mode: 'cors',
+      body: JSON.stringify({
+        'userId': user.useraccount.userId,
+      })
+    })
+    .then(res => res.json())
+    .catch(err => err.json());
+
+    if (res === 'Status: success') {
+      await fetch('http://localhost:8000/userinfos/delete', {
+        method: 'POST',
+        mode: 'cors',
+        body: JSON.stringify({
+          'userId': user.useraccount.userId,
+        })
+      })
+      .then(res => res.json())
+      .catch(err => err.json());
+    }
+
+    alert(res);
+    
     setIsDeleteDialogOpen(false);
   };
 
