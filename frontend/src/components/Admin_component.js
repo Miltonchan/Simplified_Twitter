@@ -47,9 +47,7 @@ export default function Admin_component() {
       </div>
 
       {isListDialogOpen && (
-        <MessageDialog
-         title="User List"
-         description=<UserList/>
+        <UserList
          onCancel={handleListDialogCancel}
         />
       )}
