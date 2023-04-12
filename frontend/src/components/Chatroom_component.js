@@ -99,7 +99,7 @@ export default function Chatroom_component() {
               className={`chatroom-message`}
             >
               <p>{message.message}</p>
-              <div className={`chatroom-message-date`}>{message.createdAt}</div>
+              <div className={`chatroom-message-date`}>{new Date(message.createdAt).toDateString()}</div>
             </div>
           </div>
         ))}
