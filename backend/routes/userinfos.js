@@ -50,8 +50,6 @@ router.route('/follow').post(async (req, res) => {
   const data = req.body;
   const followerUsername = data.followerUsername;
   const beFollowUsername = data.beFollowUsername;
-  const followerNickname = data.followerNickname;
-  const beFollowNickname = data.beFollowNickname;
 
   let followerArr = await Userinfo.findOne({ username: beFollowUsername })
     .then(userinfo => userinfo.follower);
@@ -60,9 +58,9 @@ router.route('/follow').post(async (req, res) => {
     .then(userinfo => userinfo.following);
 
 
-  let res1 = await Userinfo.updateOne({ username: followerUsername }, { following: [...followingArr, beFollowNickname] });
+  let res1 = await Userinfo.updateOne({ username: followerUsername }, { following: [...followingArr, beFollowUsername] });
 
-  let res2 = await Userinfo.updateOne({ username: beFollowUsername }, { follower: [...followerArr, followerNickname] });
+  let res2 = await Userinfo.updateOne({ username: beFollowUsername }, { follower: [...followerArr, followerUsername] });
 
   if (res1.acknowledged && res2.acknowledged) {
     res.json('Status: success');
@@ -77,19 +75,17 @@ router.route('/unfollow').post(async (req, res) => {
   const data = req.body;
   const followerUsername = data.followerUsername;
   const beFollowUsername = data.beFollowUsername;
-  const followerNickname = data.followerNickname;
-  const beFollowNickname = data.beFollowNickname;
 
   let followerArr = await Userinfo.findOne({ username: beFollowUsername })
     .then(userinfo => userinfo.follower);
-  let follower_index = followerArr.indexOf(followerNickname);
+  let follower_index = followerArr.indexOf(followerUsername);
   if (follower_index != -1) {
     followerArr.splice(follower_index, 1);
   }
 
   let followingArr = await Userinfo.findOne({ username: followerUsername })
     .then(userinfo => userinfo.following);
-  let beFollow_index = followingArr.indexOf(beFollowNickname);
+  let beFollow_index = followingArr.indexOf(beFollowUsername);
   if (beFollow_index != -1) {
     followingArr.splice(beFollow_index, 1);
   }
