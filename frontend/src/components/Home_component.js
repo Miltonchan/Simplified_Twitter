@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './Home_component.css';
 
 import Tweet from './subcomponents/Tweet_component';
-import Post from './subcomponents/Post_component';
 import ForYouTabContent from './subcomponents/Home_ForYou_component';
 import FollowingTabContent from './subcomponents/Home_Following_component';
 
@@ -54,9 +53,6 @@ export default function Home_component() {
       <div className="home-main">
         <div className="home-section">
           <Tweet/>
-        </div>
-        <div className="home-section">
-          <Post/>
         </div>
         <div className="home-section">
           <Tab/>
