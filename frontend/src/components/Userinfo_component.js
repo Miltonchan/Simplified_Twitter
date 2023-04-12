@@ -54,21 +54,47 @@ export default function Userinfo_component() {
             </div>
           </div>
         </div>
-        <div className="userinfo-section">
-          <h2>Followers</h2>
-          <ul>
-            {user.userinfo.follower.map((val, index) => (
-              <li key={index}>{val}</li>
-            ))}
-          </ul>
-        </div>
-        <div className="userinfo-section">
-          <h2>Following</h2>
-          <ul>
-            {user.userinfo.follower.map((val, index) => (
-              <li key={index}>{val}</li>
-            ))}
-          </ul>
+        <div className="userinfo-follow">
+          <div className="userinfo-section">
+            <h2>Followers</h2>
+            <ul>
+              {user.userinfo.follower.map((val, index) => (
+                <div key={index} className="userinfo-follow-row">
+                  <div className="userinfo-follow-name">
+                    <li>{val}</li>
+                  </div>
+                  <div className="userinfo-follow-action">
+                    <div className="userinfo-follow-row-block">
+                      <button className="userinfo-unfollow-btn">Unfollow</button>
+                    </div>
+                    <div className="userinfo-follow-row-block">
+                      <button className="userinfo-message-btn">Message</button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </ul>
+          </div>
+          <div className="userinfo-section">
+            <h2>Following</h2>
+            <ul>
+              {user.userinfo.follower.map((val, index) => (
+                <div key={index} className="userinfo-follow-row">
+                  <div className="userinfo-follow-name">
+                    <li>{val}</li>
+                  </div>
+                  <div className="userinfo-follow-action">
+                    <div className="userinfo-follow-row-block">
+                      <button className="userinfo-unfollow-btn">Unfollow</button>
+                    </div>
+                    <div className="userinfo-follow-row-block">
+                      <button className="userinfo-message-btn">Message</button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </div>
