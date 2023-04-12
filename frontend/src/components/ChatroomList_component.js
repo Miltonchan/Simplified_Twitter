@@ -54,7 +54,7 @@ const ChatroomList_component = () => {
   ];
 
   const handleClick = (chatId) => {
-    console.log(`Clicked chat with id ${chatId}`);
+    // console.log(`Clicked chat with id ${chatId}`);
     navigate(`/chatroom/chat?rmId=${chatId}`);
     // navigate to chatroom with corresponding chatId
   };
