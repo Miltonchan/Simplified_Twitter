@@ -28,7 +28,6 @@ db.once('open', () => {
     const postRouter = require('./routes/posts');
     const chatroomRouter = require('./routes/chatrooms');
     const messageRouter = require('./routes/messages');
-    const imageRouter = require('./routes/images');
 
     app.use('/useraccounts', useraccountRouter);
     app.use('/adminaccounts', adminaccountRouter);
@@ -37,7 +36,6 @@ db.once('open', () => {
     app.use('/posts', postRouter);
     app.use('/chatrooms', chatroomRouter);
     app.use('/messages', messageRouter);
-    app.use('/images', imageRouter);
 
     let Useraccount = require('./models/useraccount.model');
     let Adminaccount = require('./models/adminaccount.model');
@@ -167,6 +165,7 @@ db.once('open', () => {
         postId:'1',
         username:'Kirito',
         content:'Today is my first day using Twitter :D',
+        image: '',
         like:['Kirito','Asuna'],
         dislike:['Eugeo'],
         retweetBy:['Asuna'],
@@ -183,6 +182,7 @@ db.once('open', () => {
         postId:'2',
         username:'Asuna',
         content:'Today is my second day using Twitter :D',
+        image: '',
         like:['Kirito','Asuna'],
         dislike:['Eugeo'],
         retweetBy:['Asuna'],
@@ -199,6 +199,7 @@ db.once('open', () => {
         postId:'3',
         username:'Eugeo',
         content:'Today is my third day using Twitter :D',
+        image: '',
         like:['Kirito','Asuna'],
         dislike:['Eugeo'],
         retweetBy:['Asuna'],

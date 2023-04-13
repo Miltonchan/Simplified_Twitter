@@ -29,6 +29,7 @@ router.route('/').post(async (req, res) => {
     postId: id + 1,
     username: data.username,
     content: data.content,
+    image: data.image,
     like: [],
     dislike: [],
     retweetBy: [],

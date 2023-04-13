@@ -4,6 +4,7 @@ const postSchema = new mongoose.Schema({
     postId:{type:Number, requried:true, unique:true},
     username:{type:String, required:true},
     content:{type:String, required:true},
+    image:{type: String},
     like:[{type:String}],
     dislike:[{type:String}],
     retweetBy:[{type:String}],
