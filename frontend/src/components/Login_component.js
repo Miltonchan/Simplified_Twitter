@@ -3,7 +3,9 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../App';
 import './Login_component.css';
-import '../icons/LoginBackground.png'
+import '../icons/LoginBackground.png';
+
+import AlertDialog from '../dialogs/AlertDialog';
 
 export default function Login_component() {
 
@@ -13,6 +15,16 @@ export default function Login_component() {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const [isErrorDialogOpen, setIsErrorDialogOpen] = useState(false);
+
+  const handleErrorDialogConfirm = () => {
+    setIsErrorDialogOpen(true);
+  };
+
+  const handleErrorDialogCancel = () => {
+    setIsErrorDialogOpen(false);
+  };
 
   const navigate = useNavigate();
 
@@ -29,7 +41,7 @@ export default function Login_component() {
     })
     .then(data => data.json())
     .catch(err => err.json())
-    
+
     return useraccount;
   }
 
@@ -54,7 +66,7 @@ export default function Login_component() {
 
     const useraccount = await getUseraccount(username, password);
     if (typeof useraccount === 'string') {
-      alert(useraccount);
+      setIsErrorDialogOpen(true);
       return;
     }
     const userinfo = await getUserinfo(useraccount.userId);
@@ -86,7 +98,7 @@ export default function Login_component() {
             <h1> User Login </h1>
           </div>
           <div className={(animateComplete ? "welcome-message" : "hidden")}>
-            <h1 onClick={routeToHome}> Welcome to Sword Art Online </h1>
+            <h1 onClick={routeToHome}> Welcome to Beitter! </h1>
           </div>
           <div className={"login-form-container " + (animateComplete ? "invisible" : "")}>
             <div className="login-form-block">
@@ -108,6 +120,14 @@ export default function Login_component() {
           </div>
         </div>
       </div>
+      {isErrorDialogOpen && (
+        <AlertDialog
+         title="Alert"
+         description="Are you sure you want to delete your account?"
+         onYes={handleErrorDialogCancel}
+         onNo={handleErrorDialogCancel}
+        />
+      )}
     </div>
   )
 }
