@@ -7,6 +7,8 @@ import DeclineButton from '../../icons/DeclineButton.png';
 const Tweet = () => {
   const [posts, setPosts] = useState([]);
   const [input, setInput] = useState("");
+  const [postid, setPostid] = useState([]);
+  const [image, setImage] = useState([]);
 
   const [isTweet, setIsTweet] = useState(false);
   const [isComment, setIsComment] = useState(false);
@@ -121,7 +123,8 @@ const Tweet = () => {
       .finally(fetchFollowingPosts);
 
     setInput("");
-    setSelectedImage();
+//     setSelectedImage();
+    updatethepostid();
     setIsTweet(false);
   }
   // to be added image to create post function
@@ -146,32 +149,49 @@ const Tweet = () => {
     setInput("");
     setSelectedImage();
     setIsComment(false);
-  }
+   }
 
   useEffect(() => {
     fetchFollowingPosts();
   }, []);
+  
+   const updatethepostid =  () => {           //rewrite image 
+    fetch('http://localhost:8000/images/getpostid')
+    .then(response => response.json())
+    .then(data => setPostid(data+1))
+    .catch(err => console.log(err))
+  }
+
+  const[data,setData] = useState([]);       //rewrite image
+
+  const getimage =  (postid) =>{              //rewrite image
+     axios.get("http://localhost:8000/images/getimage",{params:{postid}}) 
+    .then((res)=>{setData(res.data)})
+    .catch((err)=>console.log(err))
+  }
+    
+    
 
   // Tweet Image
-  const wrapperRef = useRef(null);
+//   const wrapperRef = useRef(null);
 
-    const [selectedImage, setSelectedImage] = useState();
-    const [hasImage,setHasImage] = useState("false");
+//     const [selectedImage, setSelectedImage] = useState();
+//     const [hasImage,setHasImage] = useState("false");
 
-    const onDragEnter = () => wrapperRef.current.classList.add('dragover');
-    const onDragLeave = () => wrapperRef.current.classList.remove('dragover');
-    const onDrop = () => wrapperRef.current.classList.remove('dragover');
+//     const onDragEnter = () => wrapperRef.current.classList.add('dragover');
+//     const onDragLeave = () => wrapperRef.current.classList.remove('dragover');
+//     const onDrop = () => wrapperRef.current.classList.remove('dragover');
 
-    const imageChange = (e) => {
-      if (e.target.files && e.target.files.length > 0) {
-        setSelectedImage(e.target.files[0]); // to change the selected image
-        setHasImage(true);
-      }
-    };
+//     const imageChange = (e) => {
+//       if (e.target.files && e.target.files.length > 0) {
+//         setSelectedImage(e.target.files[0]); // to change the selected image
+//         setHasImage(true);
+//       }
+//     };
 
-    const removeSelectedImage = () => {
-      setSelectedImage();
-    };
+//     const removeSelectedImage = () => {
+//       setSelectedImage();
+//     };
 
     //End of Tweet image
 
@@ -204,6 +224,16 @@ const Tweet = () => {
                 <div className="tweet-block-content-section">
                   <div className="tweet-block-content">
                     {val.content}
+                    <div>
+                      {getimage(val.postId)}
+                      {data.map((obj) => {
+                        const base64String = btoa(
+                        new Uint8Array(obj.img.data.data).reduce(function (data, byte) {
+                        return data + String.fromCharCode(byte);
+                        }, ""));
+                        return(<img src={`data:image/png;base64,${base64String}`} alt="" width="300"/>);
+                      })}
+                    </div>
                   </div>
                 </div>
                 <div className="tweet-block-action-bar">
@@ -248,48 +278,66 @@ const Tweet = () => {
                       value={input}
                       onChange={(event) => setInput(event.target.value)}
                     />
-                  </div>
-                  <div className="post-toolbar">
-                    <ul className='uploadbar'>
-                      <li>
-                        {selectedImage && (
-                        <div>
-                          <img
-                          className="image_preview"
-                            src={URL.createObjectURL(selectedImage)}
-                          />
-                        </div>
-                        )}
-                      </li>
-                    {
-                      !selectedImage ?
-                        (<li
-                            ref={wrapperRef}
-                            className="drop-file-input"
-                            onDragEnter={onDragEnter}
-                            onDragLeave={onDragLeave}
-                            onDrop={onDrop}>
-                            <div
-                            className="drop-file-input__label"
-                            >
-                                <p>Drag/ Drop your image here</p>
-                            </div>
-                            <input type="file" value="" onChange={imageChange}/>
-                        </li>)
-                        : (<li
-                        ref={wrapperRef}
-                        className="drop-file-input">
-                        <button className="delete-button" onClick={removeSelectedImage}>
-                          Remove This Image
-                        </button>
-                      </li>)
-                    }
+                   </div>
+                   <form onSubmit={handleSubmit}>
+                      <label htmlFor="postid"><h2>Make the number big !</h2></label>
+                        <input
+                          type="number"
+                          id="postid"
+                          value={postid}
+                          onChange={(e) => setPostid(e.target.value)}
+                         />
+                      <label htmlFor="image"></label>
+                        <input
+                          type="file"
+                          id="image"
+                          onChange={(e) => setImage(e.target.files)}
+                        />
+                      <button type="submit">Upoad one</button>
+                    </form>           
+                    
+                    
+//                   <div className="post-toolbar">
+//                     <ul className='uploadbar'>
+//                       <li>
+//                         {selectedImage && (
+//                         <div>
+//                           <img
+//                           className="image_preview"
+//                             src={URL.createObjectURL(selectedImage)}
+//                           />
+//                         </div>
+//                         )}
+//                       </li>
+//                     {
+//                       !selectedImage ?
+//                         (<li
+//                             ref={wrapperRef}
+//                             className="drop-file-input"
+//                             onDragEnter={onDragEnter}
+//                             onDragLeave={onDragLeave}
+//                             onDrop={onDrop}>
+//                             <div
+//                             className="drop-file-input__label"
+//                             >
+//                                 <p>Drag/ Drop your image here</p>
+//                             </div>
+//                             <input type="file" value="" onChange={imageChange}/>
+//                         </li>)
+//                         : (<li
+//                         ref={wrapperRef}
+//                         className="drop-file-input">
+//                         <button className="delete-button" onClick={removeSelectedImage}>
+//                           Remove This Image
+//                         </button>
+//                       </li>)
+//                     }
 
-                    </ul>
+//                     </ul>
                     <ul className="functionbar">
-                      <li className="post-toolbar-block">
-                        Tool
-                      </li>
+//                       <li className="post-toolbar-block">
+//                         Tool
+//                       </li>
                       <li className="post-toolbar-block">
                         <button className="post-toolbar-btn" onClick={createPost}>Send</button>
                       </li>
@@ -298,7 +346,7 @@ const Tweet = () => {
 
                 </div>
               </div>
-            </div>
+//             </div>
             <div className="tweet-dialog-actions">
               <div className="tweet-dialog-button-container">
                 <img src={AcceptButton} className="tweet-dialog-accept-button" onClick={createPost} />
