@@ -44,7 +44,7 @@ router.route('/getpostid').get((req,res)=>{
     })
   })
 
-//fetch the images needed respect to postid
+//getimage by postid
 router.route('/getimage').get((req, res) => {
     const postid = req.query.postid;
     Image.find({ postid: postid },(err,img) =>{
