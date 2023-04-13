@@ -16,6 +16,12 @@
   border-bottom: 1px solid grey;
 }
 
+.icon {
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+}
+
 .register-section {
 
 }

@@ -29,6 +29,7 @@ router.route('/').post(async (req, res) => {
     userId: lastUserId + 1,
     username: data.username,
     nickname: data.nickname,
+    icon: data.icon,
     private: false,
     follower: [],
     following: [],

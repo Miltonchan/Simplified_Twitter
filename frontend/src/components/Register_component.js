@@ -1,10 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './Register_component.css';
 
 export default function Register_component() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [passoword2, setPassword2] = useState('');
+
+  const [selectedImagePreview, setSelectedImagePreview] = useState();
+
+  const wrapperRef = useRef(null);
+
+
+  const onDragEnter = () => wrapperRef.current.classList.add('dragover');
+  const onDragLeave = () => wrapperRef.current.classList.remove('dragover');
+  const onDrop = () => wrapperRef.current.classList.remove('dragover');
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -21,6 +30,7 @@ export default function Register_component() {
         "username": username,
         "password": password,
         "nickname": username,
+        "icon": selectedImagePreview,
       })
     })
     .then(res => res.json());
@@ -32,6 +42,22 @@ export default function Register_component() {
 
     return false;
   }
+
+  const imageChange = (e) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const fileReader = new FileReader();
+      fileReader.onload = (fileLoadedEvent) => {
+        const src = fileLoadedEvent.target.result;
+        setSelectedImagePreview(src); // to change the selected image
+        //console.log(src);
+      }
+      fileReader.readAsDataURL(e.target.files[0]);
+    }
+  };
+
+  const removeSelectedImagePreview = () => {
+    setSelectedImagePreview();
+  };
 
   return (
       <div className="register-page">
@@ -46,6 +72,39 @@ export default function Register_component() {
               onChange={(event) => setUsername(event.target.value)}
               required/>
             </div>
+            {selectedImagePreview && <img
+              className="icon"
+              src={selectedImagePreview}
+              alt="icon"
+            />}
+            {
+             !selectedImagePreview ?
+              (
+                <div
+                  ref={wrapperRef}
+                  className="drop-file-input"
+                  onDragEnter={onDragEnter}
+                  onDragLeave={onDragLeave}
+                  onDrop={onDrop}>
+                  <div className="drop-file-input__label">
+                    <p>Drag/ Drop your image here</p>
+                  </div>
+                  <input
+                    type="file"
+                    id="image"
+                    onChange={(e) => {
+                    imageChange(e);
+                    }}
+                  />
+                </div>
+              )
+              : 
+              (
+              <button className="delete-button" onClick={removeSelectedImagePreview}>
+                Remove This Image
+              </button>
+              )
+            }
             <div className="register-section">
               <label for="password">Enter your password: </label>
               <input type="password" name="password" id="password" value={password} className="register-input"
@@ -59,7 +118,7 @@ export default function Register_component() {
               required/>
             </div>
             <div className="register-section">
-              <input type="submit" value="Register" className="register-submit-btn"/>
+              <button type="submit" className="register-submit-btn">Register</button>
             </div>
           </form>
         </div>

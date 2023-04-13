@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './Tweet_component.css';
 import axios from 'axios';
 
@@ -170,7 +170,7 @@ const Tweet = () => {
       fileReader.onload = (fileLoadedEvent) => {
         const src = fileLoadedEvent.target.result;
         setSelectedImagePreview(src); // to change the selected image
-        console.log(src);
+        //console.log(src);
       }
       fileReader.readAsDataURL(e.target.files[0]);
     }
@@ -268,7 +268,7 @@ const Tweet = () => {
                           onChange={(e) => setPostid(e.target.value)}
                          />
                       <label htmlFor="image"></label>
-                        {
+                      {
                        !selectedImagePreview ?
                         (
                           <div
@@ -301,7 +301,7 @@ const Tweet = () => {
                             />
                           </div>
                         )
-                     }
+                      }
                     </div>
 
 
