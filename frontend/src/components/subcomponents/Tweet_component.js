@@ -1,5 +1,6 @@
 import React, { useState, useEffect,useRef } from 'react';
 import './Tweet_component.css';
+import axios from 'axios';
 
 import AcceptButton from '../../icons/AcceptButton.png';
 import DeclineButton from '../../icons/DeclineButton.png';
@@ -123,7 +124,7 @@ const Tweet = () => {
       .finally(fetchFollowingPosts);
 
     setInput("");
-//     setSelectedImage();
+//     setselectedImagePreview();
     updatethepostid();
     setIsTweet(false);
   }
@@ -147,7 +148,7 @@ const Tweet = () => {
       .finally(fetchFollowingPosts);
 
     setInput("");
-    setSelectedImage();
+    setselectedImagePreview();
     setIsComment(false);
    }
   
@@ -189,25 +190,24 @@ const Tweet = () => {
     
 
   // Tweet Image
-//   const wrapperRef = useRef(null);
+   const wrapperRef = useRef(null);
 
-//     const [selectedImage, setSelectedImage] = useState();
-//     const [hasImage,setHasImage] = useState("false");
+     const [selectedImagePreview, setselectedImagePreview] = useState();
 
-//     const onDragEnter = () => wrapperRef.current.classList.add('dragover');
-//     const onDragLeave = () => wrapperRef.current.classList.remove('dragover');
-//     const onDrop = () => wrapperRef.current.classList.remove('dragover');
+     const onDragEnter = () => wrapperRef.current.classList.add('dragover');
+     const onDragLeave = () => wrapperRef.current.classList.remove('dragover');
+     const onDrop = () => wrapperRef.current.classList.remove('dragover');
 
-//     const imageChange = (e) => {
-//       if (e.target.files && e.target.files.length > 0) {
-//         setSelectedImage(e.target.files[0]); // to change the selected image
-//         setHasImage(true);
-//       }
-//     };
+     const imageChange = (image) => {
+       if (image.target.files && image.target.files.length > 0) {
+         setselectedImagePreview(image.target.files[0]); // to change the selected image
+       }
+     };
 
-//     const removeSelectedImage = () => {
-//       setSelectedImage();
-//     };
+     const removeselectedImagePreview = () => {
+        setImage();
+       setselectedImagePreview();
+     };
 
     //End of Tweet image
 
@@ -304,56 +304,50 @@ const Tweet = () => {
                           onChange={(e) => setPostid(e.target.value)}
                          />
                       <label htmlFor="image"></label>
-                        <input
+                        {
+                       !selectedImagePreview ?
+                         (<div
+                             ref={wrapperRef}
+                             className="drop-file-input"
+                             onDragEnter={onDragEnter}
+                             onDragLeave={onDragLeave}
+                             onDrop={onDrop}>
+                             <div
+                             className="drop-file-input__label"
+                             >
+                                 <p>Drag/ Drop your image here</p>
+                             </div>
+                             <input
                           type="file"
                           id="image"
-                          onChange={(e) => setImage(e.target.files)}
+                          onChange={(e) => {
+                            setImage(e.target.files);
+                            setselectedImagePreview(e.target.files);
+                          }} // Milton work
                         />
-                      <button type="submit">Upoad one</button>
+                         </div>)
+                         : (
+                         <div
+                         ref={wrapperRef}
+                         className="drop-file-input">
+                         <button className="delete-button" onClick={removeselectedImagePreview}>
+                           Remove This Image
+                         </button>
+                         <img
+                          className="image_preview"
+                            src={URL.createObjectURL(selectedImagePreview)}
+                          />
+                       </div>)
+                     }
+                      <button type="submit">Upload one</button>
                     </form>           
                     
                     
-//                   <div className="post-toolbar">
-//                     <ul className='uploadbar'>
-//                       <li>
-//                         {selectedImage && (
-//                         <div>
-//                           <img
-//                           className="image_preview"
-//                             src={URL.createObjectURL(selectedImage)}
-//                           />
-//                         </div>
-//                         )}
-//                       </li>
-//                     {
-//                       !selectedImage ?
-//                         (<li
-//                             ref={wrapperRef}
-//                             className="drop-file-input"
-//                             onDragEnter={onDragEnter}
-//                             onDragLeave={onDragLeave}
-//                             onDrop={onDrop}>
-//                             <div
-//                             className="drop-file-input__label"
-//                             >
-//                                 <p>Drag/ Drop your image here</p>
-//                             </div>
-//                             <input type="file" value="" onChange={imageChange}/>
-//                         </li>)
-//                         : (<li
-//                         ref={wrapperRef}
-//                         className="drop-file-input">
-//                         <button className="delete-button" onClick={removeSelectedImage}>
-//                           Remove This Image
-//                         </button>
-//                       </li>)
-//                     }
-
-//                     </ul>
+                   <div className="post-toolbar">
                     <ul className="functionbar">
-//                       <li className="post-toolbar-block">
-//                         Tool
-//                       </li>
+                       <li className="post-toolbar-block">
+                         Tool
+                       </li>
                       <li className="post-toolbar-block">
                         <button className="post-toolbar-btn" onClick={createPost}>Send</button>
                       </li>
@@ -362,7 +356,7 @@ const Tweet = () => {
 
                 </div>
               </div>
-//             </div>
+             </div>
             <div className="tweet-dialog-actions">
               <div className="tweet-dialog-button-container">
                 <img src={AcceptButton} className="tweet-dialog-accept-button" onClick={createPost} />
@@ -416,17 +410,17 @@ const Tweet = () => {
                 <div className="post-toolbar">
                   <ul className='uploadbar'>
                     <li>
-                      {selectedImage && (
+                      {selectedImagePreview && (
                       <div>
                         <img
                         className="image_preview"
-                          src={URL.createObjectURL(selectedImage)}
+                          src={URL.createObjectURL(selectedImagePreview)}
                         />
                       </div>
                       )}
                     </li>
                   {
-                    !selectedImage ?
+                    !selectedImagePreview ?
                       (<li
                           ref={wrapperRef}
                           className="drop-file-input"
@@ -443,7 +437,7 @@ const Tweet = () => {
                       : (<li
                       ref={wrapperRef}
                       className="drop-file-input">
-                      <button className="delete-button" onClick={removeSelectedImage}>
+                      <button className="delete-button" onClick={removeselectedImagePreview}>
                         Remove This Image
                       </button>
                     </li>)
