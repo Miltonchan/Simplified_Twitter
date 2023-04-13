@@ -4,7 +4,7 @@ import './style.css';
 import './common.css';
 
 import './fonts/SAOUIRegular.otf';
-
+import backgroundImage from './Kirito.png';
 import Layout from './layout/layout';
 
 import Login from './components/Login_component';
@@ -20,6 +20,13 @@ import OtherUserinfo from './components/OtherUserinfo_component';
 
 function App() {
   return (
+    <div 
+      style={{
+      backgroundImage: `url(${backgroundImage})`,
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
+      height: '100vh' 
+    }}>
     <Layout>
       <BrowserRouter>
         <Routes>
@@ -37,6 +44,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </Layout>
+    </div>
   );
 }
 
