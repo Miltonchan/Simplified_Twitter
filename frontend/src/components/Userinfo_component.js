@@ -105,7 +105,7 @@ export default function Userinfo_component() {
         <div className="userinfo-section">
           <div className="userinfo-profile">
             <div className="userinfo-profile-header">
-              <img src="https://picsum.photos/200" alt="User avatar" className="userinfo-avatar" />
+              <img src={user.userinfo.icon} alt="User avatar" className="userinfo-avatar" />
               <div className="userinfo-userdetails">
                 <h1 className="userinfo-name">{user.userinfo.username}</h1>
                 <p className="userinfo-userid">@{user.useraccount.userId}</p>
