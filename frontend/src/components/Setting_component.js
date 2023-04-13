@@ -3,6 +3,7 @@ import './Setting_component.css';
 import AcceptButton from '../icons/AcceptButton.png';
 import DeclineButton from '../icons/DeclineButton.png';
 import { useNavigate } from 'react-router-dom';
+import Switch from '@mui/material/Switch';
 
 import AlertDialog from "../dialogs/AlertDialog";
 
@@ -116,7 +117,7 @@ export default function Setting_component() {
         <h2>Privacy</h2>
         <div className="description-text">This allows you to change your account into public.</div>
         <label>
-          <input type="checkbox" checked={isPublic} onChange={handlePublicChange} />
+          <Switch checked={isPublic} color="warning" onChange={handlePublicChange} />
           {isPublic ? 'Public account' : 'Private account'}
         </label>
       </div>
@@ -131,6 +132,7 @@ export default function Setting_component() {
         <div className="description-text">This allows you to rename your password.</div>
         <input type="password" placeholder="Current password" value={password} onChange={handlePasswordChange} />
         <input type="password" placeholder="New password" value={newPassword} onChange={handleNewPasswordChange} />
+        <button className="setting-delete-account-button" onClick={confirmChange}>Change Password</button>  {/* not sure if it is correct onClick function for the button */}
       </div>
       
       <div className="setting-section">
