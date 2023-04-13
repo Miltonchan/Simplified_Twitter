@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { UserContext } from '../App';
 import './Login_component.css';
 import '../icons/LoginBackground.png';
 
@@ -123,7 +122,7 @@ export default function Login_component() {
       {isErrorDialogOpen && (
         <AlertDialog
          title="Alert"
-         description="Are you sure you want to delete your account?"
+         description="Wrong username or password"
          onYes={handleErrorDialogCancel}
          onNo={handleErrorDialogCancel}
         />
