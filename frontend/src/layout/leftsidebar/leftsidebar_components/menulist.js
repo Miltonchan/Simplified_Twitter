@@ -41,12 +41,6 @@ const menulist_component = [
     iconhover:<img src={HomeIconHover} height={h} width={w}/>,
     link: "/home",
   },{
-    title:"Notifications",
-    style:{'display':'none'},
-    icon: <img src={NotificationIcon} height={h} width={w}/> ,
-    iconhover:<img src={NotificationIconHover} height={h} width={w}/>,
-    link: "/notification",
-  },{
     title:"Messages",
     style:{'display':'none'},
     icon: <img src={MessagesIcon} height={h} width={w}/>,
@@ -128,7 +122,6 @@ export default function Menulist_component() {
         setIsLoggedIn(true);
         document.getElementById("Login").style.display = 'none';
         document.getElementById("Logout").style.display = 'flex';
-        document.getElementById("Notifications").style.display = 'flex';
         document.getElementById("Messages").style.display = 'flex';
         document.getElementById("Profile").style.display = 'flex';
         document.getElementById("Setting").style.display = 'flex';
