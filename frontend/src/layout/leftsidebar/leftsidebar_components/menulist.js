@@ -72,6 +72,9 @@ export default function Menulist_component() {
   const [hoverdetect, sethoverdetect]= useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState();
 
+  const user = JSON.parse(localStorage.getItem('user'));
+  const [isAdminUser, setIsAdminUser] = useState(true);
+
   const [menulistComponentHover, setMenulistComponentHover] = useState([false, false, false, false, false, false]);
   const handleMouseEnter = (index) => {
     // console.log({index});
@@ -108,8 +111,8 @@ export default function Menulist_component() {
 
   const handleTweetConfirm = () => {
       const twitter =[twitter_content] //to be added account information ????
-      console.log(twitter) // send to backend 
-    
+      console.log(twitter) // send to backend
+
     };
 
     const handleTweetCancel = () => {
@@ -130,8 +133,8 @@ export default function Menulist_component() {
         setIsLoggedIn(false);
       }
     }, []);
-  
-    
+
+
     return(
       <div className="menulist-container">
         <ul className="sidebarlist">
@@ -152,13 +155,31 @@ export default function Menulist_component() {
                 onMouseLeave={() => handleMouseLeave(index)}
                 >
                 {" "}
-                <div  id="icon">{window.location.pathname == val.link || menulistComponentHover[index] ? 
+                <div  id="icon">{window.location.pathname == val.link || menulistComponentHover[index] ?
                 (val.iconhover) : (val.icon)}</div>{" "}
                 <div id="title">{val.title}
                 </div>
               </li>
             );
           })}
+          { user && user.useraccount.username === "Heathcliff" && (
+            <li
+                className="row"
+                id="Administrator"
+                style={{'display':'none'}}
+                onMouseEnter={() => {sethoverdetect(true);}}
+                onMouseLeave={() => {sethoverdetect(false);}}
+            >
+              <div  id="icon">
+                {hoverdetect ?
+                 <img src={LogoutIconHover} height={h} width={w} /> :
+                 <img src={LogoutIcon} height={h} width={w} />
+                }</div>{" "}
+              <div id="title">
+                Administrator
+              </div>
+            </li>
+          )}
           <li
                 className="row"
                 id="Logout"
@@ -167,8 +188,8 @@ export default function Menulist_component() {
                 onMouseEnter={() => {sethoverdetect(true);}}
                 onMouseLeave={() => {sethoverdetect(false);}}>
                   {" "}
-                  <div  id="icon">{hoverdetect ? 
-                <img src={LogoutIconHover} height={h} width={w} /> : 
+                  <div  id="icon">{hoverdetect ?
+                <img src={LogoutIconHover} height={h} width={w} /> :
                 <img src={LogoutIcon} height={h} width={w} />
                 }</div>{" "}
                 <div id="title">Logout
@@ -182,6 +203,7 @@ export default function Menulist_component() {
         </button>
         <main>
         {isTweet && (
+
         <AlertDialog
          title="Twitter content"
          description={
@@ -194,9 +216,9 @@ export default function Menulist_component() {
                 />}
          onYes={handleTweetConfirm}
          onNo={handleTweetCancel}
-         
+
         />
-        )}  
+        )}
         {isLogoutDialogOpen && (
         <AlertDialog
          title="Alert"
@@ -207,6 +229,6 @@ export default function Menulist_component() {
       )}
         </main>
         </div>
-        
+
     ); //head icons and button to be added, send button and clos button to be added
 }
