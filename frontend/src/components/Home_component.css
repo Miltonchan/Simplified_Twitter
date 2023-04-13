@@ -4,19 +4,37 @@
 
 .home-topicbar {
   display: flex;
+  border: 1px solid #fe9000cf;
   justify-content: center;
   align-items: center;
   float: center;
   padding: 10px;
-  background-color: #f5f5f5;
+  background-color: rgba(255, 158, 2, 0.73);
 }
 
 .home-main {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #333;
+}
 
+.tweetandpost-page{
+  background-color: #f5f5f5;
+  padding: 20px;
+  border: 1px solid #ccc;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #333; 
 }
 
 .home-section {
-
+  border: 1px solid #ffffff;
+  border-radius: 5px;
 }
 
 .home-tab {
@@ -36,8 +54,10 @@
   justify-content: center;
   align-items: center;
   float: center;
+  border: 1px solid #151515;
+  border-radius: 5px;
   padding: 2.5px 10px 2.5px 10px;
-  background-color: yellow;
+  background-color: rgba(184, 246, 221, 0.287);
   width: 100%;
   border: 1px solid #000;
 }
