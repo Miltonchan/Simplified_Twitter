@@ -14,7 +14,7 @@ const UserList = (props) => {
         mode: 'cors'
       })
       .then(res => res.json());
-      
+
       console.log(userData)
       setUsers(userData);
     };
@@ -22,22 +22,16 @@ const UserList = (props) => {
     fetchUserData();
   }, []);
 
-  const deleteUser = async (userId) => {
+  const deleteUser = async (e, userId) => {
+    e.preventDefault();
     await fetch('http://localhost:8000/userinfos/delete', {
       method: 'POST',
       mode: 'cors',
       body: JSON.stringify({
         'userId': userId
       })
-    });
-
-    await fetch('http://localhost:8000/useraccounts/delete', {
-      method: 'POST',
-      mode: 'cors',
-      body: JSON.stringify({
-        'userId': userId
-      })
-    });
+    })
+    return false;
   }
 
   function handleCancel() {
@@ -62,7 +56,7 @@ const UserList = (props) => {
                   {user.username}
                 </div>
                 <div className="userlist-btn-container">
-                  <button className="userlist-btn" onClick={() => deleteUser(user.userId)}>Delete</button>
+                  <button className="userlist-btn" onClick={e => deleteUser(e, user.userId)}>Delete</button>
                 </div>
               </div>
               )
