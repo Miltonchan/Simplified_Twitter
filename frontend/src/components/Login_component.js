@@ -18,6 +18,8 @@ export default function Login_component() {
 
   const [isErrorDialogOpen, setIsErrorDialogOpen] = useState(false);
 
+  const event = new Event("login");
+
   const handleErrorDialogConfirm = () => {
     setIsErrorDialogOpen(true);
   };
