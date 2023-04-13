@@ -30,8 +30,10 @@ const Tweet = () => {
       })
       .then(data => data.json());
 
-    postData = await fetchComments(postData);
-    followingPosts = [...followingPosts, ...postData];
+    
+
+      postData = await fetchComments(postData);
+      followingPosts = [...followingPosts, ...postData];
     
     }
 
@@ -44,6 +46,17 @@ const Tweet = () => {
 
     postData = await fetchComments(postData);
     followingPosts = [...followingPosts, ...postData];
+
+    for (let i=0; i<followingPosts.length; i++) {
+      let user = await fetch(`http://localhost:8000/userinfos?username=${followingPosts[i].username}`,
+      {
+        method: 'GET',
+        mode: 'cors'
+      })
+      .then(data => data.json());
+
+      followingPosts[i].icon = user.icon;
+    }
 
     setPosts(followingPosts);
     // console.log(postData);
@@ -212,7 +225,11 @@ const Tweet = () => {
               <div className="tweet-block">
                 <div className="tweet-block-user-bar">
                   <div className="tweet-block-user-name-block">
-                    <h6>{val.username}</h6>
+                    <img
+                      className="icon"
+                      src={val.icon}
+                      alt="icon"
+                    />
                   </div>
                   <div className="tweet-block-user-bar-block">
                     <h2>{val.username}</h2>
