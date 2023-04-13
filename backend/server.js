@@ -90,6 +90,17 @@ db.once('open', () => {
         console.log(user)
     })
 
+    Useraccount.create({
+        userId:'103',
+        username:'Heathcliff',
+        password:'Heathcliff'
+    }, (err,user)=>{
+        if(err){
+            return console.log(err)
+        }
+        console.log(user)
+    })
+
     Userinfo.create({
         userId:'100',
         username:'Kirito',
@@ -127,6 +138,21 @@ db.once('open', () => {
         private: false,
         follower: ['Asuna'],
         following:['Asuna','Kirito'],
+        visibleTo:['Kirito']
+    }, (err,user)=>{
+        if(err){
+            return console.log(err)
+        }
+        console.log(user)
+    })
+
+    Userinfo.create({
+        userId:'103',
+        username:'Heathcliff',
+        nickname:'Heathcliff',
+        private: false,
+        follower: ['Kirito','Eugeo'],
+        following:[],
         visibleTo:['Kirito']
     }, (err,user)=>{
         if(err){
