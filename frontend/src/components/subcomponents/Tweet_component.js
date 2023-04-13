@@ -287,13 +287,6 @@ const Tweet = () => {
                     />
                    </div>
                    <div>
-                      <label htmlFor="postid"><h2>Make the number big !</h2></label>
-                        <input
-                          type="number"
-                          id="postid"
-                          value={postid}
-                          onChange={(e) => setPostid(e.target.value)}
-                         />
                       <label htmlFor="image"></label>
                       {
                        !selectedImagePreview ?
@@ -305,7 +298,7 @@ const Tweet = () => {
                             onDragLeave={onDragLeave}
                             onDrop={onDrop}>
                             <div className="drop-file-input__label">
-                              <p>Drag/ Drop your image here</p>
+                              <p>Click/ Drop your image here</p>
                             </div>
                             <input
                               type="file"
@@ -318,31 +311,20 @@ const Tweet = () => {
                         )
                         : 
                         (
-                          <div ref={wrapperRef} className="drop-file-input">
-                            <button className="delete-button" onClick={removeSelectedImagePreview}>
-                              Remove This Image
-                            </button>
+                          <div >
                             <img
                               className="image_preview"
                               src={selectedImagePreview}
                             />
+                            <p className="delete-file-input">
+                              <button className="delete-button" onClick={removeSelectedImagePreview}>
+                              Remove this Image
+                              </button>
+                            </p>
                           </div>
                         )
                       }
                     </div>
-
-
-                   <div className="post-toolbar">
-                    <ul className="functionbar">
-                       <li className="post-toolbar-block">
-                         Tool
-                       </li>
-                      <li className="post-toolbar-block">
-                        <button className="post-toolbar-btn" onClick={createPost}>Send</button>
-                      </li>
-                    </ul>
-                  </div>
-
                 </div>
               </div>
              </div>
@@ -396,19 +378,6 @@ const Tweet = () => {
                     onChange={(event) => setInput(event.target.value)}
                   />
                 </div>
-                <div className="post-toolbar">
-                  <ul className='uploadbar'>
-                  </ul>
-                  <ul className="functionbar">
-                    <li className="post-toolbar-block">
-                      Tool
-                    </li>
-                    <li className="post-toolbar-block">
-                      <button className="post-toolbar-btn" onClick={createComment}>Send</button>
-                    </li>
-                  </ul>
-                </div>
-
               </div>
             </div>
           </div>
