@@ -151,14 +151,14 @@ const Tweet = () => {
     setselectedImagePreview();
     setIsComment(false);
    }
-  
+
    //submit the images into db
-  const handleSubmit = (e) => {      
+  const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('postid', postid);
     formData.append('image', image[0]);
-    const url = 'http://localhost:8000/images/image';    
+    const url = 'http://localhost:8000/images/image';
     axios.post(url, formData)
     .then((res) => {
       console.log(res.data);
@@ -167,8 +167,8 @@ const Tweet = () => {
       console.log(err);
     });
   };
-  
-   const updatethepostid =  () => {           //rewrite image 
+
+   const updatethepostid =  () => {           //rewrite image
     fetch('http://localhost:8000/images/getpostid')
     .then(response => response.json())
     .then(data => setPostid(data+1))
@@ -178,16 +178,37 @@ const Tweet = () => {
   const[data,setData] = useState([]);       //rewrite image
 
   const getimage =  (postid) =>{              //rewrite image
-     axios.get("http://localhost:8000/images/getimage",{params:{postid}}) 
+     axios.get("http://localhost:8000/images/getimage",{params:{postid}})
     .then((res)=>{setData(res.data)})
     .catch((err)=>console.log(err))
   }
-  
+
   useEffect(() => {
     fetchFollowingPosts();
   }, []);
-    
-    
+
+  // Tweet Image
+  const wrapperRef = useRef(null);
+
+    const [selectedImage, setSelectedImage] = useState();
+    const [hasImage,setHasImage] = useState("false");
+
+    const onDragEnter = () => wrapperRef.current.classList.add('dragover');
+    const onDragLeave = () => wrapperRef.current.classList.remove('dragover');
+    const onDrop = () => wrapperRef.current.classList.remove('dragover');
+
+    const imageChange = (e) => {
+      if (e.target.files && e.target.files.length > 0) {
+        setSelectedImage(e.target.files[0]); // to change the selected image
+        setHasImage(true);
+      }
+    };
+
+    const removeSelectedImage = () => {
+      setSelectedImage();
+    };
+
+    //End of Tweet image    
 
   // Tweet Image
    const wrapperRef = useRef(null);
@@ -340,9 +361,9 @@ const Tweet = () => {
                        </div>)
                      }
                       <button type="submit">Upload one</button>
-                    </form>           
-                    
-                    
+                    </form>
+
+
                    <div className="post-toolbar">
                     <ul className="functionbar">
                        <li className="post-toolbar-block">
