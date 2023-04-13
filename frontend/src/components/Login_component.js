@@ -108,7 +108,7 @@ export default function Login_component() {
                 </div>
                 <div className="login-form">
                   <label for="password">Password: </label>
-                  <input type="text" name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                  <input type="password" name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                 </div>
                 <div className="login-form">
                   <button type='submit'>OK</button>

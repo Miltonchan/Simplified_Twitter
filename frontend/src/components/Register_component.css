@@ -1,48 +1,58 @@
-.register-block {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  float: center;
-  position: relative;
-  top: 50px;
-  border-style: solid;
-  border-color: grey;
-  border-width: 1px;
+.register-page {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  border: 1px solid grey;
 }
 
 .register-topicbar {
-  display: grid;
+  display: flex;
   justify-content: center;
   align-items: center;
   float: center;
-  width: 300px;
+  width: 100%;
   background-color: #fbfbfb;
-  border-style: solid;
-  border-color: grey;
-  border-width: 1px;
+  border-bottom: 1px solid grey;
+}
+
+.register-section {
+
 }
 
 .register-form-container {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  float: center;
   height: 200px;
   background-color: #d7d7d7;
-  border-style: solid;
-  border-color: grey;
-  border-width: 1px;
 }
 
 .register-form-block {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  float: center;
   height: 150px;
 }
 
 .register-form {
-  padding-bottom: 2.5px;
-  padding-bottom: 2.5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.register-input {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-bottom: 1px solid;
+}
+
+.register-submit-btn {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #eba601;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 20%;
 }

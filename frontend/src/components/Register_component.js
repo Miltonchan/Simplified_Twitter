@@ -34,37 +34,35 @@ export default function Register_component() {
   }
 
   return (
-    <div className="center-container">
-      <div className="register-block">
+      <div className="register-page">
         <div className="register-topicbar">
           <h1> User Register </h1>
         </div>
         <div className="register-form-container">
           <form className="register-form" onSubmit={handleSubmit}>
-            <div className="register-form">
+            <div className="register-section">
               <label for="username">Enter your username: </label>
-              <input type="text" name="username" id="username" value={username}
-              onChange={(event) => setUsername(event.target.value)} 
+              <input type="text" name="username" id="username" value={username} className="register-input"
+              onChange={(event) => setUsername(event.target.value)}
               required/>
             </div>
-            <div className="register-form">
+            <div className="register-section">
               <label for="password">Enter your password: </label>
-              <input type="text" name="password" id="password" value={password}
-              onChange={(event) => setPassword(event.target.value)} 
+              <input type="password" name="password" id="password" value={password} className="register-input"
+              onChange={(event) => setPassword(event.target.value)}
               required/>
             </div>
-            <div className="register-form">
+            <div className="register-section">
               <label for="re-enter_password">Re-enter your password: </label>
-              <input type="text" name="re-enter_password" id="re-enter_password" value={passoword2}
-              onChange={(event) => setPassword2(event.target.value)} 
+              <input type="password" name="re-enter_password" id="re-enter_password" value={passoword2} className="register-input"
+              onChange={(event) => setPassword2(event.target.value)}
               required/>
             </div>
-            <div className="register-form">
-              <input type="submit" value="Register"/>
+            <div className="register-section">
+              <input type="submit" value="Register" className="register-submit-btn"/>
             </div>
           </form>
         </div>
       </div>
-    </div>
   )
 }
