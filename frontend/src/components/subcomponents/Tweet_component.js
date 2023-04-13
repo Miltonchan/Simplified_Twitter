@@ -9,11 +9,13 @@ const Tweet = () => {
   const [posts, setPosts] = useState([]);
   const [input, setInput] = useState("");
   const [postid, setPostid] = useState([]);
+  const [postId, setPostId] = useState(1);
 
   const [isTweet, setIsTweet] = useState(false);
   const [isComment, setIsComment] = useState(false);
 
   const [selectedImagePreview, setSelectedImagePreview] = useState();
+  const [comments, setComments] = useState([]);
 
   const user = JSON.parse(localStorage.getItem('user'));
 
@@ -142,6 +144,7 @@ const Tweet = () => {
         body: JSON.stringify({
           "username": user.userinfo.username,
           "content": input,
+          "postId": postId,
         })
       })
       .then(data => data.json())
@@ -179,6 +182,13 @@ const Tweet = () => {
   const removeSelectedImagePreview = () => {
     setSelectedImagePreview();
   };
+
+  const handleComment = (post, index) => {
+    setIsComment(true);
+    setPostId(post.postId);
+    setComments(posts[index].comment);
+    console.log(comments);
+  }
 
   //End of Tweet image
 
@@ -230,7 +240,7 @@ const Tweet = () => {
                     <div onClick={() => retweetPosts(val)}  className="tweet-block-action-block">
                       retweet {val.retweetBy.length}
                     </div>
-                    <div onClick={() => setIsComment(true)}className="tweet-block-action-block">
+                    <div onClick={() => handleComment(val, index)}className="tweet-block-action-block">
                       comment {val.comment.length}
                     </div>
                   </div>
@@ -339,9 +349,9 @@ const Tweet = () => {
           </div>
           <div className="comment-dialog-description">
             <div className="comment-section">
-              {posts.map((val, index) => {
+              {comments.map((val, index) => {
                 return (
-                  <div className="comment-block">
+                  <div className="comment-block" key={index}>
                     <div className="comment-block-user-bar">
                       <div className="comment-block-user-name-block">
                         <h6>{val.username}</h6>
@@ -371,40 +381,6 @@ const Tweet = () => {
                 </div>
                 <div className="post-toolbar">
                   <ul className='uploadbar'>
-                    <li>
-                      {selectedImagePreview && (
-                      <div>
-                        <img
-                        className="image_preview"
-                          src={URL.createObjectURL(selectedImagePreview)}
-                        />
-                      </div>
-                      )}
-                    </li>
-                  {
-                    !selectedImagePreview ?
-                      (<li
-                          ref={wrapperRef}
-                          className="drop-file-input"
-                          onDragEnter={onDragEnter}
-                          onDragLeave={onDragLeave}
-                          onDrop={onDrop}>
-                          <div
-                          className="drop-file-input__label"
-                          >
-                              <p>Drag/ Drop your image here</p>
-                          </div>
-                          <input type="file" value="" onChange={imageChange}/>
-                      </li>)
-                      : (<li
-                      ref={wrapperRef}
-                      className="drop-file-input">
-                      <button className="delete-button" onClick={removeSelectedImagePreview}>
-                        Remove This Image
-                      </button>
-                    </li>)
-                  }
-
                   </ul>
                   <ul className="functionbar">
                     <li className="post-toolbar-block">
