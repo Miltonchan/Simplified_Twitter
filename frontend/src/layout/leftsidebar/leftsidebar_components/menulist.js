@@ -72,10 +72,15 @@ export default function Menulist_component() {
   const [hoverdetect, sethoverdetect]= useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState();
 
-  const user = JSON.parse(localStorage.getItem('user'));
+  let user = JSON.parse(localStorage.getItem('user'));
   const [isAdminUser, setIsAdminUser] = useState(true);
 
   const [menulistComponentHover, setMenulistComponentHover] = useState([false, false, false, false, false, false]);
+
+  window.addEventListener('load', (e) => {
+    user = JSON.parse(localStorage.getItem('user'));
+  })
+
   const handleMouseEnter = (index) => {
     // console.log({index});
     const updatedHover = [...menulistComponentHover];
@@ -166,7 +171,6 @@ export default function Menulist_component() {
             <li
                 className="row"
                 id="Administrator"
-                style={{'display':'none'}}
                 onMouseEnter={() => {sethoverdetect(true);}}
                 onMouseLeave={() => {sethoverdetect(false);}}
             >

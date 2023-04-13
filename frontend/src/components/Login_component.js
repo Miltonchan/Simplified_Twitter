@@ -18,8 +18,6 @@ export default function Login_component() {
 
   const [isErrorDialogOpen, setIsErrorDialogOpen] = useState(false);
 
-  const event = new Event("login");
-
   const handleErrorDialogConfirm = () => {
     setIsErrorDialogOpen(true);
   };
@@ -88,7 +86,7 @@ export default function Login_component() {
     setRouteHome(true);
     setTimeout(() => {
       navigate('/home');
-      window.location.pathname = '/home';
+      window.location.reload();
     }, 1000);
   }
 
