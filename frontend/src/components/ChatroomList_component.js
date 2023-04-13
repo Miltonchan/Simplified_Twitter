@@ -71,9 +71,9 @@ const ChatroomList_component = () => {
             <div className="chatroomlist-chat-details">
               <div className="chatroomlist-chat-header">
                 <span className="chatroomlist-name">{chatroom.otherUser.username}</span>
-                <span className="chatroomlist-timestamp">{new Date(chatroom.lastestMessage.createdAt).toDateString()}</span>
+                {chatroom.lastestMessage && <span className="chatroomlist-timestamp">{new Date(chatroom.lastestMessage.createdAt).toDateString()}</span>}
               </div>
-              <div className="chatroomlist-last-message">{chatroom.lastestMessage.message}</div>
+              {chatroom.lastestMessage && <div className="chatroomlist-last-message">{chatroom.lastestMessage.message}</div>}
             </div>
           </div>
         ))}

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './Userinfo_component.css';
+import { useNavigate } from 'react-router-dom';
 
 import AlertDialog from '../dialogs/AlertDialog';
 
 export default function Userinfo_component() {
   const user = JSON.parse(localStorage.getItem('user'));
   const [posts, setPosts] = useState([]);
+  const navigate = useNavigate();
 
   const fetchSelfPosts = async () => {
     let postData = await fetch(`http://localhost:8000/posts?username=${user.userinfo.username}`,
@@ -65,6 +67,29 @@ export default function Userinfo_component() {
     }));
     window.location.reload();
     console.log('renew')
+  }
+
+  const createChatroom = async (val) => {
+    const secUser = await fetch(`http://localhost:8000/useraccounts?username=${val}`, {
+      method: 'GET',
+      mode: 'cors',
+    })
+    .then(res => res.json());
+
+    await fetch('http://localhost:8000/chatrooms', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        'firstUserId': user.useraccount.userId,
+        'secUserId': secUser.userId,
+      })
+    })
+    .then(res => res.json())
+    .finally(() => {
+      navigate('/chatroom');
+    })
+
   }
 
   useEffect(() => {
@@ -133,7 +158,7 @@ export default function Userinfo_component() {
                       <button className="userinfo-unfollow-btn" onClick={() => unfollowUser(val)}>Unfollow</button>
                     </div>
                     <div className="userinfo-follow-row-block">
-                      <button className="userinfo-message-btn">Message</button>
+                      <button className="userinfo-message-btn" onClick={() => createChatroom(val)}>Message</button>
                     </div>
                   </div>
                 </div>

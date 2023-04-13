@@ -48,7 +48,7 @@ export default function Chatroom_component() {
         mode: 'cors',
         headers: {'Content-Type':'application/json'},
         body: JSON.stringify({
-          "rmId": 1,
+          "rmId": rmId,
           "userId": user.useraccount.userId,
           "message": inputValue,
         })
@@ -93,7 +93,7 @@ export default function Chatroom_component() {
         <h2>{receiverName}</h2>
       </div>
       <div className="chatroom-messages">
-        {messages.map((message, index) => (
+        {messages && messages.map((message, index) => (
           <div key={index} className={`chatroom-message-container ${message.self ? "self" : "other"}`}>
             <div
               className={`chatroom-message`}
