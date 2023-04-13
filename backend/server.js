@@ -106,9 +106,9 @@ db.once('open', () => {
         username:'Kirito',
         nickname:'Beater',
         private: false,
-        follower: ['Kirito','Eugeo'],
-        following:[],
-        visibleTo:['Kirito']
+        follower: ['Asuna','Eugeo'],
+        following:['Asuna', 'Eugeo'],
+        visibleTo:['Asuna']
     }, (err,user)=>{
         if(err){
             return console.log(err)
@@ -119,7 +119,7 @@ db.once('open', () => {
     Userinfo.create({
         userId:'101',
         username:'Asuna',
-        nickname:'Minnie',
+        nickname:'Asuna',
         private: false,
         follower: ['Kirito','Eugeo'],
         following:['Kirito'],
@@ -152,7 +152,7 @@ db.once('open', () => {
         nickname:'Heathcliff',
         private: false,
         follower: ['Kirito','Eugeo'],
-        following:[],
+        following:['Kirito'],
         visibleTo:['Kirito']
     }, (err,user)=>{
         if(err){
@@ -165,9 +165,41 @@ db.once('open', () => {
         postId:'1',
         username:'Kirito',
         content:'Today is my first day using Twitter :D',
-        like:['Mickey','Minnie'],
-        dislike:['Donald'],
-        retweetBy:['Minnie'],
+        like:['Kirito','Asuna'],
+        dislike:['Eugeo'],
+        retweetBy:['Asuna'],
+        retweet:false,
+        retweeter:''
+    }, (err,post)=>{
+        if(err){
+            return console.log(err)
+        }
+        console.log(post)
+    })
+
+    Post.create({
+        postId:'2',
+        username:'Asuna',
+        content:'Today is my second day using Twitter :D',
+        like:['Kirito','Asuna'],
+        dislike:['Eugeo'],
+        retweetBy:['Asuna'],
+        retweet:false,
+        retweeter:''
+    }, (err,post)=>{
+        if(err){
+            return console.log(err)
+        }
+        console.log(post)
+    })
+
+    Post.create({
+        postId:'3',
+        username:'Eugeo',
+        content:'Today is my third day using Twitter :D',
+        like:['Kirito','Asuna'],
+        dislike:['Eugeo'],
+        retweetBy:['Asuna'],
         retweet:false,
         retweeter:''
     }, (err,post)=>{
