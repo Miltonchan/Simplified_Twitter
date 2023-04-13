@@ -35,6 +35,7 @@ const ChatroomList_component = () => {
           .then(data => data.json());
       }
       chatrooms[i].otherUser = await otherUser;
+      chatrooms[i].otherUser.icon = await otherUser.icon;
 
       chatrooms[i].lastestMessage = await fetch(`http://localhost:8000/messages/latest?rmId=${chatrooms[i].rmId}`)
         .then(data => data.json());
@@ -43,15 +44,7 @@ const ChatroomList_component = () => {
     return chatrooms;
   }
 
-  const chats = [
-    {
-      id: 1,
-      avatar: '',
-      name: 'Kirito',
-      lastMessage: 'Hey there!',
-      timestamp: '1h ago'
-    }
-  ];
+
 
   const handleClick = (chatId) => {
     // console.log(`Clicked chat with id ${chatId}`);
@@ -67,7 +60,7 @@ const ChatroomList_component = () => {
       <div className="chatroomlist-list">
         {chatrooms.map((chatroom, index) => (
           <div className="chatroomlist-chat" key={index} onClick={() => handleClick(chatroom.rmId)}>
-            <img src={chatroom.avatar} alt={chatroom.name} className="chatroomlist-avatar" />
+            <img src={chatroom.otherUser.icon} alt={chatroom.name} className="chatroomlist-avatar" />
             <div className="chatroomlist-chat-details">
               <div className="chatroomlist-chat-header">
                 <span className="chatroomlist-name">{chatroom.otherUser.username}</span>
