@@ -148,7 +148,7 @@ const Tweet = () => {
       .finally(fetchFollowingPosts);
 
     setInput("");
-    setselectedImagePreview();
+    setSelectedImagePreview();
     setIsComment(false);
    }
 
@@ -190,8 +190,8 @@ const Tweet = () => {
   // Tweet Image
   const wrapperRef = useRef(null);
 
-    const [selectedImage, setSelectedImage] = useState();
-    const [hasImage,setHasImage] = useState("false");
+    const [selectedImagePreview, setSelectedImagePreview] = useState();
+    const [hasImagePreview,setHasImagePreview] = useState("false");
 
     const onDragEnter = () => wrapperRef.current.classList.add('dragover');
     const onDragLeave = () => wrapperRef.current.classList.remove('dragover');
@@ -199,36 +199,14 @@ const Tweet = () => {
 
     const imageChange = (e) => {
       if (e.target.files && e.target.files.length > 0) {
-        setSelectedImage(e.target.files[0]); // to change the selected image
-        setHasImage(true);
+        setSelectedImagePreview(e.target.files[0]); // to change the selected image
+        setHasImagePreview(true);
       }
     };
 
-    const removeSelectedImage = () => {
-      setSelectedImage();
+    const removeSelectedImagePreview = () => {
+      setSelectedImagePreview();
     };
-
-    //End of Tweet image    
-
-  // Tweet Image
-   const wrapperRef = useRef(null);
-
-     const [selectedImagePreview, setselectedImagePreview] = useState();
-
-     const onDragEnter = () => wrapperRef.current.classList.add('dragover');
-     const onDragLeave = () => wrapperRef.current.classList.remove('dragover');
-     const onDrop = () => wrapperRef.current.classList.remove('dragover');
-
-     const imageChange = (image) => {
-       if (image.target.files && image.target.files.length > 0) {
-         setselectedImagePreview(image.target.files[0]); // to change the selected image
-       }
-     };
-
-     const removeselectedImagePreview = () => {
-        setImage();
-       setselectedImagePreview();
-     };
 
     //End of Tweet image
 
@@ -343,7 +321,7 @@ const Tweet = () => {
                           id="image"
                           onChange={(e) => {
                             setImage(e.target.files);
-                            setselectedImagePreview(e.target.files);
+                            setSelectedImagePreview(e.target.files);
                           }} // Milton work
                         />
                          </div>)
@@ -351,7 +329,7 @@ const Tweet = () => {
                          <div
                          ref={wrapperRef}
                          className="drop-file-input">
-                         <button className="delete-button" onClick={removeselectedImagePreview}>
+                         <button className="delete-button" onClick={removeSelectedImagePreview}>
                            Remove This Image
                          </button>
                          <img
@@ -458,7 +436,7 @@ const Tweet = () => {
                       : (<li
                       ref={wrapperRef}
                       className="drop-file-input">
-                      <button className="delete-button" onClick={removeselectedImagePreview}>
+                      <button className="delete-button" onClick={removeSelectedImagePreview}>
                         Remove This Image
                       </button>
                     </li>)
