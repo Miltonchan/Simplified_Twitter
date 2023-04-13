@@ -32,6 +32,11 @@
   padding: 2.5px 10px;
   font-size: 16px;
   cursor: pointer;
+  transition: 0.2s;
+}
+
+.tweet-button:hover {
+  background-color: #ecbd14;
 }
 
 .tweet-block-container {
@@ -85,6 +90,7 @@
   display: flex;
   justify-content: space-between;
   border-top: 1px solid #000;
+  
 }
 
 .tweet-block-action-retweet {
@@ -100,6 +106,12 @@
 .tweet-block-action-block {
   float: left;
   padding: 2.5px 2.5px 2.5px 2.5px;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.tweet-block-action-block:hover {
+  color: #eba601;
 }
 
 

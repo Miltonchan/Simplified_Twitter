@@ -5,6 +5,11 @@ import axios from 'axios';
 import AcceptButton from '../../icons/AcceptButton.png';
 import DeclineButton from '../../icons/DeclineButton.png';
 
+import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
+import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
+import ShareIcon from '@mui/icons-material/Share';
+import ModeCommentIcon from '@mui/icons-material/ModeComment';
+
 const Tweet = () => {
   const [posts, setPosts] = useState([]);
   const [input, setInput] = useState("");
@@ -249,16 +254,16 @@ const Tweet = () => {
                   </div>
                   <div className="tweet-block-action-actions">
                     <div onClick={() => likePosts(val.postId)} className="tweet-block-action-block">
-                      like {val.like.length}
+                      <ThumbUpAltIcon />  {val.like.length}
                     </div>
                     <div onClick={() => dislikePosts(val.postId)} className="tweet-block-action-block">
-                      dislike {val.dislike.length}
+                      <ThumbDownAltIcon />  {val.dislike.length}
                     </div>
                     <div onClick={() => retweetPosts(val)}  className="tweet-block-action-block">
-                      retweet {val.retweetBy.length}
+                      <ShareIcon />  {val.retweetBy.length}
                     </div>
                     <div onClick={() => handleComment(val, index)}className="tweet-block-action-block">
-                      comment {val.comment.length}
+                      <ModeCommentIcon />  {val.comment.length}
                     </div>
                   </div>
                 </div>
