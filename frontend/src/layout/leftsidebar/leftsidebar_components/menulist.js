@@ -17,6 +17,8 @@ import SettingIcon from "../../../icons/SettingButton.png";
 import SettingIconHover from "../../../icons/SettingButtonSolidCircleHover.png";
 import LogoutIcon from "../../../icons/LogoutButton.png";
 import LogoutIconHover from "../../../icons/LogoutButtonHover.png";
+import AdminIcon from "../../../icons/NotificationButton.png";
+import AdminIconHover from "../../../icons/NotificationButtonHover.png";
 
 import AlertDialog from "../../../dialogs/AlertDialog";
 import './menulist.css';
@@ -69,18 +71,14 @@ const menulist_component = [
 export default function Menulist_component() {
   const [isTweet, setIsTweet] = useState(false);
   const [twitter_content,setTwitter_content] = useState("");
-  const [hoverdetect, sethoverdetect]= useState(false);
+  const [hoverdetectLogin, sethoverdetectLogin]= useState(false);
+  const [hoverdetectAdmin, sethoverdetectAdmin]= useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState();
 
-  let user = JSON.parse(localStorage.getItem('user'));
+  const user = JSON.parse(localStorage.getItem('user'));
   const [isAdminUser, setIsAdminUser] = useState(true);
 
   const [menulistComponentHover, setMenulistComponentHover] = useState([false, false, false, false, false, false]);
-
-  window.addEventListener('load', (e) => {
-    user = JSON.parse(localStorage.getItem('user'));
-  })
-
   const handleMouseEnter = (index) => {
     // console.log({index});
     const updatedHover = [...menulistComponentHover];
@@ -171,13 +169,14 @@ export default function Menulist_component() {
             <li
                 className="row"
                 id="Administrator"
-                onMouseEnter={() => {sethoverdetect(true);}}
-                onMouseLeave={() => {sethoverdetect(false);}}
+                onClick={() => { window.location.pathname = "/admin"; } }
+                onMouseEnter={() => {sethoverdetectAdmin(true);}}
+                onMouseLeave={() => {sethoverdetectAdmin(false);}}
             >
               <div  id="icon">
-                {hoverdetect ?
-                 <img src={LogoutIconHover} height={h} width={w} /> :
-                 <img src={LogoutIcon} height={h} width={w} />
+                {hoverdetectAdmin ?
+                 <img src={AdminIconHover} height={h} width={w} /> :
+                 <img src={AdminIcon} height={h} width={w} />
                 }</div>{" "}
               <div id="title">
                 Administrator
@@ -189,10 +188,10 @@ export default function Menulist_component() {
                 id="Logout"
                 style={{'display':'none'}}
                 onClick={() => {setisLogoutDialogOpen(true)} }
-                onMouseEnter={() => {sethoverdetect(true);}}
-                onMouseLeave={() => {sethoverdetect(false);}}>
+                onMouseEnter={() => {sethoverdetectLogin(true);}}
+                onMouseLeave={() => {sethoverdetectLogin(false);}}>
                   {" "}
-                  <div  id="icon">{hoverdetect ?
+                  <div  id="icon">{hoverdetectLogin ?
                 <img src={LogoutIconHover} height={h} width={w} /> :
                 <img src={LogoutIcon} height={h} width={w} />
                 }</div>{" "}
@@ -200,11 +199,6 @@ export default function Menulist_component() {
                 </div>
                 </li>
         </ul>
-        <button
-          className="sidebarlist-button"
-          onClick={() => setIsTweet(true)}>
-          Tweet
-        </button>
         <main>
         {isTweet && (
 
