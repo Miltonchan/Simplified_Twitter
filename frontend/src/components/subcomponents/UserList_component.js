@@ -22,16 +22,23 @@ const UserList = (props) => {
     fetchUserData();
   }, []);
 
-  const deleteUser = async (e, userId) => {
-    e.preventDefault();
-    await fetch('http://localhost:8000/userinfos/delete', {
-      method: 'POST',
-      mode: 'cors',
-      body: JSON.stringify({
-        'userId': userId
-      })
-    })
-    return false;
+  const deleteUser = async (user) => {
+    // await fetch('http://localhost:8000/userinfos/delete', {
+    //   method: 'POST',
+    //   mode: 'cors',
+    //   body: JSON.stringify({
+    //     'userId': userId
+    //   })
+    // })
+
+    let index = users.indexOf(user);
+    const newUsers = [];
+    for (let i=0; i<users.length; i++) {
+      if (i !== index) {
+        newUsers.push(users[i]);
+      }
+    }
+    setUsers(newUsers);
   }
 
   function handleCancel() {
@@ -56,7 +63,7 @@ const UserList = (props) => {
                   {user.username}
                 </div>
                 <div className="userlist-btn-container">
-                  <button className="userlist-btn" onClick={e => deleteUser(e, user.userId)}>Delete</button>
+                  <button className="userlist-btn" onClick={() => deleteUser(user)}>Delete</button>
                 </div>
               </div>
               )
