@@ -1,5 +1,5 @@
 .alert-dialog {
-  display: grid;
+  display: block;
   justify-content: center;
   background-color: #d7d7d7;
   width: 500px;
@@ -17,7 +17,7 @@
   padding-top: 20px;
   padding-bottom: 20px;
   font-size: 30px;
-  width: 500px;
+  width: 100%;
 }
 
 .alert-dialog-description {
@@ -33,7 +33,7 @@
   background-color: #fbfbfb;
   padding-top: 20px;
   padding-bottom: 20px;
-  width: 500px;
+  width: 100%;
 }
 
 .alert-dialog-button-container {
