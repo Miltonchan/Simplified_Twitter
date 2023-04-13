@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const PORT = 8000;
+const multer = require('multer')
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
@@ -28,6 +29,7 @@ db.once('open', () => {
     const postRouter = require('./routes/posts');
     const chatroomRouter = require('./routes/chatrooms');
     const messageRouter = require('./routes/messages');
+    const imageRouter = require('./routes/images');
 
     app.use('/useraccounts', useraccountRouter);
     app.use('/adminaccounts', adminaccountRouter);
@@ -36,6 +38,7 @@ db.once('open', () => {
     app.use('/posts', postRouter);
     app.use('/chatrooms', chatroomRouter);
     app.use('/messages', messageRouter);
+    app.use('/images', imageRouter);
 
     let Useraccount = require('./models/useraccount.model');
     let Adminaccount = require('./models/adminaccount.model');
@@ -44,6 +47,7 @@ db.once('open', () => {
     let Post = require('./models/post.model');
     let Chatroom = require('./models/chatroom.model');
     let Message = require('./models/message.model');
+    let Image = require('./models/image.model')
 
     //Init the schema data 
     Adminaccount.create({
