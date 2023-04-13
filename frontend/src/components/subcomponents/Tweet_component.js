@@ -1,6 +1,5 @@
 import React, { useState, useEffect,useRef } from 'react';
 import './Tweet_component.css';
-import './Post_component.css';
 
 import AcceptButton from '../../icons/AcceptButton.png';
 import DeclineButton from '../../icons/DeclineButton.png';
@@ -10,6 +9,7 @@ const Tweet = () => {
   const [input, setInput] = useState("");
 
   const [isTweet, setIsTweet] = useState(false);
+  const [isComment, setIsComment] = useState(false);
 
   const user = JSON.parse(localStorage.getItem('user'));
 
@@ -126,6 +126,28 @@ const Tweet = () => {
   }
   // to be added image to create post function
 
+  const createComment = async () => {
+    if (!input) {
+      return;
+    }
+    await fetch('http://localhost:8000/comments',
+      {
+        method: 'POST',
+        mode: 'cors',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({
+          "username": user.userinfo.username,
+          "content": input,
+        })
+      })
+      .then(data => data.json())
+      .finally(fetchFollowingPosts);
+
+    setInput("");
+    setSelectedImage();
+    setIsComment(false);
+  }
+
   useEffect(() => {
     fetchFollowingPosts();
   }, []);
@@ -156,15 +178,15 @@ const Tweet = () => {
   return (
     <div className="tweetandpost-page">
       <div className="tweet-topicbar">
-        <h6>Tweet</h6>
-        <div className="description-text">
-          Take a look in today's SAO tweet.
+        <div className="tweet-description-container">
+          <h6>Tweet</h6>
+          <div className="description-text">
+            Take a look in today's SAO tweet.
+          </div>
         </div>
-        <button
-          className="tweet-button"
-          onClick={() => setIsTweet(true)}>
-          Tweet
-        </button>
+        <div className="tweet-button-container">
+          <button className="tweet-button" onClick={() => setIsTweet(true)}>Tweet</button>
+        </div>
       </div>
       <div className="tweet-section">
         {posts.map((val, index) => {
@@ -185,18 +207,22 @@ const Tweet = () => {
                   </div>
                 </div>
                 <div className="tweet-block-action-bar">
-                  {val.retweet && <div className="tweet-block-action-retweet">Retweet</div>}
-                  <div onClick={() => likePosts(val.postId)} className="tweet-block-action-block">
-                    like {val.like.length}
+                  <div className="tweet-block-action-retweet">
+                    {val.retweet && <h7>Retweet</h7>}
                   </div>
-                  <div onClick={() => dislikePosts(val.postId)} className="tweet-block-action-block">
-                    dislike {val.dislike.length}
-                  </div>
-                  <div onClick={() => retweetPosts(val)}  className="tweet-block-action-block">
-                    retweet {val.retweetBy.length}
-                  </div>
-                  <div className="tweet-block-action-block">
-                    comment {val.comment.length}
+                  <div className="tweet-block-action-actions">
+                    <div onClick={() => likePosts(val.postId)} className="tweet-block-action-block">
+                      like {val.like.length}
+                    </div>
+                    <div onClick={() => dislikePosts(val.postId)} className="tweet-block-action-block">
+                      dislike {val.dislike.length}
+                    </div>
+                    <div onClick={() => retweetPosts(val)}  className="tweet-block-action-block">
+                      retweet {val.retweetBy.length}
+                    </div>
+                    <div onClick={() => setIsComment(true)}className="tweet-block-action-block">
+                      comment {val.comment.length}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -206,7 +232,6 @@ const Tweet = () => {
       </div>
 
       {isTweet && (
-
         <div className="faded-screen-background">
           <div className="tweet-dialog">
             <div className="tweet-dialog-topic">
@@ -285,6 +310,106 @@ const Tweet = () => {
           </div>
         </div>
     )}
+
+    {isComment && (
+      <div className="faded-screen-background">
+        <div className="comment-dialog">
+          <div className="comment-dialog-topic">
+            Comment
+          </div>
+          <div className="comment-dialog-description">
+            <div className="comment-section">
+              {posts.map((val, index) => {
+                return (
+                  <div className="comment-block">
+                    <div className="comment-block-user-bar">
+                      <div className="comment-block-user-name-block">
+                        <h6>{val.username}</h6>
+                      </div>
+                      <div className="comment-block-user-bar-block">
+                        <h2>{val.username}</h2>
+                      </div>
+                    </div>
+                    <div className="comment-block-content-section">
+                      <div className="comment-block-content">
+                        {val.content}
+                      </div>
+                    </div>
+                  </div>
+              )})}
+            </div>
+            <div className="post-section">
+              <div className="post-block">
+                <div className="post-textarea-container">
+                  <textarea
+                    required
+                    placeholder="Leave a comment here..."
+                    className="post-textarea"
+                    value={input}
+                    onChange={(event) => setInput(event.target.value)}
+                  />
+                </div>
+                <div className="post-toolbar">
+                  <ul className='uploadbar'>
+                    <li>
+                      {selectedImage && (
+                      <div>
+                        <img
+                        className="image_preview"
+                          src={URL.createObjectURL(selectedImage)}
+                        />
+                      </div>
+                      )}
+                    </li>
+                  {
+                    !selectedImage ?
+                      (<li
+                          ref={wrapperRef}
+                          className="drop-file-input"
+                          onDragEnter={onDragEnter}
+                          onDragLeave={onDragLeave}
+                          onDrop={onDrop}>
+                          <div
+                          className="drop-file-input__label"
+                          >
+                              <p>Drag/ Drop your image here</p>
+                          </div>
+                          <input type="file" value="" onChange={imageChange}/>
+                      </li>)
+                      : (<li
+                      ref={wrapperRef}
+                      className="drop-file-input">
+                      <button className="delete-button" onClick={removeSelectedImage}>
+                        Remove This Image
+                      </button>
+                    </li>)
+                  }
+
+                  </ul>
+                  <ul className="functionbar">
+                    <li className="post-toolbar-block">
+                      Tool
+                    </li>
+                    <li className="post-toolbar-block">
+                      <button className="post-toolbar-btn" onClick={createComment}>Send</button>
+                    </li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div className="comment-dialog-actions">
+            <div className="comment-dialog-button-container">
+              <img src={AcceptButton} className="tweet-dialog-accept-button" onClick={createComment} />
+            </div>
+            <div className="comment-dialog-button-container">
+              <img src={DeclineButton} className="tweet-dialog-decline-button" onClick={() => setIsComment(false)} />
+            </div>
+          </div>
+        </div>
+      </div>
+  )}
 
     </div>
   );
