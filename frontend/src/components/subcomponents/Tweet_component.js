@@ -150,10 +150,22 @@ const Tweet = () => {
     setSelectedImage();
     setIsComment(false);
    }
-
-  useEffect(() => {
-    fetchFollowingPosts();
-  }, []);
+  
+   //submit the images into db
+  const handleSubmit = (e) => {      
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('postid', postid);
+    formData.append('image', image[0]);
+    const url = 'http://localhost:8000/images/image';    
+    axios.post(url, formData)
+    .then((res) => {
+      console.log(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  };
   
    const updatethepostid =  () => {           //rewrite image 
     fetch('http://localhost:8000/images/getpostid')
@@ -169,6 +181,10 @@ const Tweet = () => {
     .then((res)=>{setData(res.data)})
     .catch((err)=>console.log(err))
   }
+  
+  useEffect(() => {
+    fetchFollowingPosts();
+  }, []);
     
     
 
