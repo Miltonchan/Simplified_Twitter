@@ -29,6 +29,11 @@ const Tweet = () => {
 
     postData = await fetchComments(postData);
     followingPosts = [...followingPosts, ...postData];
+    
+    for (let i=0; i<postData.length; i++) {
+      getimage(postData[i].postId);
+    }
+    
     }
 
     let postData = await fetch(`http://localhost:8000/posts?username=${user.userinfo.username}`,
@@ -240,7 +245,7 @@ const Tweet = () => {
                   <div className="tweet-block-content">
                     {val.content}
                     <div>
-                      {getimage(val.postId)}
+      
                       {data.map((obj) => {
                         const base64String = btoa(
                         new Uint8Array(obj.img.data.data).reduce(function (data, byte) {

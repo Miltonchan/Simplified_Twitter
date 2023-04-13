@@ -28,6 +28,7 @@ db.once('open', () => {
     const postRouter = require('./routes/posts');
     const chatroomRouter = require('./routes/chatrooms');
     const messageRouter = require('./routes/messages');
+    const imageRouter = require('./routes/images');
 
     app.use('/useraccounts', useraccountRouter);
     app.use('/adminaccounts', adminaccountRouter);
@@ -36,6 +37,7 @@ db.once('open', () => {
     app.use('/posts', postRouter);
     app.use('/chatrooms', chatroomRouter);
     app.use('/messages', messageRouter);
+    app.use('/images', imageRouter);
 
     let Useraccount = require('./models/useraccount.model');
     let Adminaccount = require('./models/adminaccount.model');
