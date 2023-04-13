@@ -6,6 +6,7 @@ export default function Chatroom_component() {
   const [messages, setMessages] = useState([]);
   const [chatroom, setChatroom] = useState([]);
   const [inputValue, setInputValue] = useState("");
+  const [otherUser, setOtherUser] = useState();
   const user = JSON.parse(localStorage.getItem('user'));
 
   const search = useLocation().search;
@@ -19,10 +20,11 @@ export default function Chatroom_component() {
           mode: 'cors'
         })
         .then(data => data.json());
-      messageData = processMessages(messageData);
+      messageData = await processMessages(messageData);
       setMessages(messageData);
       // console.log(messageData);
     }
+    
     fetchMessages();
     // console.log(rmId);
   }, []);
@@ -60,11 +62,22 @@ export default function Chatroom_component() {
     }
   };
 
-  const processMessages = (messageData) => {
+  const processMessages = async (messageData) => {
     // console.log(messageData)
     for (let i=0; i < messageData.length; i++) {
       messageData[i].self = messageData[i].userId === user.useraccount.userId ? true : false;
-      console.log(messageData[i].userId === user.useraccount.userId);
+
+      if (messageData[i].userId !== user.useraccount.userId) {
+        const data = await fetch(`http://localhost:8000/userinfos?userId=${messageData[i].userId}`,
+        {
+          method: 'GET',
+          mode: 'cors'
+        })
+        .then(data => data.json());
+
+        setOtherUser(data);
+      }
+      // console.log(messageData[i].userId === user.useraccount.userId);
       // console.log(user.useraccount.userId)
     }
     return messageData;
@@ -79,18 +92,15 @@ export default function Chatroom_component() {
     }
   }
 
-  const receiverName = 'Kirito';
-  const receiverAvatarUrl = 'https://via.placeholder.com/50';
-
   return (
     <div className="chatroom-container">
       <div className="chatroom-header">
         <img
-          src={receiverAvatarUrl}
-          alt={`${receiverName}'s avatar`}
+          src={otherUser && otherUser.icon}
+          alt=''
           className="chatroom-receiver-avatar"
         />
-        <h2>{receiverName}</h2>
+        <h2>{otherUser && otherUser.username}</h2>
       </div>
       <div className="chatroom-messages">
         {messages && messages.map((message, index) => (
