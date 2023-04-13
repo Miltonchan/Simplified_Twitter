@@ -2,7 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const PORT = 8000;
-const multer = require('multer')
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
@@ -29,7 +28,6 @@ db.once('open', () => {
     const postRouter = require('./routes/posts');
     const chatroomRouter = require('./routes/chatrooms');
     const messageRouter = require('./routes/messages');
-    const imageRouter = require('./routes/images');
 
     app.use('/useraccounts', useraccountRouter);
     app.use('/adminaccounts', adminaccountRouter);
@@ -38,7 +36,6 @@ db.once('open', () => {
     app.use('/posts', postRouter);
     app.use('/chatrooms', chatroomRouter);
     app.use('/messages', messageRouter);
-    app.use('/images', imageRouter);
 
     let Useraccount = require('./models/useraccount.model');
     let Adminaccount = require('./models/adminaccount.model');
@@ -47,9 +44,8 @@ db.once('open', () => {
     let Post = require('./models/post.model');
     let Chatroom = require('./models/chatroom.model');
     let Message = require('./models/message.model');
-    let Image = require('./models/image.model')
 
-    //Init the schema data 
+    //Init the schema data
     Adminaccount.create({
         adminId:'1',
         username:'admin',
@@ -57,91 +53,91 @@ db.once('open', () => {
     }, (err,admin)=>{
         if(err){
             return console.log(err)
-        } 
+        }
         console.log(admin)
     })
 
     Useraccount.create({
         userId:'100',
-        username:'stu100',
-        password:'stu100'
+        username:'Kirito',
+        password:'Kirito'
     }, (err,user)=>{
         if(err){
             return console.log(err)
-        } 
+        }
         console.log(user)
     })
 
     Useraccount.create({
         userId:'101',
-        username:'stu101',
-        password:'stu101'
+        username:'Asuna',
+        password:'Asuna'
     }, (err,user)=>{
         if(err){
             return console.log(err)
-        } 
+        }
         console.log(user)
     })
 
     Useraccount.create({
         userId:'102',
-        username:'stu102',
-        password:'stu102'
+        username:'Eugeo',
+        password:'Eugeo'
     }, (err,user)=>{
         if(err){
             return console.log(err)
-        } 
+        }
         console.log(user)
     })
 
     Userinfo.create({
         userId:'100',
-        username:'stu100',
-        nickname:'Mickey',
+        username:'Kirito',
+        nickname:'Beater',
         private: false,
-        follower: ['stu100','stu102'],
+        follower: ['Kirito','Eugeo'],
         following:[],
-        visibleTo:['stu100']
+        visibleTo:['Kirito']
     }, (err,user)=>{
         if(err){
             return console.log(err)
-        } 
+        }
         console.log(user)
     })
 
     Userinfo.create({
         userId:'101',
-        username:'stu101',
+        username:'Asuna',
         nickname:'Minnie',
         private: false,
-        follower: ['stu100','stu102'],
-        following:['stu100'],
-        visibleTo:['stu100']
+        follower: ['Kirito','Eugeo'],
+        following:['Kirito'],
+        visibleTo:['Kirito']
     }, (err,user)=>{
         if(err){
             return console.log(err)
-        } 
+        }
         console.log(user)
     })
 
     Userinfo.create({
         userId:'102',
-        username:'stu102',
+        username:'Eugeo',
         nickname:'Donald',
         private: false,
-        follower: ['stu101'],
-        following:['stu101','stu100'],
-        visibleTo:['stu100']
+        follower: ['Asuna'],
+        following:['Asuna','Kirito'],
+        visibleTo:['Kirito']
     }, (err,user)=>{
         if(err){
             return console.log(err)
-        } 
+        }
         console.log(user)
     })
 
     Post.create({
         postId:'1',
-        username:'stu100',
+        username:'Kirito',
         content:'Today is my first day using Twitter :D',
         like:['Mickey','Minnie'],
         dislike:['Donald'],
@@ -151,29 +147,29 @@ db.once('open', () => {
     }, (err,post)=>{
         if(err){
             return console.log(err)
-        } 
+        }
         console.log(post)
     })
 
     Comment.create({
         postId:'1',
-        username:'stu101',
+        username:'Asuna',
         content:'Enjoy!!!'
     }, (err,comment)=>{
         if(err){
             return console.log(err)
-        } 
+        }
         console.log(comment)
     })
 
     Comment.create({
         postId:'1',
-        username:'stu100',
+        username:'Kirito',
         content:'You too!!'
     }, (err,comment)=>{
         if(err){
             return console.log(err)
-        } 
+        }
         console.log(comment)
     })
 
@@ -184,7 +180,7 @@ db.once('open', () => {
     }, (err,chatroom)=>{
         if(err){
             return console.log(err)
-        } 
+        }
         console.log(chatroom)
     })
 
@@ -196,7 +192,7 @@ db.once('open', () => {
     }, (err,message)=>{
         if(err){
             return console.log(err)
-        } 
+        }
         console.log(message)
     })
 
@@ -207,13 +203,6 @@ db.once('open', () => {
 app.listen(PORT, (error) =>{
     if(!error)
         console.log("Server is Successfully Running,  and App is listening on port "+ PORT)
-    else 
+    else
         console.log("Error occurred, server can't start", error);
 });
-
-
-
-
-
-
-
