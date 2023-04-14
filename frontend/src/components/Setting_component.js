@@ -130,13 +130,17 @@ export default function Setting_component() {
       <div className="setting-section">
         <h2>Password</h2>
         <div className="description-text">This allows you to rename your password.</div>
+        <div className="setting-row">
         <input type="password" placeholder="Current password" value={password} onChange={handlePasswordChange} />
         <input type="password" placeholder="New password" value={newPassword} onChange={handleNewPasswordChange} />
-        <button className="setting-delete-account-button" onClick={confirmChange}>Change Password</button>  {/* not sure if it is correct onClick function for the button */}
+        </div>
+        <button className="setting-button" onClick={confirmChange}>Change Password</button>  {/* not sure if it is correct onClick function for the button */}
       </div>
-      
+
       <div className="setting-section">
-        <button className="setting-delete-account-button" onClick={handleDeleteClick}>Delete account</button>
+        <h2>Delete Account</h2>
+        <div className="description-text">This allows you to delete your account if you decide to not to user it anymore.</div>
+        <button className="setting-button" onClick={handleDeleteClick}>Delete account</button>
       </div>
 
       {isDeleteDialogOpen && (
