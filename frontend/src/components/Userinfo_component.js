@@ -41,7 +41,11 @@ export default function Userinfo_component() {
         'beFollowUsername': beFollowUsername,
       })
     })
-    .then(res => res.json());
+    .then(res => res.json())
+    
+    setTimeout(() => {
+      window.location.reload();
+    }, 200);
 
     await renewUser(res);
   }
@@ -75,9 +79,10 @@ export default function Userinfo_component() {
       'userinfo': userinfo,
       'useraccount': useraccount,
     }));
-    window.location.reload();
     console.log('renew')
   }
+
+  window.addEventListener('reload', renewUser());
 
   const createChatroom = async (val) => {
     const secUser = await fetch(`http://localhost:8000/useraccounts?username=${val}`, {
