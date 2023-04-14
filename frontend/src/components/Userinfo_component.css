@@ -123,5 +123,6 @@
 
 .recommend-avatar {
   width: 70px; /* adjust to your desired size */
-  height: auto; /* maintains aspect ratio */
+  height: 70px; /* maintains aspect ratio */
+  border-radius: 50%;
 }
