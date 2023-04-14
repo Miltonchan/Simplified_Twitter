@@ -3,8 +3,13 @@ let Chatroom = require('../models/chatroom.model');
 
 router.route('/').get((req, res) => {
   const userId = req.query.userId;
+  const rmId = req.query.rmId;
   if (userId) {
     Chatroom.find({ $or: [{ firstUserId: userId }, {secUserId: userId}] })
+      .then(chatrooms => res.json(chatrooms))
+      .catch(err => res.status(400).json('Error: ' + err));
+  }else if (rmId) {
+    Chatroom.findOne({ rmId: rmId })
       .then(chatrooms => res.json(chatrooms))
       .catch(err => res.status(400).json('Error: ' + err));
   }else {

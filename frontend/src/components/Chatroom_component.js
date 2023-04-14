@@ -22,6 +22,7 @@ export default function Chatroom_component() {
         .then(data => data.json());
       messageData = await processMessages(messageData);
       setMessages(messageData);
+      fetchOtherUser();
       // console.log(messageData);
     }
     
@@ -62,13 +63,16 @@ export default function Chatroom_component() {
     }
   };
 
-  const processMessages = async (messageData) => {
-    // console.log(messageData)
-    for (let i=0; i < messageData.length; i++) {
-      messageData[i].self = messageData[i].userId === user.useraccount.userId ? true : false;
+  const fetchOtherUser = async () => {
+    let chatroomsData = await fetch(`http://localhost:8000/chatrooms?rmId=${rmId}`, 
+        {
+          method: 'GET',
+          mode: 'cors'
+        })
+        .then(data => data.json());
 
-      if (messageData[i].userId !== user.useraccount.userId) {
-        const data = await fetch(`http://localhost:8000/userinfos?userId=${messageData[i].userId}`,
+    const otherUserId = chatroomsData.firstUserId === user.useraccount.userId ? chatroomsData.secUserId : chatroomsData.firstUserId;
+    const data = await fetch(`http://localhost:8000/userinfos?userId=${otherUserId}`,
         {
           method: 'GET',
           mode: 'cors'
@@ -76,7 +80,12 @@ export default function Chatroom_component() {
         .then(data => data.json());
 
         setOtherUser(data);
-      }
+  }
+
+  const processMessages = async (messageData) => {
+    // console.log(messageData)
+    for (let i=0; i < messageData.length; i++) {
+      messageData[i].self = messageData[i].userId === user.useraccount.userId ? true : false;
       // console.log(messageData[i].userId === user.useraccount.userId);
       // console.log(user.useraccount.userId)
     }
