@@ -7,6 +7,7 @@ import AlertDialog from '../dialogs/AlertDialog';
 export default function Userinfo_component() {
   const user = JSON.parse(localStorage.getItem('user'));
   const [posts, setPosts] = useState([]);
+  const [recommendation, setRecommendation] = useState([]);
   const navigate = useNavigate();
 
   const fetchSelfPosts = async () => {
@@ -19,6 +20,15 @@ export default function Userinfo_component() {
 
     setPosts(postData);
     // console.log(postData);
+  }
+
+  const fetchRecommendations = async () => {
+    let recommdata = await fetch('http://localhost:8000/userinfos/recommendation',{
+      method:'GET',
+      mode:'cors'
+    })
+    .then(data => data.json());
+    setRecommendation(recommdata);
   }
 
   const unfollowUser = async (beFollowUsername) => {
@@ -93,6 +103,7 @@ export default function Userinfo_component() {
   }
 
   useEffect(() => {
+    fetchRecommendations();
     fetchSelfPosts();
   }, []);
 
@@ -166,6 +177,21 @@ export default function Userinfo_component() {
             </ul>
           </div>
         </div>
+        <div>
+            <h2>User Recommendations:</h2>
+            <ul>
+              {recommendation.filter(userr => userr.username !== user.useraccount.username).map(userr => (
+                <li key={userr.userId} style={{ display: "inline-block", marginRight: "50px"}}>
+                <p>{userr.username} </p>
+                <img src={userr.icon} alt='' className="recommend-avatar" />
+                <p> Number of followers: {userr.follower.length}</p>
+              </li>
+              ))}
+            </ul>
+            <ul>
+
+            </ul>
+          </div>
       </div>
     </div>
   )
