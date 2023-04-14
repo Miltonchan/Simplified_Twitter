@@ -69,7 +69,7 @@ const Tweet = () => {
 
   const fetchComments = async (postData) => {
     for (let i=0; i<postData.length; i++) {
-      postData[i].comment = await fetch('http://localhost:8000/comments')
+      postData[i].comment = await fetch(`http://localhost:8000/comments?postId=${postData[i].postId}`)
         .then(data => data.json());
     }
     return postData;
