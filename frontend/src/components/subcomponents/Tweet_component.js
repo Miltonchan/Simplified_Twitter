@@ -25,6 +25,39 @@ const Tweet = () => {
   const user = JSON.parse(localStorage.getItem('user'));
 
 
+  const getUseraccount = async () => {
+    const useraccount = await fetch(`http://localhost:8000/useraccounts?userId=${user.useraccount.userId}`,
+    {
+      method: 'GET',
+      mode: 'cors',
+    })
+    .then(data => data.json())
+
+    return useraccount;
+  }
+
+  const getUserinfo = async () => {
+    const userinfo = await fetch(`http://localhost:8000/userinfos?userId=${user.useraccount.userId}`,
+    {
+      method: 'GET',
+      mode: 'cors',
+    })
+    .then(data => data.json());
+    return userinfo;
+  }
+
+  const renewUser = async (val) => {
+    const useraccount = await getUseraccount();
+    const userinfo = await getUserinfo();
+    localStorage.removeItem('user');
+    localStorage.setItem('user', JSON.stringify({
+      'userinfo': userinfo,
+      'useraccount': useraccount,
+    }));
+    console.log('renew')
+  }
+
+
   const fetchFollowingPosts = async () => {
     let followingPosts = [];
     for (let i=0; i<user.userinfo.following.length; i++) {
@@ -176,6 +209,7 @@ const Tweet = () => {
 
   useEffect(() => {
     fetchFollowingPosts();
+    window.addEventListener('reload', renewUser());
   }, []);
 
   // Tweet Image
