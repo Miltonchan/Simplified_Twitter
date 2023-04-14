@@ -356,6 +356,7 @@ const Tweet = () => {
           </div>
           <div className="comment-dialog-description">
             <div className="comment-section">
+              {comments.length === 0 ? <h6>No comments now</h6> : <h6></h6> }
               {comments.map((val, index) => {
                 return (
                   <div className="comment-block" key={index}>
