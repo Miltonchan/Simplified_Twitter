@@ -10,7 +10,7 @@
 }
 
 .tweet-section {
-
+  padding: 10px 0;
 }
 
 .tweet-description-container {
@@ -43,15 +43,22 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  float: center;
   padding-top: 10px;
   padding-bottom: 10px;
+  margin-bottom: 10px;
+  border: 1px solid black;
+  border-radius: 20px;
 }
 
 .tweet-block {
   display: grid;
   background-color: #f5f5f5;
   width: 95%;
+}
+
+.tweet-block-container.retweet,
+.tweet-block.retweet {
+  background-color: #ceceee;
 }
 
 .tweet-block-user-bar {
@@ -114,6 +121,9 @@
   color: #eba601;
 }
 
+.tweet-block-action-block .active {
+  color: #eba601;
+}
 
 .post-imagearea{
   justify-content: center;

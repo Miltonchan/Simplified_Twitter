@@ -226,8 +226,8 @@ const Tweet = () => {
       <div className="tweet-section">
         {posts.map((val, index) => {
           return (
-            <div key={index} className="tweet-block-container">
-              <div className="tweet-block">
+            <div key={index} className={"tweet-block-container " + (val.retweet ? 'retweet' : '')}>
+              <div className={"tweet-block " + (val.retweet ? 'retweet' : '')}>
                 <div className="tweet-block-user-bar">
                   <div className="tweet-block-user-name-block">
                     <img
@@ -254,13 +254,13 @@ const Tweet = () => {
                   </div>
                   <div className="tweet-block-action-actions">
                     <div onClick={() => likePosts(val.postId)} className="tweet-block-action-block">
-                      <ThumbUpAltIcon />  {val.like.length}
+                      <ThumbUpAltIcon className={val.like.includes(user.useraccount.username) ? 'active' : '' } />  {val.like.length}
                     </div>
                     <div onClick={() => dislikePosts(val.postId)} className="tweet-block-action-block">
-                      <ThumbDownAltIcon />  {val.dislike.length}
+                      <ThumbDownAltIcon className={val.dislike.includes(user.useraccount.username) ? 'active' : '' } />  {val.dislike.length}
                     </div>
                     <div onClick={() => retweetPosts(val)}  className="tweet-block-action-block">
-                      <ShareIcon />  {val.retweetBy.length}
+                      <ShareIcon className={val.retweetBy.includes(user.useraccount.username) ? 'active' : '' } />  {val.retweetBy.length}
                     </div>
                     <div onClick={() => handleComment(val, index)}className="tweet-block-action-block">
                       <ModeCommentIcon />  {val.comment.length}
