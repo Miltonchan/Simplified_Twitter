@@ -91,22 +91,15 @@ router.route('/changePassword').post(async (req, res) => {
     password: data.oldPassword,
   };
 
-  const oldUseraccount = await Useraccount.findOne(filter);
-  if (oldUseraccount) {
-    if (data.oldPassword == data.newPassword || !data.newPassword) {
-      res.status(400).json('Invalid input');
+
+
+  Useraccount.updateOne(filter, {password: data.newPassword}, (err) => {
+    if (err) {
+      res.status(400).json('Something wrong');
     }else {
-      Useraccount.updateOne(filter, {password: data.newPassword}, (err) => {
-        if (err) {
-          res.status(400).json('Something wrong');
-        }else {
-          res.json('Status: success');
-        }
-      })
+      res.json('Status: success');
     }
-  }else {
-    res.status(400).json('Old password incorrect');
-  }
+  })
 });
 
 // delete useraccount
