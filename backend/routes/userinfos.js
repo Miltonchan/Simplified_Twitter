@@ -137,4 +137,12 @@ router.route('/delete').post((req, res) => {
   });
 });
 
+
+router.route('/recommendation').get((req, res) => {
+  Userinfo.find().select('username follower icon').exec()
+  .then(recommend => res.json(recommend))
+  .catch(error => res.status(500).json({error}))
+})
+
+
 module.exports = router;

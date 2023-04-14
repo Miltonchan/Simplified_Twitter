@@ -35,11 +35,11 @@ const Tweet = () => {
       })
       .then(data => data.json());
 
-    
+
 
       postData = await fetchComments(postData);
       followingPosts = [...followingPosts, ...postData];
-    
+
     }
 
     let postData = await fetch(`http://localhost:8000/posts?username=${user.userinfo.username}`,
@@ -318,7 +318,7 @@ const Tweet = () => {
                             />
                           </div>
                         )
-                        : 
+                        :
                         (
                           <div >
                             <img
@@ -377,13 +377,13 @@ const Tweet = () => {
                   </div>
               )})}
             </div>
-            <div className="post-section">
-              <div className="post-block">
-                <div className="post-textarea-container">
+            <div className="comment-post-section">
+              <div className="comment-post-block">
+                <div className="comment-post-textarea-container">
                   <textarea
                     required
                     placeholder="Leave a comment here..."
-                    className="post-textarea"
+                    className="comment-post-textarea"
                     value={input}
                     onChange={(event) => setInput(event.target.value)}
                   />
