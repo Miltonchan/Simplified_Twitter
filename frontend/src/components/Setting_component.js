@@ -131,8 +131,8 @@ export default function Setting_component() {
         <h2>Password</h2>
         <div className="description-text">This allows you to rename your password.</div>
         <div className="setting-row">
-        <input type="password" placeholder="Current password" value={password} onChange={handlePasswordChange} />
-        <input type="password" placeholder="New password" value={newPassword} onChange={handleNewPasswordChange} />
+        <input type="password" className="setting-password-input" placeholder="Current password" value={password} onChange={handlePasswordChange} />
+        <input type="password" className="setting-password-input" placeholder="New password" value={newPassword} onChange={handleNewPasswordChange} />
         </div>
         <button className="setting-button" onClick={confirmChange}>Change Password</button>  {/* not sure if it is correct onClick function for the button */}
       </div>

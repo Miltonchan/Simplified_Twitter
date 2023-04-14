@@ -27,6 +27,12 @@
   margin-bottom: 5px;
 }
 
+.setting-password-input {
+  border-bottom: 1px solid;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 .setting-button {
   background-color: #d7d7d7;
   color: #000;
