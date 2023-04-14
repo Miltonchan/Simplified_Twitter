@@ -81,7 +81,11 @@
 .tweet-block-user-bar-block {
   display: grid;
   padding-left: 10px;
-  width: 90%;
+  flex-grow: 1;
+}
+
+.tweet-time {
+  width: max-content;
 }
 
 .tweet-block-content-section {
@@ -91,6 +95,10 @@
 
 .tweet-block-content {
 
+}
+
+.tweet-block-content .image {
+  max-width: 100%;
 }
 
 .tweet-block-action-bar {

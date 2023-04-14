@@ -239,12 +239,15 @@ const Tweet = () => {
                   <div className="tweet-block-user-bar-block">
                     <h2>{val.username}</h2>
                   </div>
+                  <div className='tweet-time'>
+                    <h6>{new Date(val.createdAt).toDateString()}</h6>
+                  </div>
                 </div>
                 <div className="tweet-block-content-section">
                   <div className="tweet-block-content">
                     {val.content}
                     {val.image && <div>
-                      <img src={val.image}></img>
+                      <img className='image' src={val.image}></img>
                     </div>}
                   </div>
                 </div>
