@@ -79,7 +79,7 @@ export default function Userinfo_component() {
       'userinfo': userinfo,
       'useraccount': useraccount,
     }));
-    console.log('renew')
+    // console.log('renew')
   }
 
   window.addEventListener('reload', renewUser());

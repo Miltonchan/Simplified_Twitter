@@ -28,7 +28,7 @@ export const SearchResult = ({ result }) => {
     setTimeout(async () => {
       await renewUser();
       window.location.reload();
-    }, 300);
+    }, 200);
   };
 
   const getUseraccount = async () => {
