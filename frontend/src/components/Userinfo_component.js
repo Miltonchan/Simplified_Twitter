@@ -43,7 +43,7 @@ export default function Userinfo_component() {
       mode: 'cors',
     })
     .then(data => data.json())
-    
+
     return useraccount;
   }
 
@@ -138,7 +138,7 @@ export default function Userinfo_component() {
                   </div>
                   <div className="userinfo-follow-action">
                     <div className="userinfo-follow-row-block">
-                      <button className="userinfo-message-btn">Message</button>
+                      <button className="userinfo-message-btn" onClick={() => createChatroom(val)}>Message</button>
                     </div>
                   </div>
                 </div>
