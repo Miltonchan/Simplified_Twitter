@@ -160,6 +160,7 @@ router.route('/retweet').post((req,res) => {
         postId: item[0].postId+1,   
         username: req.body['username'],
         content: req.body['content'],
+        image: req.body['image'],
         like: [],
         dislike: [],
         retweetBy: [], 

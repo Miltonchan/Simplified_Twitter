@@ -119,6 +119,7 @@ const Tweet = () => {
           "postId": post.postId,
           "username": user.userinfo.username,
           "content": post.content,
+          "image": post.image,
           "retweeter": user.userinfo.username,
         })
       })
