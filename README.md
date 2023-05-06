@@ -16,9 +16,9 @@ A twitter-like social media platform for users to record their daily lives and c
 
 ## Table of Contents
 
-- [Installation](https://github.com/Miltonchan/Simplified_Twitter/main/README.md#Installation)  
-- [Usage](https://github.com/Miltonchan/Simplified_Twitter/main/README.md#Usage)  
-- [Collaborators](https://github.com/Miltonchan/Simplified_Twitter/main/README.md#Collaborators) 
+- [Installation](https://github.com/Miltonchan/Simplified_Twitter/blob/main/README.md#Installation)  
+- [Usage](https://github.com/Miltonchan/Simplified_Twitter/blob/main/README.md#Usage)  
+- [Collaborators](https://github.com/Miltonchan/Simplified_Twitter/blob/main/README.md#Collaborators) 
 
 ## Installation 
 - Open the terminal and type the following command to clone the repository
